@@ -9,8 +9,10 @@
 typedef struct PxInternal_Vdf PxVdf;
 typedef struct PxInternal_VdfEntry PxVdfEntry;
 
+PXC_API PxVdf* pxVdfNew(char const* comment);
 PXC_API PxVdf* pxVdfLoad(PxBuffer* buffer);
 PXC_API void pxVdfDestroy(PxVdf* vdf);
 
+PXC_API void pxVdfMerge(PxVdf* vdf, PxVdf* other, PxBool override);
 PXC_API PxVdfEntry const* pxVdfGetEntryByName(PxVdf const* vdf, char const* name);
 PXC_API PxBuffer* pxVdfEntryOpen(PxVdfEntry const* entry);
