@@ -16,6 +16,7 @@ set(PXC_SOURCES
         src/DaedalusScript.cc
         src/DaedalusVm.cc
         src/Font.cc
+        src/Logging.cc
         src/Material.cc
         src/Mesh.cc
         src/Model.cc
