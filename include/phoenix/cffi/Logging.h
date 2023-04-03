@@ -7,5 +7,5 @@
 
 typedef void(*PxLogCallback)(uint8_t level, char const* message);
 
-PXC_API void px_set_logger(PxLogCallback cb);
-PXC_API void px_set_logger_default();
+PXC_API void pxLoggerSet(PxLogCallback cb);
+PXC_API void pxLoggetSetDefault();

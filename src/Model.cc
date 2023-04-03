@@ -5,7 +5,7 @@
 #include <phoenix/model.hh>
 #include <phoenix/cffi/Model.h>
 
-PxModel* px_mdl_parse(PxBuffer* buffer) {
+PxModel* pxMdlLoad(PxBuffer* buffer) {
 	try {
 		auto* buf = RC(phoenix::buffer, buffer);
 		auto mat = px::model::parse(buf->duplicate());
@@ -15,14 +15,25 @@ PxModel* px_mdl_parse(PxBuffer* buffer) {
 	}
 }
 
-PxModelHierarchy const* px_mdl_hierarchy(PxModel const* mdl) {
+PxModel* pxMdlLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxModel* result = pxMdlLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxMdlDestroy(PxModel* mdl) {
+	delete RC(phoenix::model, mdl);
+}
+
+PxModelHierarchy const* pxMdlGetHierarchy(PxModel const* mdl) {
 	return RCC(PxModelHierarchy, &RCC(px::model, mdl)->hierarchy);
 }
 
-PxModelMesh const* px_mdl_mesh(PxModel const* mdl) {
+PxModelMesh const* pxMdlGetMesh(PxModel const* mdl) {
 	return RCC(PxModelMesh, &RCC(px::model, mdl)->mesh);
 }
 
-void px_mdl_destroy(PxModel* mdl) {
-	delete RC(phoenix::model, mdl);
-}

@@ -5,7 +5,7 @@
 #include <phoenix/script.hh>
 #include <phoenix/cffi/DaedalusScript.h>
 
-PxDaedalusScript* px_script_parse(PxBuffer* buffer) {
+PxDaedalusScript* pxScriptLoad(PxBuffer* buffer) {
 	try {
 		auto buf = RC(px::buffer, buffer)->duplicate();
 		auto scr = px::script::parse(buf);
@@ -15,14 +15,25 @@ PxDaedalusScript* px_script_parse(PxBuffer* buffer) {
 	}
 }
 
-PxDaedalusSymbol const* px_script_find_symbol_by_id(PxDaedalusScript const* scr, uint32_t id) {
+PxDaedalusScript* pxScriptLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxDaedalusScript* result = pxScriptLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxScriptDestroy(PxDaedalusScript* scr) {
+	delete RC(px::script, scr);
+}
+
+PxDaedalusSymbol const* pxScriptGetSymbolById(PxDaedalusScript const* scr, uint32_t id) {
 	return RCC(PxDaedalusSymbol, RCC(px::script, scr)->find_symbol_by_index(id));
 }
 
-PxDaedalusSymbol const* px_script_find_symbol_by_name(PxDaedalusScript const* scr, char const* name) {
+PxDaedalusSymbol const* pxScriptGetSymbolByName(PxDaedalusScript const* scr, char const* name) {
 	return RCC(PxDaedalusSymbol, RCC(px::script, scr)->find_symbol_by_name(name));
 }
 
-void px_script_destroy(PxDaedalusScript* scr) {
-	delete RC(px::script, scr);
-}

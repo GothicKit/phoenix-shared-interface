@@ -5,7 +5,7 @@
 #include <phoenix/model_mesh.hh>
 #include <phoenix/cffi/ModelMesh.h>
 
-PxModelMesh* px_mdm_parse(PxBuffer* buffer) {
+PxModelMesh* pxMdmLoad(PxBuffer* buffer) {
 	try {
 		auto* buf = reinterpret_cast<phoenix::buffer*>(buffer);
 		auto mat = phoenix::model_mesh::parse(buf->duplicate());
@@ -15,6 +15,16 @@ PxModelMesh* px_mdm_parse(PxBuffer* buffer) {
 	}
 }
 
-void px_mdm_destroy(PxModelMesh* mdm) {
+PxModelMesh* pxMdmLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxModelMesh* result = pxMdmLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxMdmDestroy(PxModelMesh* mdm) {
 	delete reinterpret_cast<phoenix::model_mesh*>(mdm);
 }

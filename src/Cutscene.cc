@@ -5,7 +5,7 @@
 #include <phoenix/messages.hh>
 #include <phoenix/cffi/Cutscene.h>
 
-PxCutsceneLib* px_csl_parse(PxBuffer* buffer) {
+PxCutsceneLib* pxCslLoad(PxBuffer* buffer) {
 	try {
 		auto* buf = RC(phoenix::buffer, buffer);
 		auto mat = px::messages::parse(buf->duplicate());
@@ -15,12 +15,22 @@ PxCutsceneLib* px_csl_parse(PxBuffer* buffer) {
 	}
 }
 
-char const* px_csl_get(PxCutsceneLib const* csl, char const* name, uint32_t* type) {
+PxCutsceneLib* pxCslLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxCutsceneLib* result = pxCslLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxCslDestroy(PxCutsceneLib* csl) {
+	delete RC(phoenix::messages, csl);
+}
+
+char const* pxCslGetBlock(PxCutsceneLib const* csl, char const* name, uint32_t* type) {
 	auto* src = RCC(phoenix::messages, csl)->block_by_name(name);
 	*type = src->message.type;
 	return src->message.text.c_str();
-}
-
-void px_csl_destroy(PxCutsceneLib* csl) {
-	delete RC(phoenix::messages, csl);
 }

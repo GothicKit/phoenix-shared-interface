@@ -5,7 +5,7 @@
 #include <phoenix/vdfs.hh>
 #include <phoenix/cffi/Vdf.h>
 
-PxVdf* px_vdf_parse(PxBuffer* buffer) {
+PxVdf* pxVdfLoad(PxBuffer* buffer) {
 	try {
 		auto buf = reinterpret_cast<px::buffer*>(buffer)->duplicate();
 		auto vdf = px::vdf_file::open(buf);
@@ -15,21 +15,17 @@ PxVdf* px_vdf_parse(PxBuffer* buffer) {
 	}
 }
 
-PxVdfEntry const* px_vdf_search(PxVdf const* vdf, char const* name) {
+void pxVdfDestroy(PxVdf* vdf) {
+	delete reinterpret_cast<phoenix::vdf_file*>(vdf);
+}
+
+PxVdfEntry const* pxVdfGetEntryByName(PxVdf const* vdf, char const* name) {
 	auto* entry = RCC(px::vdf_file, vdf)->find_entry(name);
 	return reinterpret_cast<PxVdfEntry const*>(entry);
 }
 
-PxVdfEntry const* px_vdf_resolve(PxVdf const* vdf, char const* resolve) {
-	auto* entry = RCC(px::vdf_file, vdf)->resolve_path(resolve);
-	return reinterpret_cast<PxVdfEntry const*>(entry);
-}
-
-PxBuffer* px_vdf_entry_open(PxVdfEntry const* entry) {
+PxBuffer* pxVdfEntryOpen(PxVdfEntry const* entry) {
 	auto* e = reinterpret_cast<phoenix::vdf_entry const*>(entry);
 	return reinterpret_cast<PxBuffer*>(new phoenix::buffer {e->open()});
 }
 
-void px_vdf_destroy(PxVdf* vdf) {
-	delete reinterpret_cast<phoenix::vdf_file*>(vdf);
-}

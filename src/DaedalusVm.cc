@@ -6,7 +6,7 @@
 #include <phoenix/ext/daedalus_classes.hh>
 #include <phoenix/cffi/DaedalusVm.h>
 
-PxDaedalusVm* px_vm_parse(PxBuffer* buffer) {
+PxDaedalusVm* pxVmLoad(PxBuffer* buffer) {
 	try {
 		auto buf = reinterpret_cast<phoenix::buffer*>(buffer)->duplicate();
 		auto scr = phoenix::script::parse(buf);
@@ -16,6 +16,17 @@ PxDaedalusVm* px_vm_parse(PxBuffer* buffer) {
 		return nullptr;
 	}
 }
-void px_vm_destroy(PxDaedalusVm* vm) {
+
+PxDaedalusVm* pxVmLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxDaedalusVm* result = pxVmLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxVmDestroy(PxDaedalusVm* vm) {
 	delete reinterpret_cast<phoenix::vm*>(vm);
 }

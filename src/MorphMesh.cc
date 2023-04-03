@@ -5,7 +5,7 @@
 #include <phoenix/morph_mesh.hh>
 #include <phoenix/cffi/MorphMesh.h>
 
-PxMorphMesh* px_mmb_parse(PxBuffer* buffer) {
+PxMorphMesh* pxMmbLoad(PxBuffer* buffer) {
 	try {
 		auto* buf = reinterpret_cast<phoenix::buffer*>(buffer);
 		auto mat = phoenix::morph_mesh::parse(buf->duplicate());
@@ -15,6 +15,16 @@ PxMorphMesh* px_mmb_parse(PxBuffer* buffer) {
 	}
 }
 
-void px_mmb_destroy(PxMorphMesh* mmb) {
+PxMorphMesh* pxMmbLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxMorphMesh* result = pxMmbLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxMmbDestroy(PxMorphMesh* mmb) {
 	delete reinterpret_cast<phoenix::morph_mesh*>(mmb);
 }

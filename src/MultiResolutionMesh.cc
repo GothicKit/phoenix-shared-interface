@@ -5,7 +5,7 @@
 #include <phoenix/proto_mesh.hh>
 #include <phoenix/cffi/MultiResolutionMesh.h>
 
-PxMultiResolutionMesh* px_mrm_parse(PxBuffer* buffer) {
+PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer) {
 	try {
 		auto* buf = reinterpret_cast<phoenix::buffer*>(buffer);
 		auto mat = phoenix::proto_mesh::parse(buf->duplicate());
@@ -15,6 +15,16 @@ PxMultiResolutionMesh* px_mrm_parse(PxBuffer* buffer) {
 	}
 }
 
-void px_mrm_destroy(PxMultiResolutionMesh* mmb) {
-	delete reinterpret_cast<phoenix::proto_mesh*>(mmb);
+PxMultiResolutionMesh* pxMrmLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxMultiResolutionMesh* result = pxMrmLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxMrmDestroy(PxMultiResolutionMesh* mrm) {
+	delete reinterpret_cast<phoenix::proto_mesh*>(mrm);
 }

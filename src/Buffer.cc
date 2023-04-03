@@ -42,13 +42,13 @@ private:
 	uint64_t _m_size;
 };
 
-PxBuffer* px_buffer_create(uint8_t const* bytes, uint64_t size) {
+PxBuffer* pxBufferCreate(uint8_t const* bytes, uint64_t size) {
 	auto back = std::make_shared<raw_buffer_backing>(bytes, size);
 	auto buf = new px::buffer(std::move(back));
 	return reinterpret_cast<PxBuffer*>(buf);
 }
 
-PxBuffer* px_buffer_mmap(char const* file) {
+PxBuffer* pxBufferMmap(char const* file) {
 	try {
 		auto buf = px::buffer::mmap(file);
 		return reinterpret_cast<PxBuffer*>(new px::buffer(std::move(buf)));
@@ -57,6 +57,6 @@ PxBuffer* px_buffer_mmap(char const* file) {
 	}
 }
 
-void px_buffer_destroy(PxBuffer* buffer) {
+void pxBufferDestroy(PxBuffer* buffer) {
 	delete reinterpret_cast<px::buffer*>(buffer);
 }

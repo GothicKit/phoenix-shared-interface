@@ -7,6 +7,6 @@
 
 typedef struct PxInternal_Buffer PxBuffer;
 
-PXC_API PxBuffer* px_buffer_create(uint8_t const* bytes, uint64_t size);
-PXC_API PxBuffer* px_buffer_mmap(char const* file);
-PXC_API void px_buffer_destroy(PxBuffer* buffer);
+PXC_API PxBuffer* pxBufferCreate(uint8_t const* bytes, uint64_t size);
+PXC_API PxBuffer* pxBufferMmap(char const* file);
+PXC_API void pxBufferDestroy(PxBuffer* buffer);

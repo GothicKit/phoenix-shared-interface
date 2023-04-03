@@ -5,7 +5,7 @@
 #include <phoenix/font.hh>
 #include <phoenix/cffi/Font.h>
 
-PxFont* px_fnt_parse(PxBuffer* buffer) {
+PxFont* pxFntLoad(PxBuffer* buffer) {
 	try {
 		auto* buf = RC(px::buffer, buffer);
 		auto ani = px::font::parse(buf->duplicate());
@@ -15,19 +15,29 @@ PxFont* px_fnt_parse(PxBuffer* buffer) {
 	}
 }
 
-char const* px_fnt_name(PxFont const* fnt) {
+PxFont* pxFntLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxFont* result = pxFntLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+char const* pxFntGetName(PxFont const* fnt) {
 	return RCC(px::font, fnt)->name.c_str();
 }
 
-uint32_t px_fnt_height(PxFont const* fnt) {
+uint32_t pxFntGetHeight(PxFont const* fnt) {
 	return RCC(px::font, fnt)->height;
 }
 
-uint32_t px_fnt_glyph_count(PxFont const* fnt) {
+uint32_t pxFntGetGlyphCount(PxFont const* fnt) {
 	return (uint32_t) RCC(px::font, fnt)->glyphs.size();
 }
 
-void px_fnt_glyph(PxFont const* fnt, uint32_t i, uint8_t* width, PxVec2* upper, PxVec2* lower) {
+void pxFntGetGlyph(PxFont const* fnt, uint32_t i, uint8_t* width, PxVec2* upper, PxVec2* lower) {
 	auto const& src = RCC(px::font, fnt)->glyphs[i];
 	*width = src.width;
 	upper->x = src.uv[0].x;
@@ -36,6 +46,6 @@ void px_fnt_glyph(PxFont const* fnt, uint32_t i, uint8_t* width, PxVec2* upper, 
 	lower->y = src.uv[1].y;
 }
 
-void px_fnt_destroy(PxFont* fnt) {
+void pxFntDestroy(PxFont* fnt) {
 	delete RC(phoenix::font, fnt);
 }

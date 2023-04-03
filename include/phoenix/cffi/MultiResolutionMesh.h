@@ -3,11 +3,13 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
+#include "Vdf.h"
 
 #include <stdint.h>
 
 typedef struct PxInternal_MultiResolutionMesh PxMultiResolutionMesh;
 
 // TODO
-PXC_API PxMultiResolutionMesh* px_mrm_parse(PxBuffer* buffer);
-PXC_API void px_mrm_destroy(PxMultiResolutionMesh* mrm);
+PXC_API PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer);
+PXC_API PxMultiResolutionMesh* pxMrmLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API void pxMrmDestroy(PxMultiResolutionMesh* mrm);

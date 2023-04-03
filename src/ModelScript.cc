@@ -5,7 +5,7 @@
 #include <phoenix/model_script.hh>
 #include <phoenix/cffi/ModelScript.h>
 
-PxModelScript* px_mds_parse(PxBuffer* buffer) {
+PxModelScript* pxMdsLoad(PxBuffer* buffer) {
 	try {
 		auto* buf = reinterpret_cast<phoenix::buffer*>(buffer);
 		auto mat = phoenix::model_script::parse(buf->duplicate());
@@ -15,6 +15,16 @@ PxModelScript* px_mds_parse(PxBuffer* buffer) {
 	}
 }
 
-void px_mds_destroy(PxModelScript* mdm) {
+PxModelScript* pxMdsLoadFromVdf(PxVdf const* vdf, char const* name) {
+	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+	if (entry == nullptr) return nullptr;
+
+	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxModelScript* result = pxMdsLoad(buf);
+	pxBufferDestroy(buf);
+	return result;
+}
+
+void pxMdsDestroy(PxModelScript* mdm) {
 	delete reinterpret_cast<phoenix::model_script*>(mdm);
 }

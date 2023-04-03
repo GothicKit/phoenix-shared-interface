@@ -3,11 +3,13 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
+#include "Vdf.h"
 
 #include <stdint.h>
 
 typedef struct PxInternal_World PxWorld;
 
 // TODO
-PXC_API PxWorld* px_world_parse(PxBuffer* buffer);
-PXC_API void px_world_destroy(PxWorld* world);
+PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
+PXC_API PxWorld* pxWorldLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API void pxWorldDestroy(PxWorld* world);
