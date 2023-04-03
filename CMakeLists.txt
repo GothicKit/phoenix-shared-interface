@@ -6,11 +6,27 @@ include(support/BuildSupport.cmake)
 set(CMAKE_CXX_STANDARD 17)
 
 option(PXC_ENABLE_ASAN "phoenix-shared: Enable sanitizers in debug builds." ON)
-option(PXC_BUILD_SHARED "phoenix-shared: Build as a shared libary." OFF)
 
 add_subdirectory(vendor/phoenix)
 
-set(PXC_SOURCES )
+set(PXC_SOURCES
+        src/Animation.cc
+        src/Buffer.cc
+        src/Cutscene.cc
+        src/DaedalusScript.cc
+        src/DaedalusVm.cc
+        src/Font.cc
+        src/Material.cc
+        src/Mesh.cc
+        src/Model.cc
+        src/ModelHierarchy.cc
+        src/ModelMesh.cc
+        src/ModelScript.cc
+        src/MorphMesh.cc
+        src/MultiResolutionMesh.cc
+        src/Texture.cc
+        src/Vdf.cc
+        src/World.cc)
 
 bs_select_cflags(${PXC_ENABLE_ASAN} PXC_COMPILE_FLAGS PXC_LINK_FLAGS)
 

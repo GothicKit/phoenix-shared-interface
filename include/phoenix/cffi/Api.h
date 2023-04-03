@@ -5,6 +5,7 @@
 #ifdef __cplusplus
 	#define PXC_EXPORT extern "C"
 #else
+	#include <stdbool.h>
 	#define PXC_EXPORT
 #endif
 
@@ -27,3 +28,21 @@
 	#define PXC_API __attribute__((visibility("default"))) PXC_EXPORT
 	#define PXC_INTERNAL __attribute__((visibility("hidden"))) PXC_EXPORT
 #endif
+
+typedef struct {
+	float x, y;
+} PxVec2;
+
+typedef struct {
+	float x, y, z;
+} PxVec3;
+
+typedef struct {
+	float x, y, z, w;
+} PxQuat;
+
+typedef struct {
+	PxVec3 min, max;
+} PxAABB;
+
+typedef bool PxBool;
