@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/proto_mesh.hh>
 #include <phoenix/cffi/MultiResolutionMesh.h>
+#include <phoenix/proto_mesh.hh>
 
 PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer) {
 	try {

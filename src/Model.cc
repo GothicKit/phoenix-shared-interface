@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/model.hh>
 #include <phoenix/cffi/Model.h>
+#include <phoenix/model.hh>
 
 PxModel* pxMdlLoad(PxBuffer* buffer) {
 	try {
@@ -36,4 +36,3 @@ PxModelHierarchy const* pxMdlGetHierarchy(PxModel const* mdl) {
 PxModelMesh const* pxMdlGetMesh(PxModel const* mdl) {
 	return RCC(PxModelMesh, &RCC(px::model, mdl)->mesh);
 }
-

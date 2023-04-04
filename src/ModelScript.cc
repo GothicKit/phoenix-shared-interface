@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/model_script.hh>
 #include <phoenix/cffi/ModelScript.h>
+#include <phoenix/model_script.hh>
 
 PxModelScript* pxMdsLoad(PxBuffer* buffer) {
 	try {

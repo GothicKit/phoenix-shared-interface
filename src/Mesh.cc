@@ -3,8 +3,8 @@
 #include "Prelude.h"
 #include "phoenix/cffi/Api.h"
 
-#include <phoenix/mesh.hh>
 #include <phoenix/cffi/Mesh.h>
+#include <phoenix/mesh.hh>
 
 PxMesh* pxMshLoad(PxBuffer* buffer) {
 	try {
@@ -37,8 +37,8 @@ char const* pxMshGetName(PxMesh const* msh) {
 PxAABB pxMshGetBbox(PxMesh const* msh) {
 	auto& bb = RCC(px::mesh, msh)->bbox;
 	return {
-		{bb.min.x, bb.min.y, bb.min.z},
-		{bb.max.x, bb.max.y, bb.max.z},
+	    {bb.min.x, bb.min.y, bb.min.z},
+	    {bb.max.x, bb.max.y, bb.max.z},
 	};
 }
 
@@ -51,7 +51,7 @@ PxMaterial const* pxMshGetMaterial(PxMesh const* msh, uint32_t i) {
 }
 
 uint32_t pxMshGetVertexCount(PxMesh const* msh) {
-	return (uint32_t)RCC(px::mesh, msh)->vertices.size();
+	return (uint32_t) RCC(px::mesh, msh)->vertices.size();
 }
 
 PxVec3 pxMshGetVertex(PxMesh const* msh, uint32_t i) {

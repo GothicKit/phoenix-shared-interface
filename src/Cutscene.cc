@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/messages.hh>
 #include <phoenix/cffi/Cutscene.h>
+#include <phoenix/messages.hh>
 
 PxCutsceneLib* pxCslLoad(PxBuffer* buffer) {
 	try {

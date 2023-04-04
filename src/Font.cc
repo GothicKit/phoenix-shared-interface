@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/font.hh>
 #include <phoenix/cffi/Font.h>
+#include <phoenix/font.hh>
 
 PxFont* pxFntLoad(PxBuffer* buffer) {
 	try {

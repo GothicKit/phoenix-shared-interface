@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/script.hh>
 #include <phoenix/cffi/DaedalusScript.h>
+#include <phoenix/script.hh>
 
 PxDaedalusScript* pxScriptLoad(PxBuffer* buffer) {
 	try {
@@ -36,4 +36,3 @@ PxDaedalusSymbol const* pxScriptGetSymbolById(PxDaedalusScript const* scr, uint3
 PxDaedalusSymbol const* pxScriptGetSymbolByName(PxDaedalusScript const* scr, char const* name) {
 	return RCC(PxDaedalusSymbol, RCC(px::script, scr)->find_symbol_by_name(name));
 }
-

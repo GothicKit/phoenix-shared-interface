@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/model_mesh.hh>
 #include <phoenix/cffi/ModelMesh.h>
+#include <phoenix/model_mesh.hh>
 
 PxModelMesh* pxMdmLoad(PxBuffer* buffer) {
 	try {

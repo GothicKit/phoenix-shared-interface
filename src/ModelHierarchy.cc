@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/model_hierarchy.hh>
 #include <phoenix/cffi/ModelHierarchy.h>
+#include <phoenix/model_hierarchy.hh>
 
 PxModelHierarchy* pxMdhLoad(PxBuffer* buffer) {
 	try {
@@ -32,16 +32,16 @@ void pxMdhDestroy(PxModelHierarchy* mdh) {
 PxAABB pxMdhGetBbox(PxModelHierarchy const* mdh) {
 	auto& bb = RCC(px::model_hierarchy, mdh)->bbox;
 	return {
-		{bb.min.x, bb.min.y, bb.min.z},
-		{bb.max.x, bb.max.y, bb.max.z},
+	    {bb.min.x, bb.min.y, bb.min.z},
+	    {bb.max.x, bb.max.y, bb.max.z},
 	};
 }
 
 PxAABB pxMdhGetCollisionBbox(PxModelHierarchy const* mdh) {
 	auto& bb = RCC(px::model_hierarchy, mdh)->collision_bbox;
 	return {
-		{bb.min.x, bb.min.y, bb.min.z},
-		{bb.max.x, bb.max.y, bb.max.z},
+	    {bb.min.x, bb.min.y, bb.min.z},
+	    {bb.max.x, bb.max.y, bb.max.z},
 	};
 }
 
@@ -58,9 +58,11 @@ uint32_t pxMdhGetNodeCount(PxModelHierarchy const* mdh) {
 	return (uint32_t) RCC(px::model_hierarchy, mdh)->nodes.size();
 }
 
-void pxMdhGetNode(PxModelHierarchy const* mdh, uint32_t i, int16_t* parent, char const** name /*, TODO: Node transform*/) {
+void pxMdhGetNode(PxModelHierarchy const* mdh,
+                  uint32_t i,
+                  int16_t* parent,
+                  char const** name /*, TODO: Node transform*/) {
 	auto& node = RCC(px::model_hierarchy, mdh)->nodes[i];
 	*parent = node.parent_index;
 	*name = node.name.c_str();
 }
-

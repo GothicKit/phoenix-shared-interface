@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/material.hh>
 #include <phoenix/cffi/Material.h>
+#include <phoenix/material.hh>
 
 char const* pxMatGetName(PxMaterial const* mat) {
 	return RCC(px::material, mat)->name.c_str();

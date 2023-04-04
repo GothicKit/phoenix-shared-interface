@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/morph_mesh.hh>
 #include <phoenix/cffi/MorphMesh.h>
+#include <phoenix/morph_mesh.hh>
 
 PxMorphMesh* pxMmbLoad(PxBuffer* buffer) {
 	try {

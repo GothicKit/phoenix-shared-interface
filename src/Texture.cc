@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "Prelude.h"
 
-#include <phoenix/texture.hh>
 #include <phoenix/cffi/Texture.h>
+#include <phoenix/texture.hh>
 
 PxTexture* pxTexLoad(PxBuffer* buffer) {
 	try {
@@ -29,7 +29,12 @@ void pxTexDestroy(PxTexture* tex) {
 	delete reinterpret_cast<phoenix::texture*>(tex);
 }
 
-void pxTexGetMeta(PxTexture const* tex, uint32_t* format, uint32_t* width, uint32_t* height, uint32_t* mipmapCount, uint32_t* averageColor) {
+void pxTexGetMeta(PxTexture const* tex,
+                  uint32_t* format,
+                  uint32_t* width,
+                  uint32_t* height,
+                  uint32_t* mipmapCount,
+                  uint32_t* averageColor) {
 	auto* t = reinterpret_cast<phoenix::texture const*>(tex);
 	*format = t->format();
 	*width = t->width();
@@ -44,4 +49,3 @@ uint8_t const* pxTexGetMipmap(PxTexture const* tex, uint32_t level, uint32_t* wi
 	*height = t->mipmap_height(level);
 	return t->data(level).data();
 }
-
