@@ -3,30 +3,30 @@
 #pragma once
 
 #ifdef __cplusplus
-	#define PXC_EXPORT extern "C"
+	#define PXC_EXTERN extern "C"
 #else
 	#include <stdbool.h>
-	#define PXC_EXPORT
+	#define PXC_EXTERN
 #endif
 
 #if defined(_WIN32) || defined(__CYGWIN__)
 	#ifdef PXC_EXPORTS
 		#ifdef __GNUC__
-			#define PXC_API __attribute__((dllexport)) PXC_EXPORT
+			#define PXC_API PXC_EXTERN __attribute__((dllexport))
 		#else
-			#define PXC_API __declspec(dllexport) PXC_EXPORT
+			#define PXC_API PXC_EXTERN __declspec(dllexport)
 		#endif
 	#else
 		#ifdef __GNUC__
-			#define PXC_API __attribute__((dllimport)) PXC_EXPORT
+			#define PXC_API PXC_EXTERN __attribute__((dllimport))
 		#else
-			#define PXC_API __declspec(dllimport) PXC_EXPORT
+			#define PXC_API PXC_EXTERN __declspec(dllimport)
 		#endif
 	#endif
 	#define PXC_INTERNAL
 #else
-	#define PXC_API __attribute__((visibility("default"))) PXC_EXPORT
-	#define PXC_INTERNAL __attribute__((visibility("hidden"))) PXC_EXPORT
+	#define PXC_API PXC_EXTERN __attribute__((visibility("default")))
+	#define PXC_INTERNAL PXC_EXTERN __attribute__((visibility("hidden")))
 #endif
 
 typedef struct {
