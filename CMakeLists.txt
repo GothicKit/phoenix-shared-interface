@@ -14,7 +14,7 @@ set(PXC_SOURCES
         src/Buffer.cc
         src/Cutscene.cc
         src/DaedalusScript.cc
-        src/DaedalusVm.cc
+        src/Vm.cc
         src/Font.cc
         src/Logging.cc
         src/Material.cc
