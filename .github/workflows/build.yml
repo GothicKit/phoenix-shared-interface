@@ -20,7 +20,7 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'Linux x86-64 Shared Object'
-          path: 'build/phoenix-shared*'
+          path: 'build/libphoenix-shared*'
   macos:
     name: "MacOS"
     runs-on: 'macos-11'
@@ -39,7 +39,7 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'Linux x86-64 Dynamic Library'
-          path: 'build/phoenix-shared*'
+          path: 'build/libphoenix-shared*'
   windows:
     name: "Windows"
     runs-on: 'windows-2019'
@@ -56,4 +56,4 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'Windows x86-64 DLL'
-          path: 'build/phoenix-shared*'
+          path: 'build/Release/phoenix-shared.dll'
