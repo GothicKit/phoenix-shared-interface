@@ -46,7 +46,7 @@ PxVm* pxVmLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
 	if (entry == nullptr) return nullptr;
 
-	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxVm* result = pxVmLoad(buf);
 	pxBufferDestroy(buf);
 	return result;

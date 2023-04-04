@@ -32,7 +32,7 @@ PxVdfEntry const* pxVdfGetEntryByName(PxVdf const* vdf, char const* name) {
 	return reinterpret_cast<PxVdfEntry const*>(entry);
 }
 
-PxBuffer* pxVdfEntryOpen(PxVdfEntry const* entry) {
+PxBuffer* pxVdfEntryOpenBuffer(PxVdfEntry const* entry) {
 	auto* e = reinterpret_cast<phoenix::vdf_entry const*>(entry);
 	return reinterpret_cast<PxBuffer*>(new phoenix::buffer {e->open()});
 }

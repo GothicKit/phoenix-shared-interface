@@ -15,4 +15,4 @@ PXC_API void pxVdfDestroy(PxVdf* vdf);
 
 PXC_API void pxVdfMerge(PxVdf* vdf, PxVdf* other, PxBool override);
 PXC_API PxVdfEntry const* pxVdfGetEntryByName(PxVdf const* vdf, char const* name);
-PXC_API PxBuffer* pxVdfEntryOpen(PxVdfEntry const* entry);
+PXC_API PxBuffer* pxVdfEntryOpenBuffer(PxVdfEntry const* entry);

@@ -19,7 +19,7 @@ PxCutsceneLib* pxCslLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
 	if (entry == nullptr) return nullptr;
 
-	PxBuffer* buf = pxVdfEntryOpen(entry);
+	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxCutsceneLib* result = pxCslLoad(buf);
 	pxBufferDestroy(buf);
 	return result;
