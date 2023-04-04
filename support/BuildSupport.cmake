@@ -30,7 +30,7 @@ endfunction()
 ##   COMPILE(list): A list containing the compiler flags
 ##   LINK(list): A list containing the linker flags
 function(bs_internal_select_cflags_msvc SANITIZERS COMPILE LINK)
-    list(APPEND _INTERNAL_COMPILE_FLAGS "/Wall" "/WX")
+    list(APPEND _INTERNAL_COMPILE_FLAGS "/Wall")
 
     if (CMAKE_BUILD_TYPE MATCHES "^Debug" AND ${SANITIZERS})
         list(APPEND _INTERNAL_COMPILE_FLAGS "/fsanitize=address")
