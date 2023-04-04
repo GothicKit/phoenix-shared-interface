@@ -38,7 +38,7 @@ jobs:
       - name: 'Publish Library'
         uses: 'actions/upload-artifact@v3'
         with:
-          name: 'Linux x86-64 Dynamic Library'
+          name: 'MaxOS x86-64 DyLib'
           path: 'build/libphoenix-shared*'
   windows:
     name: "Windows"
