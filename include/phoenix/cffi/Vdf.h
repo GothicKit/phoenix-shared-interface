@@ -11,6 +11,7 @@ typedef struct PxInternal_VdfEntry PxVdfEntry;
 
 PXC_API PxVdf* pxVdfNew(char const* comment);
 PXC_API PxVdf* pxVdfLoad(PxBuffer* buffer);
+PXC_API PxVdf* pxVdfLoadFromFile(char const* path);
 PXC_API void pxVdfDestroy(PxVdf* vdf);
 
 PXC_API void pxVdfMerge(PxVdf* vdf, PxVdf* other, PxBool override);

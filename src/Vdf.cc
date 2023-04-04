@@ -19,6 +19,16 @@ PxVdf* pxVdfLoad(PxBuffer* buffer) {
 	}
 }
 
+PxVdf* pxVdfLoadFromFile(char const* path) {
+	try {
+		auto buf = px::buffer::mmap(path);
+		auto vdf = px::vdf_file::open(buf);
+		return reinterpret_cast<PxVdf*>(new px::vdf_file(std::move(vdf)));
+	} catch (std::exception const&) {
+		return nullptr;
+	}
+}
+
 void pxVdfDestroy(PxVdf* vdf) {
 	delete reinterpret_cast<phoenix::vdf_file*>(vdf);
 }
