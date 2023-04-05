@@ -35,6 +35,21 @@ PXC_API void pxVmStackPushInt(PxVm* vm, int i);
 PXC_API void pxVmRegisterExternal(PxVm* vm, char const* name, PxVmExternalCallback cb);
 PXC_API void pxVmRegisterExternalDefault(PxVm* vm, PxVmExternalDefaultCallback cb);
 
+PXC_API PxVmInstance* pxVmGetGlobalSelf(PxVm* vm);
+PXC_API PxVmInstance* pxVmGetGlobalOther(PxVm* vm);
+PXC_API PxVmInstance* pxVmGetGlobalVictim(PxVm* vm);
+PXC_API PxVmInstance* pxVmGetGlobalHero(PxVm* vm);
+PXC_API PxVmInstance* pxVmGetGlobalItem(PxVm* vm);
+
+PXC_API PxVmInstance* pxVmSetGlobalSelf(PxVm* vm, PxVmInstance* instance);
+PXC_API PxVmInstance* pxVmSetGlobalOther(PxVm* vm, PxVmInstance* instance);
+PXC_API PxVmInstance* pxVmSetGlobalVictim(PxVm* vm, PxVmInstance* instance);
+PXC_API PxVmInstance* pxVmSetGlobalHero(PxVm* vm, PxVmInstance* instance);
+PXC_API PxVmInstance* pxVmSetGlobalItem(PxVm* vm, PxVmInstance* instance);
+
+PXC_API bool pxVmCallFunction(PxVm* vm, char const* func, ...);
+PXC_API bool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...);
+
 PXC_API PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType type);
 PXC_API PxVmInstance* pxVmInstanceInitialize(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing);
 

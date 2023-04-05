@@ -6,8 +6,12 @@
 #include <phoenix/ext/daedalus_classes.hh>
 #include <phoenix/vm.hh>
 
+#include <cstdarg>
+#include <cstring>
 #include <memory>
 #include <stdexcept>
+#include <string>
+#include <string_view>
 #include <unordered_map>
 
 struct PxInternal_Vm {
@@ -102,6 +106,154 @@ void pxVmRegisterExternal(PxVm* vm, char const* name, PxVmExternalCallback cb) {
 
 void pxVmRegisterExternalDefault(PxVm* vm, PxVmExternalDefaultCallback cb) {
 	vm->defaultExternal = cb;
+}
+
+PxVmInstance* pxVmGetGlobalSelf(PxVm* vm) {
+	return RC(PxVmInstance, vm->vm.global_self()->get_instance().get());
+}
+
+PxVmInstance* pxVmGetGlobalOther(PxVm* vm) {
+	return RC(PxVmInstance, vm->vm.global_other()->get_instance().get());
+}
+
+PxVmInstance* pxVmGetGlobalVictim(PxVm* vm) {
+	return RC(PxVmInstance, vm->vm.global_victim()->get_instance().get());
+}
+
+PxVmInstance* pxVmGetGlobalHero(PxVm* vm) {
+	return RC(PxVmInstance, vm->vm.global_hero()->get_instance().get());
+}
+
+PxVmInstance* pxVmGetGlobalItem(PxVm* vm) {
+	return RC(PxVmInstance, vm->vm.global_item()->get_instance().get());
+}
+
+PxVmInstance* pxVmSetGlobalSelf(PxVm* vm, PxVmInstance* instance) {
+	auto* old = pxVmGetGlobalSelf(vm);
+	auto* instPtr = RC(px::instance, instance);
+	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	vm->vm.global_self()->set_instance(instSym->get_instance());
+	return old;
+}
+
+PxVmInstance* pxVmSetGlobalOther(PxVm* vm, PxVmInstance* instance) {
+	auto* old = pxVmGetGlobalOther(vm);
+	auto* instPtr = RC(px::instance, instance);
+	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	vm->vm.global_other()->set_instance(instSym->get_instance());
+	return old;
+}
+
+PxVmInstance* pxVmSetGlobalVictim(PxVm* vm, PxVmInstance* instance) {
+	auto* old = pxVmGetGlobalVictim(vm);
+	auto* instPtr = RC(px::instance, instance);
+	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	vm->vm.global_victim()->set_instance(instSym->get_instance());
+	return old;
+}
+
+PxVmInstance* pxVmSetGlobalHero(PxVm* vm, PxVmInstance* instance) {
+	auto* old = pxVmGetGlobalHero(vm);
+	auto* instPtr = RC(px::instance, instance);
+	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	vm->vm.global_hero()->set_instance(instSym->get_instance());
+	return old;
+}
+
+PxVmInstance* pxVmSetGlobalItem(PxVm* vm, PxVmInstance* instance) {
+	auto* old = pxVmGetGlobalItem(vm);
+	auto* instPtr = RC(px::instance, instance);
+	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	vm->vm.global_item()->set_instance(instSym->get_instance());
+	return old;
+}
+
+static bool pxInternalVmCallFunction(PxVm* vm, px::symbol* sym, char const* args, va_list ap) {
+	try {
+		if (args == nullptr || *args == '\0' /* empty string */) {
+			vm->vm.unsafe_call(sym);
+			return true;
+		}
+
+		if (*args++ != '(') return false;
+		while (*args != '\0') {
+			auto type = *args++;
+
+			if (type == ')') {
+				// next is return type
+				args += 1;
+				break;
+			}
+
+			// FIXME: This breaks if an invalid args-string is provided since values might already have been pushed!
+			switch (type) {
+			case 'f':
+				pxVmStackPushFloat(vm, (float) va_arg(ap, double));
+				break;
+			case 'd':
+				pxVmStackPushInt(vm, va_arg(ap, int32_t));
+				break;
+			case 's':
+				pxVmStackPushString(vm, va_arg(ap, char const*));
+				break;
+			case 'I':
+				pxVmStackPushInstance(vm, va_arg(ap, PxVmInstance*));
+				break;
+			default:
+				return false;
+			}
+		}
+
+		vm->vm.unsafe_call(sym);
+
+		if (*args != '\0') {
+			switch (*args) {
+			case 'f':
+				*va_arg(ap, float*) = pxVmStackPopFloat(vm);
+				break;
+			case 'd':
+				*va_arg(ap, int*) = pxVmStackPopInt(vm);
+				break;
+			case 's':
+				*va_arg(ap, char const**) = pxVmStackPopString(vm);
+				break;
+			case 'I':
+				*va_arg(ap, PxVmInstance**) = pxVmStackPopInstance(vm);
+				break;
+			case 'v':
+				break;
+			default:
+				return false;
+			}
+		}
+
+		return true;
+	} catch (std::runtime_error const&) {
+		return false;
+	}
+}
+
+bool pxVmCallFunction(PxVm* vm, char const* func, ...) {
+	va_list ap;
+	va_start(ap, func);
+
+	auto* args = strchr(func, '(');
+	auto* sym = vm->vm.find_symbol_by_name({func, static_cast<unsigned long>(args - func)});
+	auto r = pxInternalVmCallFunction(vm, sym, args, ap);
+
+	va_end(ap);
+	return r;
+}
+
+bool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...) {
+	va_list ap;
+	va_start(ap, args);
+
+	auto* sym = vm->vm.find_symbol_by_index(index);
+	auto r = pxInternalVmCallFunction(vm, sym, args, ap);
+
+	va_end(ap);
+	return r;
 }
 
 PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType type) {
