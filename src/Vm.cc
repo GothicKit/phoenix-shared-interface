@@ -233,7 +233,7 @@ static bool pxInternalVmCallFunction(PxVm* vm, px::symbol* sym, char const* args
 	}
 }
 
-bool pxVmCallFunction(PxVm* vm, char const* func, ...) {
+PxBool pxVmCallFunction(PxVm* vm, char const* func, ...) {
 	va_list ap;
 	va_start(ap, func);
 
@@ -245,7 +245,7 @@ bool pxVmCallFunction(PxVm* vm, char const* func, ...) {
 	return r;
 }
 
-bool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...) {
+PxBool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...) {
 	va_list ap;
 	va_start(ap, args);
 
