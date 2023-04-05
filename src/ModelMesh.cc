@@ -30,7 +30,7 @@ void pxMdmDestroy(PxModelMesh* mdm) {
 }
 
 uint32_t pxMdmGetMeshCount(PxModelMesh const* mdm) {
-    return (uint32_t) RCC(px::model_mesh, mdm)->meshes.size();
+	return (uint32_t) RCC(px::model_mesh, mdm)->meshes.size();
 }
 
 PxSoftSkinMesh const* pxMdmGetMesh(PxModelMesh const* mdm, uint32_t i) {
@@ -74,7 +74,12 @@ uint32_t pxSsmGetNodeWeightCount(PxSoftSkinMesh const* ssm, uint32_t node) {
 	return (uint32_t) RCC(px::softskin_mesh, ssm)->weights[node].size();
 }
 
-void pxSsmGetNodeWeight(PxSoftSkinMesh const* ssm, uint32_t node, uint32_t i, float* weight, PxVec3* position, uint8_t* index) {
+void pxSsmGetNodeWeight(PxSoftSkinMesh const* ssm,
+                        uint32_t node,
+                        uint32_t i,
+                        float* weight,
+                        PxVec3* position,
+                        uint8_t* index) {
 	auto& w = RCC(px::softskin_mesh, ssm)->weights[node][i];
 	*weight = w.weight;
 	*index = w.node_index;
