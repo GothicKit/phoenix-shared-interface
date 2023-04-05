@@ -10,6 +10,6 @@ void pxLoggerSet(PxLogCallback cb) {
 	    [cb](phoenix::logging::level lvl, std::string const& message) { cb((uint8_t) lvl, message.c_str()); });
 }
 
-void pxLoggetSetDefault() {
+void pxLoggerSetDefault() {
 	phoenix::logging::use_default_logger();
 }
