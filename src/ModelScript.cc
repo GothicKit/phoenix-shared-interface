@@ -7,9 +7,8 @@
 
 PxModelScript* pxMdsLoad(PxBuffer* buffer) {
 	try {
-		auto* buf = reinterpret_cast<phoenix::buffer*>(buffer);
-		auto mat = phoenix::model_script::parse(buf->duplicate());
-		return reinterpret_cast<PxModelScript*>(new phoenix::model_script(std::move(mat)));
+		auto mat = phoenix::model_script::parse(buffer->duplicate());
+		return new phoenix::model_script(std::move(mat));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
@@ -26,5 +25,5 @@ PxModelScript* pxMdsLoadFromVdf(PxVdf const* vdf, char const* name) {
 }
 
 void pxMdsDestroy(PxModelScript* mdm) {
-	delete reinterpret_cast<phoenix::model_script*>(mdm);
+	delete mdm;
 }

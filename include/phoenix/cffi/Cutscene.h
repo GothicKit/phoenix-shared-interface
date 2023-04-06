@@ -7,7 +7,12 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/messages.hh>
+typedef phoenix::messages PxCutsceneLib;
+#else
 typedef struct PxInternal_CutsceneLib PxCutsceneLib;
+#endif
 
 PXC_API PxCutsceneLib* pxCslLoad(PxBuffer* buffer);
 PXC_API PxCutsceneLib* pxCslLoadFromVdf(PxVdf const* vdf, char const* name);

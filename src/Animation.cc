@@ -10,9 +10,8 @@
 
 PxModelAnimation* pxManLoad(PxBuffer* buffer) {
 	try {
-		auto* buf = RC(px::buffer, buffer);
-		auto ani = px::animation::parse(buf->duplicate());
-		return RC(PxModelAnimation, new px::animation(std::move(ani)));
+		auto ani = px::animation::parse(buffer->duplicate());
+		return new px::animation(std::move(ani));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
@@ -29,35 +28,35 @@ PxModelAnimation* pxManLoadFromVdf(PxVdf const* vdf, char const* name) {
 }
 
 void pxManDestroy(PxModelAnimation* ani) {
-	delete RC(px::animation, ani);
+	delete ani;
 }
 
 char const* pxManGetName(PxModelAnimation const* man) {
-	return RCC(px::animation, man)->name.c_str();
+	return man->name.c_str();
 }
 
 char const* pxManGetNext(PxModelAnimation const* man) {
-	return RCC(px::animation, man)->next.c_str();
+	return man->next.c_str();
 }
 
 uint32_t pxManGetLayer(PxModelAnimation const* man) {
-	return RCC(px::animation, man)->layer;
+	return man->layer;
 }
 
 uint32_t pxManGetFrameCount(PxModelAnimation const* man) {
-	return RCC(px::animation, man)->frame_count;
+	return man->frame_count;
 }
 
 uint32_t pxManGetNodeCount(PxModelAnimation const* man) {
-	return RCC(px::animation, man)->node_count;
+	return man->node_count;
 }
 
 float pxManGetFps(PxModelAnimation const* man) {
-	return RCC(px::animation, man)->fps;
+	return man->fps;
 }
 
 PxAABB pxManGetBbox(PxModelAnimation const* man) {
-	auto& bb = RCC(px::animation, man)->bbox;
+	auto& bb = man->bbox;
 	return {
 	    {bb.min.x, bb.min.y, bb.min.z},
 	    {bb.max.x, bb.max.y, bb.max.z},
@@ -65,17 +64,17 @@ PxAABB pxManGetBbox(PxModelAnimation const* man) {
 }
 
 uint32_t pxManGetChecksum(PxModelAnimation const* man) {
-	return RCC(px::animation, man)->checksum;
+	return man->checksum;
 }
 
 uint32_t const* pxManGetNodeIndices(PxModelAnimation const* man, uint32_t* length) {
-	auto& ni = RCC(px::animation, man)->node_indices;
+	auto& ni = man->node_indices;
 	*length = (uint32_t) ni.size();
 	return ni.data();
 }
 
 void pxManGetSample(PxModelAnimation const* man, uint32_t i, PxVec3* position, PxQuat* rotation) {
-	auto const& src = RCC(px::animation, man)->samples[i];
+	auto const& src = man->samples[i];
 	position->x = src.position.x;
 	position->y = src.position.y;
 	position->z = src.position.z;

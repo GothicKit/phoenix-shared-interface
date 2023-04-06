@@ -7,9 +7,8 @@
 
 PxModelHierarchy* pxMdhLoad(PxBuffer* buffer) {
 	try {
-		auto* buf = RC(px::buffer, buffer);
-		auto mat = px::model_hierarchy::parse(buf->duplicate());
-		return RC(PxModelHierarchy, new px::model_hierarchy(std::move(mat)));
+		auto mat = px::model_hierarchy::parse(buffer->duplicate());
+		return new px::model_hierarchy(std::move(mat));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
@@ -26,11 +25,11 @@ PxModelHierarchy* pxMdhLoadFromVdf(PxVdf const* vdf, char const* name) {
 }
 
 void pxMdhDestroy(PxModelHierarchy* mdh) {
-	delete RC(px::model_hierarchy, mdh);
+	delete mdh;
 }
 
 PxAABB pxMdhGetBbox(PxModelHierarchy const* mdh) {
-	auto& bb = RCC(px::model_hierarchy, mdh)->bbox;
+	auto& bb = mdh->bbox;
 	return {
 	    {bb.min.x, bb.min.y, bb.min.z},
 	    {bb.max.x, bb.max.y, bb.max.z},
@@ -38,7 +37,7 @@ PxAABB pxMdhGetBbox(PxModelHierarchy const* mdh) {
 }
 
 PxAABB pxMdhGetCollisionBbox(PxModelHierarchy const* mdh) {
-	auto& bb = RCC(px::model_hierarchy, mdh)->collision_bbox;
+	auto& bb = mdh->collision_bbox;
 	return {
 	    {bb.min.x, bb.min.y, bb.min.z},
 	    {bb.max.x, bb.max.y, bb.max.z},
@@ -46,23 +45,23 @@ PxAABB pxMdhGetCollisionBbox(PxModelHierarchy const* mdh) {
 }
 
 PxVec3 pxMdhGetRootTranslation(PxModelHierarchy const* mdh) {
-	auto& rt = RCC(px::model_hierarchy, mdh)->root_translation;
+	auto& rt = mdh->root_translation;
 	return {rt.x, rt.y, rt.z};
 }
 
 uint32_t pxMdhGetChecksum(PxModelHierarchy const* mdh) {
-	return RCC(px::model_hierarchy, mdh)->checksum;
+	return mdh->checksum;
 }
 
 uint32_t pxMdhGetNodeCount(PxModelHierarchy const* mdh) {
-	return (uint32_t) RCC(px::model_hierarchy, mdh)->nodes.size();
+	return (uint32_t) mdh->nodes.size();
 }
 
 void pxMdhGetNode(PxModelHierarchy const* mdh,
                   uint32_t i,
                   int16_t* parent,
                   char const** name /*, TODO: Node transform*/) {
-	auto& node = RCC(px::model_hierarchy, mdh)->nodes[i];
+	auto& node = mdh->nodes[i];
 	*parent = node.parent_index;
 	*name = node.name.c_str();
 }

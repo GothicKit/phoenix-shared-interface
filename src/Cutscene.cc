@@ -7,9 +7,8 @@
 
 PxCutsceneLib* pxCslLoad(PxBuffer* buffer) {
 	try {
-		auto* buf = RC(phoenix::buffer, buffer);
-		auto mat = px::messages::parse(buf->duplicate());
-		return RC(PxCutsceneLib, new phoenix::messages(std::move(mat)));
+		auto mat = px::messages::parse(buffer->duplicate());
+		return new phoenix::messages(std::move(mat));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
@@ -26,11 +25,11 @@ PxCutsceneLib* pxCslLoadFromVdf(PxVdf const* vdf, char const* name) {
 }
 
 void pxCslDestroy(PxCutsceneLib* csl) {
-	delete RC(phoenix::messages, csl);
+	delete csl;
 }
 
 char const* pxCslGetBlock(PxCutsceneLib const* csl, char const* name, uint32_t* type) {
-	auto* src = RCC(phoenix::messages, csl)->block_by_name(name);
+	auto* src = csl->block_by_name(name);
 	*type = src->message.type;
 	return src->message.text.c_str();
 }

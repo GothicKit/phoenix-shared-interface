@@ -8,7 +8,12 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/mesh.hh>
+typedef phoenix::mesh PxMesh;
+#else
 typedef struct PxInternal_Mesh PxMesh;
+#endif
 
 // TODO: Lightmaps
 PXC_API PxMesh* pxMshLoad(PxBuffer* buffer);

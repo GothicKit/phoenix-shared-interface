@@ -7,7 +7,12 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/animation.hh>
+typedef phoenix::animation PxModelAnimation;
+#else
 typedef struct PxInternal_ModelAnimation PxModelAnimation;
+#endif
 
 PXC_API PxModelAnimation* pxManLoad(PxBuffer* buffer);
 PXC_API PxModelAnimation* pxManLoadFromVdf(PxVdf const* vdf, char const* name);

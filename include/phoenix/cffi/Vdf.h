@@ -6,8 +6,14 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/vdfs.hh>
+typedef phoenix::vdf_file PxVdf;
+typedef phoenix::vdf_entry PxVdfEntry;
+#else
 typedef struct PxInternal_Vdf PxVdf;
 typedef struct PxInternal_VdfEntry PxVdfEntry;
+#endif
 
 PXC_API PxVdf* pxVdfNew(char const* comment);
 PXC_API PxVdf* pxVdfLoad(PxBuffer* buffer);

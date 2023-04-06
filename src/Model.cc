@@ -7,9 +7,8 @@
 
 PxModel* pxMdlLoad(PxBuffer* buffer) {
 	try {
-		auto* buf = RC(phoenix::buffer, buffer);
-		auto mat = px::model::parse(buf->duplicate());
-		return RC(PxModel, new phoenix::model(std::move(mat)));
+		auto mat = px::model::parse(buffer->duplicate());
+		return new phoenix::model(std::move(mat));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
@@ -26,13 +25,13 @@ PxModel* pxMdlLoadFromVdf(PxVdf const* vdf, char const* name) {
 }
 
 void pxMdlDestroy(PxModel* mdl) {
-	delete RC(phoenix::model, mdl);
+	delete mdl;
 }
 
 PxModelHierarchy const* pxMdlGetHierarchy(PxModel const* mdl) {
-	return RCC(PxModelHierarchy, &RCC(px::model, mdl)->hierarchy);
+	return &mdl->hierarchy;
 }
 
 PxModelMesh const* pxMdlGetMesh(PxModel const* mdl) {
-	return RCC(PxModelMesh, &RCC(px::model, mdl)->mesh);
+	return &mdl->mesh;
 }

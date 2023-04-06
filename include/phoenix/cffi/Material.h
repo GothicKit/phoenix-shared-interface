@@ -6,7 +6,13 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/material.hh>
+typedef phoenix::material PxMaterial;
+#else
 typedef struct PxInternal_Material PxMaterial;
+#endif
+
 PXC_API char const* pxMatGetName(PxMaterial const* mat);
 PXC_API uint8_t pxMatGetGroup(PxMaterial const* mat);
 PXC_API uint32_t pxMatGetColor(PxMaterial const* mat);

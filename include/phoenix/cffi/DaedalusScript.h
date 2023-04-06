@@ -7,8 +7,14 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/script.hh>
+typedef phoenix::script PxDaedalusScript;
+typedef phoenix::symbol PxDaedalusSymbol;
+#else
 typedef struct PxInternal_DaedalusScript PxDaedalusScript;
 typedef struct PxInternal_DaedalusSymbol PxDaedalusSymbol;
+#endif
 
 // TODO
 PXC_API PxDaedalusScript* pxScriptLoad(PxBuffer* buffer);

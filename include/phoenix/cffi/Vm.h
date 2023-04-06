@@ -7,8 +7,14 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/vm.hh>
+typedef struct PxInternal_Vm PxVm;
+typedef phoenix::instance PxVmInstance;
+#else
 typedef struct PxInternal_Vm PxVm;
 typedef struct PxInternal_VmInstance PxVmInstance;
+#endif
 
 typedef enum {
 	PxVmInstanceTypeNpc = 1,

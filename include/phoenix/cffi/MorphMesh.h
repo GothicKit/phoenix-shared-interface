@@ -8,8 +8,14 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/morph_mesh.hh>
+typedef phoenix::morph_mesh PxMorphMesh;
+typedef phoenix::morph_animation PxMorphMeshAnimation;
+#else
 typedef struct PxInternal_MorphMesh PxMorphMesh;
 typedef struct PxInternal_MorphMeshAnimation PxMorphMeshAnimation;
+#endif
 
 // TODO
 PXC_API PxMorphMesh* pxMmbLoad(PxBuffer* buffer);

@@ -7,7 +7,12 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/font.hh>
+typedef phoenix::font PxFont;
+#else
 typedef struct PxInternal_Font PxFont;
+#endif
 
 PXC_API PxFont* pxFntLoad(PxBuffer* buffer);
 PXC_API PxFont* pxFntLoadFromVdf(PxVdf const* vdf, char const* name);

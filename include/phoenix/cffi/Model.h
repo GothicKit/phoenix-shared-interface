@@ -9,7 +9,12 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/model.hh>
+typedef phoenix::model PxModel;
+#else
 typedef struct PxInternal_Model PxModel;
+#endif
 
 PXC_API PxModel* pxMdlLoad(PxBuffer* buffer);
 PXC_API PxModel* pxMdlLoadFromVdf(PxVdf const* vdf, char const* name);

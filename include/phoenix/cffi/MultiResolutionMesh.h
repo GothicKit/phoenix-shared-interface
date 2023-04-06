@@ -8,8 +8,14 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/proto_mesh.hh>
+typedef phoenix::proto_mesh PxMultiResolutionMesh;
+typedef phoenix::sub_mesh PxMultiResolutionSubMesh;
+#else
 typedef struct PxInternal_MultiResolutionMesh PxMultiResolutionMesh;
 typedef struct PxInternal_MultiResolutionSubMesh PxMultiResolutionSubMesh;
+#endif
 
 // TODO
 PXC_API PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer);

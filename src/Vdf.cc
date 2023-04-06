@@ -11,9 +11,9 @@ PxVdf* pxVdfNew(char const* comment) {
 
 PxVdf* pxVdfLoad(PxBuffer* buffer) {
 	try {
-		auto buf = reinterpret_cast<px::buffer*>(buffer)->duplicate();
+		auto buf = buffer->duplicate();
 		auto vdf = px::vdf_file::open(buf);
-		return reinterpret_cast<PxVdf*>(new px::vdf_file(std::move(vdf)));
+		return new px::vdf_file(std::move(vdf));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
@@ -23,26 +23,24 @@ PxVdf* pxVdfLoadFromFile(char const* path) {
 	try {
 		auto buf = px::buffer::mmap(path);
 		auto vdf = px::vdf_file::open(buf);
-		return reinterpret_cast<PxVdf*>(new px::vdf_file(std::move(vdf)));
+		return new px::vdf_file(std::move(vdf));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
 }
 
 void pxVdfDestroy(PxVdf* vdf) {
-	delete reinterpret_cast<phoenix::vdf_file*>(vdf);
+	delete vdf;
 }
 
 void pxVdfMerge(PxVdf* vdf, PxVdf* other, PxBool override) {
-	RC(px::vdf_file, vdf)->merge(*RC(px::vdf_file, other), override);
+	vdf->merge(*other, override);
 }
 
 PxVdfEntry const* pxVdfGetEntryByName(PxVdf const* vdf, char const* name) {
-	auto* entry = RCC(px::vdf_file, vdf)->find_entry(name);
-	return reinterpret_cast<PxVdfEntry const*>(entry);
+	return vdf->find_entry(name);
 }
 
 PxBuffer* pxVdfEntryOpenBuffer(PxVdfEntry const* entry) {
-	auto* e = reinterpret_cast<phoenix::vdf_entry const*>(entry);
-	return reinterpret_cast<PxBuffer*>(new phoenix::buffer {e->open()});
+	return new phoenix::buffer {entry->open()};
 }

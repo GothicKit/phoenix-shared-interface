@@ -7,7 +7,12 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/model_script.hh>
+typedef phoenix::model_script PxModelScript;
+#else
 typedef struct PxInternal_ModelScript PxModelScript;
+#endif
 
 // TODO
 PXC_API PxModelScript* pxMdsLoad(PxBuffer* buffer);

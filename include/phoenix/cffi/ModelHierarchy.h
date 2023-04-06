@@ -7,7 +7,14 @@
 
 #include <stdint.h>
 
+
+#ifdef __cplusplus
+#include <phoenix/model_hierarchy.hh>
+typedef phoenix::model_hierarchy PxModelHierarchy;
+#else
 typedef struct PxInternal_ModelHierarchy PxModelHierarchy;
+#endif
+
 
 PXC_API PxModelHierarchy* pxMdhLoad(PxBuffer* buffer);
 PXC_API PxModelHierarchy* pxMdhLoadFromVdf(PxVdf const* vdf, char const* name);

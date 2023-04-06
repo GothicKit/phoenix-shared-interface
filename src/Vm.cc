@@ -22,7 +22,7 @@ struct PxInternal_Vm {
 
 PxVm* pxVmLoad(PxBuffer* buffer) {
 	try {
-		auto buf = reinterpret_cast<phoenix::buffer*>(buffer)->duplicate();
+		auto buf = buffer->duplicate();
 		auto scr = phoenix::script::parse(buf);
 		phoenix::register_all_script_classes(scr);
 
@@ -65,7 +65,7 @@ void pxVmDestroy(PxVm* vm) {
 }
 
 PxVmInstance* pxVmStackPopInstance(PxVm* vm) {
-	return RC(PxVmInstance, vm->vm.pop_instance().get());
+	return vm->vm.pop_instance().get();
 }
 
 char const* pxVmStackPopString(PxVm* vm) {
@@ -81,8 +81,7 @@ int32_t pxVmStackPopInt(PxVm* vm) {
 }
 
 void pxVmStackPushInstance(PxVm* vm, PxVmInstance* instance) {
-	auto* inst = RC(px::instance, instance);
-	auto* sym = vm->vm.find_symbol_by_index(inst->symbol_index());
+	auto* sym = vm->vm.find_symbol_by_index(instance->symbol_index());
 	vm->vm.push_instance(sym->get_instance());
 }
 
@@ -109,61 +108,56 @@ void pxVmRegisterExternalDefault(PxVm* vm, PxVmExternalDefaultCallback cb) {
 }
 
 PxVmInstance* pxVmGetGlobalSelf(PxVm* vm) {
-	return RC(PxVmInstance, vm->vm.global_self()->get_instance().get());
+	return vm->vm.global_self()->get_instance().get();
 }
 
 PxVmInstance* pxVmGetGlobalOther(PxVm* vm) {
-	return RC(PxVmInstance, vm->vm.global_other()->get_instance().get());
+	return vm->vm.global_other()->get_instance().get();
 }
 
 PxVmInstance* pxVmGetGlobalVictim(PxVm* vm) {
-	return RC(PxVmInstance, vm->vm.global_victim()->get_instance().get());
+	return vm->vm.global_victim()->get_instance().get();
 }
 
 PxVmInstance* pxVmGetGlobalHero(PxVm* vm) {
-	return RC(PxVmInstance, vm->vm.global_hero()->get_instance().get());
+	return vm->vm.global_hero()->get_instance().get();
 }
 
 PxVmInstance* pxVmGetGlobalItem(PxVm* vm) {
-	return RC(PxVmInstance, vm->vm.global_item()->get_instance().get());
+	return vm->vm.global_item()->get_instance().get();
 }
 
 PxVmInstance* pxVmSetGlobalSelf(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalSelf(vm);
-	auto* instPtr = RC(px::instance, instance);
-	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
 	vm->vm.global_self()->set_instance(instSym->get_instance());
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalOther(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalOther(vm);
-	auto* instPtr = RC(px::instance, instance);
-	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
 	vm->vm.global_other()->set_instance(instSym->get_instance());
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalVictim(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalVictim(vm);
-	auto* instPtr = RC(px::instance, instance);
-	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
 	vm->vm.global_victim()->set_instance(instSym->get_instance());
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalHero(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalHero(vm);
-	auto* instPtr = RC(px::instance, instance);
-	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
 	vm->vm.global_hero()->set_instance(instSym->get_instance());
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalItem(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalItem(vm);
-	auto* instPtr = RC(px::instance, instance);
-	auto* instSym = vm->vm.find_symbol_by_index(instPtr->symbol_index());
+	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
 	vm->vm.global_item()->set_instance(instSym->get_instance());
 	return old;
 }
@@ -268,7 +262,7 @@ PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType 
 			break;
 		}
 
-		return RC(PxVmInstance, instance);
+		return instance;
 	} catch (std::runtime_error const& exc) {
 		return nullptr;
 	}

@@ -44,19 +44,18 @@ private:
 
 PxBuffer* pxBufferCreate(uint8_t const* bytes, uint64_t size) {
 	auto back = std::make_shared<raw_buffer_backing>(bytes, size);
-	auto buf = new px::buffer(std::move(back));
-	return reinterpret_cast<PxBuffer*>(buf);
+	return new px::buffer(std::move(back));
 }
 
 PxBuffer* pxBufferMmap(char const* file) {
 	try {
 		auto buf = px::buffer::mmap(file);
-		return reinterpret_cast<PxBuffer*>(new px::buffer(std::move(buf)));
+		return new px::buffer(std::move(buf));
 	} catch (std::exception const&) {
 		return nullptr;
 	}
 }
 
 void pxBufferDestroy(PxBuffer* buffer) {
-	delete reinterpret_cast<px::buffer*>(buffer);
+	delete buffer;
 }

@@ -8,8 +8,16 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <phoenix/model_mesh.hh>
+#include <phoenix/softskin_mesh.hh>
+typedef phoenix::model_mesh PxModelMesh;
+typedef phoenix::softskin_mesh PxSoftSkinMesh;
+#else
 typedef struct PxInternal_ModelMesh PxModelMesh;
 typedef struct PxInternal_SoftSkinMesh PxSoftSkinMesh;
+#endif
+
 
 PXC_API PxModelMesh* pxMdmLoad(PxBuffer* buffer);
 PXC_API PxModelMesh* pxMdmLoadFromVdf(PxVdf const* vdf, char const* name);
