@@ -67,3 +67,91 @@ void pxWorldGetWayEdge(PxWorld const* world, uint32_t i, uint32_t* a, uint32_t* 
 	*a = we.a;
 	*b = we.b;
 }
+
+uint32_t pxWorldGetRootVobCount(PxWorld const* world) {
+	return (uint32_t) world->world_vobs.size();
+}
+
+PxVob* pxWorldGetRootVob(PxWorld const* world, uint32_t i) {
+	return world->world_vobs[i].get();
+}
+
+PxVobType pxVobGetType(PxVob const* vob) {
+	return static_cast<PxVobType>(vob->type);
+}
+
+uint32_t pxVobGetId(PxVob const* vob) {
+	return vob->id;
+}
+
+PxBool pxVobGetShowVisual(PxVob const* vob) {
+	return vob->show_visual;
+}
+
+PxVobSpriteAlignment pxVobGetSpriteAlignment(PxVob const* vob) {
+	return static_cast<PxVobSpriteAlignment>(vob->sprite_camera_facing_mode);
+}
+
+PxBool pxVobGetCdStatic(PxVob const* vob) {
+	return vob->cd_static;
+}
+
+PxBool pxVobGetCdDynamic(PxVob const* vob) {
+	return vob->cd_dynamic;
+}
+
+PxBool pxVobGetVobStatic(PxVob const* vob) {
+	return vob->vob_static;
+}
+
+PxVobShadowMode pxVobGetShadowMode(PxVob const* vob) {
+	return static_cast<PxVobShadowMode>(vob->dynamic_shadows);
+}
+
+PxBool pxVobGetPhysicsEnabled(PxVob const* vob) {
+	return vob->physics_enabled;
+}
+
+PxVobAnimationMode pxVobGetAnimationMode(PxVob const* vob) {
+	return static_cast<PxVobAnimationMode>(vob->anim_mode);
+}
+
+int32_t pxVobGetBias(PxVob const* vob) {
+	return vob->bias;
+}
+
+PxBool pxVobGetAmbient(PxVob const* vob) {
+	return vob->ambient;
+}
+
+float pxVobGetAnimationStrength(PxVob const* vob) {
+	return vob->anim_strength;
+}
+
+float pxVobGetFarClipScale(PxVob const* vob) {
+	return vob->far_clip_scale;
+}
+
+char const* pxVobGetPresetName(PxVob const* vob) {
+	return vob->preset_name.c_str();
+}
+
+char const* pxVobGetVobName(PxVob const* vob) {
+	return vob->vob_name.c_str();
+}
+
+char const* pxVobGetVisualName(PxVob const* vob) {
+	return vob->visual_name.c_str();
+}
+
+PxVobVisualType pxVobGetVisualType(PxVob const* vob) {
+	return static_cast<PxVobVisualType>(vob->associated_visual_type);
+}
+
+uint32_t pxVobGetChildCount(PxVob const* vob) {
+	return (uint32_t) vob->children.size();
+}
+
+PxVob* pxVobGetChild(PxVob const* vob, uint32_t i) {
+	return vob->children[i].get();
+}
