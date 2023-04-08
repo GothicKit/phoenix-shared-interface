@@ -47,5 +47,13 @@ target_link_options(phoenix-shared PRIVATE ${PXC_LINK_FLAGS})
 target_link_libraries(phoenix-shared phoenix)
 set_target_properties(phoenix-shared PROPERTIES DEBUG_POSTFIX "d" VERSION ${PROJECT_VERSION})
 
+if (MINGW)
+    # We need to "bake" standard C/C++ libraries into exe/DLL
+    # Otherwise we need to distribute libstdc++-6.dll into the same folder.
+    # If we don't do any of this, we'll get the following error (or a similar one):
+    # -> The procedure entry point _ZNKSt7codecvtlwc9_MbstatetE10do_unshiftERS0_PcS3_RS3_ could not be located in the dynamic link library [...]\build\test_lib.exe
+    target_link_options(phoenix-shared PUBLIC "-static-libstdc++")
+endif()
+
 install(TARGETS phoenix-shared ARCHIVE LIBRARY RUNTIME)
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/phoenix" TYPE INCLUDE)

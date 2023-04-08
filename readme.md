@@ -23,6 +23,7 @@ You will need:
 * CMake 3.10 or above
 * Git
 
+### default
 To build _phoenix-shared-interface_ from scratch, just open a terminal in a directory of your choice and run
 
 ```bash
@@ -33,3 +34,20 @@ cmake --build build
 ```
 
 You will find the built library in `build/`.
+
+
+### mingw
+
+If you want to build with MinGW on Windows, follow these instructions
+
+**setup**
+```sh
+choco install mingw
+```
+
+**build**  
+(tested mingw-w64 version: 12.2.0)
+```sh
+cmake -G "MinGW Makefiles" -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
