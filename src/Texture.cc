@@ -29,12 +29,12 @@ void pxTexDestroy(PxTexture* tex) {
 }
 
 void pxTexGetMeta(PxTexture const* tex,
-                  uint32_t* format,
+                  PxTextureFormat* format,
                   uint32_t* width,
                   uint32_t* height,
                   uint32_t* mipmapCount,
                   uint32_t* averageColor) {
-	*format = tex->format();
+	*format = static_cast<PxTextureFormat>(tex->format());
 	*width = tex->width();
 	*height = tex->height();
 	*mipmapCount = tex->mipmaps();
