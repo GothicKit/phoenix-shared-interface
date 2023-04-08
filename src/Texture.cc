@@ -29,7 +29,7 @@ void pxTexDestroy(PxTexture* tex) {
 }
 
 void pxTexGetMeta(PxTexture const* tex,
-                  uint32_t* format,
+                  phoenix::texture_format* format,
                   uint32_t* width,
                   uint32_t* height,
                   uint32_t* mipmapCount,
