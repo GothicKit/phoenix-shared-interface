@@ -41,7 +41,7 @@ PxAABB pxMshGetBbox(PxMesh const* msh) {
 	};
 }
 
-uint32_t PxMshGetMaterialCount(PxMesh const* msh) {
+uint32_t pxMshGetMaterialCount(PxMesh const* msh) {
 	return (uint32_t) msh->materials.size();
 }
 

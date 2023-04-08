@@ -22,7 +22,7 @@ PXC_API void pxMshDestroy(PxMesh* msh);
 
 PXC_API char const* pxMshGetName(PxMesh const* msh);
 PXC_API PxAABB pxMshGetBbox(PxMesh const* msh);
-PXC_API uint32_t PxMshGetMaterialCount(PxMesh const* msh);
+PXC_API uint32_t pxMshGetMaterialCount(PxMesh const* msh);
 PXC_API PxMaterial const* pxMshGetMaterial(PxMesh const* msh, uint32_t i);
 PXC_API uint32_t pxMshGetVertexCount(PxMesh const* msh);
 PXC_API PxVec3 pxMshGetVertex(PxMesh const* msh, uint32_t i);
