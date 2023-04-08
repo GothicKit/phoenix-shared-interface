@@ -41,8 +41,11 @@ void pxTexGetMeta(PxTexture const* tex,
 	*averageColor = tex->average_color();
 }
 
-uint8_t const* pxTexGetMipmap(PxTexture const* tex, uint32_t level, uint32_t* width, uint32_t* height) {
+uint8_t const*
+pxTexGetMipmap(PxTexture const* tex, uint32_t* length, uint32_t level, uint32_t* width, uint32_t* height) {
+	auto& data = tex->data(level);
+	*length = (uint32_t) data.size();
 	*width = tex->mipmap_width(level);
 	*height = tex->mipmap_height(level);
-	return tex->data(level).data();
+	return data.data();
 }
