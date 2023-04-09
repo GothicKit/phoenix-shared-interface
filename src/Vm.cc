@@ -232,7 +232,14 @@ PxBool pxVmCallFunction(PxVm* vm, char const* func, ...) {
 	va_start(ap, func);
 
 	auto* args = strchr(func, '(');
-	auto* sym = vm->vm.find_symbol_by_name({func, static_cast<unsigned long>(args - func)});
+	px::symbol* sym;
+
+	if (args == nullptr) {
+		sym = vm->vm.find_symbol_by_name(func);
+	} else {
+		sym = vm->vm.find_symbol_by_name({func, static_cast<unsigned long>(args - func)});
+	}
+
 	auto r = pxInternalVmCallFunction(vm, sym, args, ap);
 
 	va_end(ap);
