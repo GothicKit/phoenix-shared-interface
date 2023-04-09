@@ -17,7 +17,9 @@
 struct PxInternal_Vm {
 	phoenix::vm vm;
 	std::unordered_map<phoenix::symbol*, PxVmExternalCallback> externals {};
-	PxVmExternalDefaultCallback defaultExternal {nullptr};
+	PxVmExternalDefaultCallback defaultExternal {[](PxVm*, char const* name) {
+		px::logging::log(px::logging::level::error, "external ", name, " not registered");
+	}};
 };
 
 PxVm* pxVmLoad(PxBuffer* buffer) {
