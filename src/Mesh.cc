@@ -10,14 +10,18 @@ PxMesh* pxMshLoad(PxBuffer* buffer) {
 	try {
 		auto mat = px::mesh::parse(buffer->duplicate());
 		return new phoenix::mesh(std::move(mat));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxMesh: ", e.what());
 		return nullptr;
 	}
 }
 
 PxMesh* pxMshLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) return nullptr;
+	if (entry == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+		return nullptr;
+	}
 
 	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxMesh* result = pxMshLoad(buf);

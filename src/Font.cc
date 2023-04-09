@@ -9,14 +9,18 @@ PxFont* pxFntLoad(PxBuffer* buffer) {
 	try {
 		auto ani = px::font::parse(buffer->duplicate());
 		return new phoenix::font(std::move(ani));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxFont: ", e.what());
 		return nullptr;
 	}
 }
 
 PxFont* pxFntLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) return nullptr;
+	if (entry == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+		return nullptr;
+	}
 
 	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxFont* result = pxFntLoad(buf);

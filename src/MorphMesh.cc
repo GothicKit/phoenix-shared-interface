@@ -9,14 +9,18 @@ PxMorphMesh* pxMmbLoad(PxBuffer* buffer) {
 	try {
 		auto mat = phoenix::morph_mesh::parse(buffer->duplicate());
 		return new phoenix::morph_mesh(std::move(mat));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxMorphMesh: ", e.what());
 		return nullptr;
 	}
 }
 
 PxMorphMesh* pxMmbLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) return nullptr;
+	if (entry == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+		return nullptr;
+	}
 
 	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxMorphMesh* result = pxMmbLoad(buf);

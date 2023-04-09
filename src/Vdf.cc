@@ -14,7 +14,8 @@ PxVdf* pxVdfLoad(PxBuffer* buffer) {
 		auto buf = buffer->duplicate();
 		auto vdf = px::vdf_file::open(buf);
 		return new px::vdf_file(std::move(vdf));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxVdf: ", e.what());
 		return nullptr;
 	}
 }
@@ -24,7 +25,8 @@ PxVdf* pxVdfLoadFromFile(char const* path) {
 		auto buf = px::buffer::mmap(path);
 		auto vdf = px::vdf_file::open(buf);
 		return new px::vdf_file(std::move(vdf));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxVdf: ", e.what());
 		return nullptr;
 	}
 }

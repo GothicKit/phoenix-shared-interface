@@ -12,14 +12,18 @@ PxModelAnimation* pxManLoad(PxBuffer* buffer) {
 	try {
 		auto ani = px::animation::parse(buffer->duplicate());
 		return new px::animation(std::move(ani));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxModelAnimation: ", e.what());
 		return nullptr;
 	}
 }
 
 PxModelAnimation* pxManLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) return nullptr;
+	if (entry == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+		return nullptr;
+	}
 
 	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxModelAnimation* result = pxManLoad(buf);

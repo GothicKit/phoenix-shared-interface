@@ -9,14 +9,18 @@ PxModelHierarchy* pxMdhLoad(PxBuffer* buffer) {
 	try {
 		auto mat = px::model_hierarchy::parse(buffer->duplicate());
 		return new px::model_hierarchy(std::move(mat));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxModelHierarchy: ", e.what());
 		return nullptr;
 	}
 }
 
 PxModelHierarchy* pxMdhLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) return nullptr;
+	if (entry == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+		return nullptr;
+	}
 
 	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxModelHierarchy* result = pxMdhLoad(buf);

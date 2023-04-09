@@ -10,14 +10,18 @@ PxDaedalusScript* pxScriptLoad(PxBuffer* buffer) {
 		auto buf = buffer->duplicate();
 		auto scr = px::script::parse(buf);
 		return new px::script(std::move(scr));
-	} catch (std::exception const&) {
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxDaedalusScript: ", e.what());
 		return nullptr;
 	}
 }
 
 PxDaedalusScript* pxScriptLoadFromVdf(PxVdf const* vdf, char const* name) {
 	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) return nullptr;
+	if (entry == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+		return nullptr;
+	}
 
 	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
 	PxDaedalusScript* result = pxScriptLoad(buf);
