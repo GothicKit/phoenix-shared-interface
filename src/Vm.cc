@@ -28,16 +28,10 @@ PxVm* pxVmLoad(PxBuffer* buffer) {
 
 		auto* result = new PxVm {phoenix::vm(std::move(scr))};
 		result->vm.register_exception_handler(phoenix::lenient_vm_exception_handler);
-		result->vm.register_default_external([result](std::string_view name) {
-			auto* sym = result->vm.find_symbol_by_name(name);
-			if (sym == nullptr) {
-				result->defaultExternal(result, name.data());
-				return;
-			}
-
-			auto handler = result->externals.find(sym);
+		result->vm.register_default_external_custom([result](px::vm&, px::symbol& sym) {
+			auto handler = result->externals.find(&sym);
 			if (handler == result->externals.end()) {
-				result->defaultExternal(result, name.data());
+				result->defaultExternal(result, sym.name().c_str());
 				return;
 			}
 
