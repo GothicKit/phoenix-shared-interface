@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 if (NOT MSVC)
     # Make sure everything is relocatable.
-    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-fPIC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 endif ()
 
 option(PXC_ENABLE_ASAN "phoenix-shared: Enable sanitizers in debug builds." ON)
