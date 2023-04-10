@@ -21,6 +21,24 @@ jobs:
         with:
           name: 'Linux x86-64 Shared Object'
           path: 'build/libphoenix-shared*'
+  android:
+    name: "Android"
+    runs-on: 'ubuntu-latest'
+    container:
+      image: 'cimg/android:2023.04.1-ndk'
+    steps:
+      - uses: 'actions/checkout@v3'
+        with:
+          submodules: 'recursive'
+      - name: 'Configure'
+        run: 'cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_NAME=Android -DCMAKE_ANDROID_NDK=/home/circleci/android-sdk'
+      - name: 'Build'
+        run: 'cmake --build build --config Release'
+      - name: 'Publish Library'
+        uses: 'actions/upload-artifact@v3'
+        with:
+          name: 'ARM x64 Shared Object'
+          path: 'build/libphoenix-shared*'
   macos:
     name: "MacOS"
     runs-on: 'macos-11'
@@ -38,7 +56,7 @@ jobs:
       - name: 'Publish Library'
         uses: 'actions/upload-artifact@v3'
         with:
-          name: 'MaxOS x86-64 DyLib'
+          name: 'MacOS x86-64 DyLib'
           path: 'build/libphoenix-shared*'
   windows:
     name: "Windows"
