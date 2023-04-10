@@ -306,9 +306,11 @@ PxVmInstance* pxVmInstanceInitialize(PxVm* vm, char const* name, PxVmInstanceTyp
 		if (sym == nullptr) return nullptr;
 
 		switch (type) {
-		case PxVmInstanceTypeNpc:
-			vm->vm.init_instance<phoenix::c_npc>(std::reinterpret_pointer_cast<px::c_npc>(sym->get_instance()), sym);
+		case PxVmInstanceTypeNpc: {
+			auto* v = reinterpret_cast<px::c_npc*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_npc>({sym->get_instance(), v}, sym);
 			break;
+		}
 		}
 
 		return existing;
