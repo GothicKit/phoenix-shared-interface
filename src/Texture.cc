@@ -53,3 +53,17 @@ pxTexGetMipmap(PxTexture const* tex, uint32_t* length, uint32_t level, uint32_t*
 	*height = tex->mipmap_height(level);
 	return data.data();
 }
+
+uint8_t* pxTexGetDecompressedData(PxTexture const* tex, uint32_t level, uint32_t* size) {
+	auto rgb = tex->as_rgba8(level);
+	*size = (uint32_t) rgb.size();
+
+	// TODO: Performance!
+	auto* mem = static_cast<uint8_t*>(malloc(*size));
+	std::copy_n(rgb.data(), *size, mem);
+	return mem;
+}
+
+void pxTexFreeDecompressedData(PxTexture const* tex, uint8_t* data) {
+	free(data);
+}
