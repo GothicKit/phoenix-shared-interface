@@ -278,7 +278,26 @@ PxBool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...) 
 	return r;
 }
 
-PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType type) {
+PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type) {
+	try {
+		auto* sym = vm->vm.find_symbol_by_index(index);
+		if (sym == nullptr) return nullptr;
+
+		phoenix::instance* instance = nullptr;
+		switch (type) {
+		case PxVmInstanceTypeNpc:
+			instance = vm->vm.allocate_instance<phoenix::c_npc>(sym).get();
+			break;
+		}
+
+		return instance;
+	} catch (std::runtime_error const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception during pxVmInstanceAllocate(): ", e.what());
+		return nullptr;
+	}
+}
+
+PxVmInstance* pxVmInstanceAllocateByName(PxVm* vm, char const* name, PxVmInstanceType type) {
 	try {
 		auto* sym = vm->vm.find_symbol_by_name(name);
 		if (sym == nullptr) return nullptr;
@@ -297,8 +316,31 @@ PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType 
 	}
 }
 
-PxVmInstance* pxVmInstanceInitialize(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing) {
-	if (existing == nullptr) existing = pxVmInstanceAllocate(vm, name, type);
+PxVmInstance* pxVmInstanceInitializeByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type, PxVmInstance* existing) {
+	if (existing == nullptr) existing = pxVmInstanceAllocateByIndex(vm, index, type);
+	if (existing == nullptr) return nullptr;
+
+	try {
+		auto* sym = vm->vm.find_symbol_by_index(index);
+		if (sym == nullptr) return nullptr;
+
+		switch (type) {
+		case PxVmInstanceTypeNpc: {
+			auto* v = reinterpret_cast<px::c_npc*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_npc>({sym->get_instance(), v}, sym);
+			break;
+		}
+		}
+
+		return existing;
+	} catch (std::runtime_error const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception during pxVmInitialize(): ", e.what());
+		return nullptr;
+	}
+}
+
+PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing) {
+	if (existing == nullptr) existing = pxVmInstanceAllocateByName(vm, name, type);
 	if (existing == nullptr) return nullptr;
 
 	try {
