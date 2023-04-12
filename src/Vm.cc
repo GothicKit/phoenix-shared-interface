@@ -14,6 +14,31 @@
 #include <string_view>
 #include <unordered_map>
 
+static void fixVmStackForMissingExternal(px::vm& v, phoenix::symbol& sym) {
+	auto params = v.find_parameters_for_function(&sym);
+	for (auto i = params.size() - 1; i >= 0; --i) {
+		auto par = params[i];
+
+		if (par->type() == px::datatype::integer)
+			(void) v.pop_int();
+		else if (par->type() == px::datatype::float_)
+			(void) v.pop_float();
+		else if (par->type() == px::datatype::instance || par->type() == px::datatype::string)
+			(void) v.pop_reference();
+	}
+
+	if (sym.has_return()) {
+		if (sym.rtype() == px::datatype::float_)
+			v.push_float(0.0f);
+		else if (sym.rtype() == px::datatype::integer)
+			v.push_int(0);
+		else if (sym.rtype() == px::datatype::string)
+			v.push_string("");
+		else if (sym.rtype() == px::datatype::instance)
+			v.push_instance(nullptr);
+	}
+}
+
 struct PxInternal_Vm {
 	phoenix::vm vm;
 	std::unordered_map<phoenix::symbol*, PxVmExternalCallback> externals {};
@@ -33,6 +58,7 @@ PxVm* pxVmLoad(PxBuffer* buffer) {
 		result->vm.register_default_external_custom([result](px::vm&, px::symbol& sym) {
 			auto handler = result->externals.find(&sym);
 			if (handler == result->externals.end()) {
+				fixVmStackForMissingExternal(result->vm, sym);
 				result->defaultExternal(result, sym.name().c_str());
 				return;
 			}
