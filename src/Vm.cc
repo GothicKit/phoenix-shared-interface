@@ -278,11 +278,8 @@ PxBool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...) 
 	return r;
 }
 
-PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type) {
+static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType type) {
 	try {
-		auto* sym = vm->vm.find_symbol_by_index(index);
-		if (sym == nullptr) return nullptr;
-
 		phoenix::instance* instance = nullptr;
 		switch (type) {
 		case PxVmInstanceTypeNpc:
@@ -297,69 +294,49 @@ PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstance
 	}
 }
 
-PxVmInstance* pxVmInstanceAllocateByName(PxVm* vm, char const* name, PxVmInstanceType type) {
-	try {
-		auto* sym = vm->vm.find_symbol_by_name(name);
-		if (sym == nullptr) return nullptr;
+PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type) {
+	auto* sym = vm->vm.find_symbol_by_index(index);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceAllocate(vm, sym, type);
+}
 
-		phoenix::instance* instance = nullptr;
+PxVmInstance* pxVmInstanceAllocateByName(PxVm* vm, char const* name, PxVmInstanceType type) {
+	auto* sym = vm->vm.find_symbol_by_name(name);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceAllocate(vm, sym, type);
+}
+
+static PxVmInstance*
+pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType type, PxVmInstance* existing) {
+	if (existing == nullptr) existing = pxInternalVmInstanceAllocate(vm, sym, type);
+	if (existing == nullptr) return nullptr;
+
+	try {
 		switch (type) {
-		case PxVmInstanceTypeNpc:
-			instance = vm->vm.allocate_instance<phoenix::c_npc>(sym).get();
+		case PxVmInstanceTypeNpc: {
+			auto* v = reinterpret_cast<px::c_npc*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_npc>({sym->get_instance(), v}, sym);
 			break;
 		}
+		}
 
-		return instance;
+		return existing;
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmInstanceAllocate(): ", e.what());
+		px::logging::log(px::logging::level::error, "encountered exception during pxVmInitialize(): ", e.what());
 		return nullptr;
 	}
 }
 
 PxVmInstance* pxVmInstanceInitializeByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type, PxVmInstance* existing) {
-	if (existing == nullptr) existing = pxVmInstanceAllocateByIndex(vm, index, type);
-	if (existing == nullptr) return nullptr;
-
-	try {
-		auto* sym = vm->vm.find_symbol_by_index(index);
-		if (sym == nullptr) return nullptr;
-
-		switch (type) {
-		case PxVmInstanceTypeNpc: {
-			auto* v = reinterpret_cast<px::c_npc*>(sym->get_instance().get());
-			vm->vm.init_instance<phoenix::c_npc>({sym->get_instance(), v}, sym);
-			break;
-		}
-		}
-
-		return existing;
-	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmInitialize(): ", e.what());
-		return nullptr;
-	}
+	auto* sym = vm->vm.find_symbol_by_index(index);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceInitialize(vm, sym, type, existing);
 }
 
 PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing) {
-	if (existing == nullptr) existing = pxVmInstanceAllocateByName(vm, name, type);
-	if (existing == nullptr) return nullptr;
-
-	try {
-		auto* sym = vm->vm.find_symbol_by_name(name);
-		if (sym == nullptr) return nullptr;
-
-		switch (type) {
-		case PxVmInstanceTypeNpc: {
-			auto* v = reinterpret_cast<px::c_npc*>(sym->get_instance().get());
-			vm->vm.init_instance<phoenix::c_npc>({sym->get_instance(), v}, sym);
-			break;
-		}
-		}
-
-		return existing;
-	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmInitialize(): ", e.what());
-		return nullptr;
-	}
+	auto* sym = vm->vm.find_symbol_by_name(name);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceInitialize(vm, sym, type, existing);
 }
 
 uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance) {
