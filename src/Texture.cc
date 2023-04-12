@@ -64,6 +64,6 @@ uint8_t* pxTexGetDecompressedData(PxTexture const* tex, uint32_t level, uint32_t
 	return mem;
 }
 
-void pxTexFreeDecompressedData(PxTexture const* tex, uint8_t* data) {
+void pxTexFreeDecompressedData(uint8_t* data) {
 	free(data);
 }

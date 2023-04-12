@@ -45,4 +45,4 @@ PXC_API void pxTexGetMeta(PxTexture const* tex,
 
 PXC_API uint8_t const* pxTexGetMipmap(PxTexture const* tex, uint32_t* length, uint32_t level, uint32_t* width, uint32_t* height);
 PXC_API uint8_t* pxTexGetDecompressedData(PxTexture const* tex, uint32_t level, uint32_t* size);
-PXC_API void pxTexFreeDecompressedData(PxTexture const* tex, uint8_t* data);
+PXC_API void pxTexFreeDecompressedData(uint8_t* data);
