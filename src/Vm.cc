@@ -278,11 +278,8 @@ PxBool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...) 
 	return r;
 }
 
-PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType type) {
+static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType type) {
 	try {
-		auto* sym = vm->vm.find_symbol_by_name(name);
-		if (sym == nullptr) return nullptr;
-
 		phoenix::instance* instance = nullptr;
 		switch (type) {
 		case PxVmInstanceTypeNpc:
@@ -297,14 +294,24 @@ PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType 
 	}
 }
 
-PxVmInstance* pxVmInstanceInitialize(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing) {
-	if (existing == nullptr) existing = pxVmInstanceAllocate(vm, name, type);
+PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type) {
+	auto* sym = vm->vm.find_symbol_by_index(index);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceAllocate(vm, sym, type);
+}
+
+PxVmInstance* pxVmInstanceAllocateByName(PxVm* vm, char const* name, PxVmInstanceType type) {
+	auto* sym = vm->vm.find_symbol_by_name(name);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceAllocate(vm, sym, type);
+}
+
+static PxVmInstance*
+pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType type, PxVmInstance* existing) {
+	if (existing == nullptr) existing = pxInternalVmInstanceAllocate(vm, sym, type);
 	if (existing == nullptr) return nullptr;
 
 	try {
-		auto* sym = vm->vm.find_symbol_by_name(name);
-		if (sym == nullptr) return nullptr;
-
 		switch (type) {
 		case PxVmInstanceTypeNpc: {
 			auto* v = reinterpret_cast<px::c_npc*>(sym->get_instance().get());
@@ -318,6 +325,18 @@ PxVmInstance* pxVmInstanceInitialize(PxVm* vm, char const* name, PxVmInstanceTyp
 		px::logging::log(px::logging::level::error, "encountered exception during pxVmInitialize(): ", e.what());
 		return nullptr;
 	}
+}
+
+PxVmInstance* pxVmInstanceInitializeByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type, PxVmInstance* existing) {
+	auto* sym = vm->vm.find_symbol_by_index(index);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceInitialize(vm, sym, type, existing);
+}
+
+PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing) {
+	auto* sym = vm->vm.find_symbol_by_name(name);
+	if (sym == nullptr) return nullptr;
+	return pxInternalVmInstanceInitialize(vm, sym, type, existing);
 }
 
 uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance) {

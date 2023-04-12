@@ -56,8 +56,10 @@ PXC_API PxVmInstance* pxVmSetGlobalItem(PxVm* vm, PxVmInstance* instance);
 PXC_API PxBool pxVmCallFunction(PxVm* vm, char const* func, ...);
 PXC_API PxBool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...);
 
-PXC_API PxVmInstance* pxVmInstanceAllocate(PxVm* vm, char const* name, PxVmInstanceType type);
-PXC_API PxVmInstance* pxVmInstanceInitialize(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing);
+PXC_API PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type);
+PXC_API PxVmInstance* pxVmInstanceAllocateByName(PxVm* vm, char const* name, PxVmInstanceType type);
+PXC_API PxVmInstance* pxVmInstanceInitializeByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type, PxVmInstance* existing);
+PXC_API PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing);
 
 PXC_API uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceNpcGetName(PxVmInstance const* instance, uint32_t i);
