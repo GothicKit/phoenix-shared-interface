@@ -16,8 +16,8 @@
 
 static void fixVmStackForMissingExternal(px::vm& v, phoenix::symbol& sym) {
 	auto params = v.find_parameters_for_function(&sym);
-	for (auto i = params.size() - 1; i >= 0; --i) {
-		auto par = params[i];
+	for (int32_t i = (int32_t) params.size() - 1; i >= 0; --i) {
+		auto par = params[(uint32_t) i];
 
 		if (par->type() == px::datatype::integer)
 			(void) v.pop_int();
