@@ -60,18 +60,23 @@ jobs:
           path: 'build/libphoenix-shared*'
   windows:
     name: "Windows"
-    runs-on: 'windows-2019'
+    runs-on: 'windows-2022'
     steps:
-      - uses: 'actions/checkout@v3'
+      - name: 'Checkout'
+        uses: 'actions/checkout@v3'
         with:
           submodules: 'recursive'
+      - name: 'Set up MinGW-w64'
+        uses: 'msys2/setup-msys2@v2'
+        with:
+          update: true
+          msystem: 'mingw64'
       - name: 'Configure'
-        shell: 'bash'
-        run: 'cmake -B build -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release'
+        run: 'cmake -G "MinGW Makefiles" -B build -DCMAKE_BUILD_TYPE=Release'
       - name: 'Build'
-        run: 'cmake --build build --config Release'
+        run: 'cmake --build build'
       - name: 'Publish Library'
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'Windows x86-64 DLL'
-          path: 'build/Release/phoenix-shared.dll'
+          path: 'build/libphoenix-shared.dll'
