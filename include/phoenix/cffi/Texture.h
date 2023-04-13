@@ -44,5 +44,5 @@ PXC_API void pxTexGetMeta(PxTexture const* tex,
                           uint32_t* averageColor);
 
 PXC_API uint8_t const* pxTexGetMipmap(PxTexture const* tex, uint32_t level, uint32_t* size, uint32_t* width, uint32_t* height);
-uint8_t* pxTexGetDecompressedMipmap(PxTexture const* tex, uint32_t level, uint32_t* size, uint32_t* width, uint32_t* height);
+PXC_API uint8_t const* pxTexGetDecompressedMipmap(PxTexture const* tex, uint32_t level, uint32_t* size, uint32_t* width, uint32_t* height);
 PXC_API void pxTexFreeDecompressedMipmap(uint8_t* data);
