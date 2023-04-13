@@ -365,6 +365,10 @@ PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInsta
 	return pxInternalVmInstanceInitialize(vm, sym, type, existing);
 }
 
+void pxVmPrintStackTrace(PxVm const* vm) {
+	vm->vm.print_stack_trace();
+}
+
 uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->name_count;
 }
