@@ -124,6 +124,11 @@ int32_t pxVmStackPopInt(PxVm* vm) {
 }
 
 void pxVmStackPushInstance(PxVm* vm, PxVmInstance* instance) {
+	if (instance == nullptr) {
+		vm->vm.push_instance(nullptr);
+		return;
+	}
+
 	auto* sym = vm->vm.find_symbol_by_index(instance->symbol_index());
 	vm->vm.push_instance(sym->get_instance());
 }
@@ -175,36 +180,64 @@ PxVmInstance* pxVmGetGlobalItem(PxVm* vm) {
 
 PxVmInstance* pxVmSetGlobalSelf(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalSelf(vm);
-	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
-	vm->vm.global_self()->set_instance(instSym->get_instance());
+
+	if (instance != nullptr) {
+		auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
+		vm->vm.global_self()->set_instance(instSym->get_instance());
+	} else {
+		vm->vm.global_self()->set_instance(nullptr);
+	}
+
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalOther(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalOther(vm);
-	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
-	vm->vm.global_other()->set_instance(instSym->get_instance());
+
+	if (instance != nullptr) {
+		auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
+		vm->vm.global_other()->set_instance(instSym->get_instance());
+	} else {
+		vm->vm.global_other()->set_instance(nullptr);
+	}
+
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalVictim(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalVictim(vm);
-	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
-	vm->vm.global_victim()->set_instance(instSym->get_instance());
+	if (instance != nullptr) {
+		auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
+		vm->vm.global_victim()->set_instance(instSym->get_instance());
+	} else {
+		vm->vm.global_victim()->set_instance(nullptr);
+	}
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalHero(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalHero(vm);
-	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
-	vm->vm.global_hero()->set_instance(instSym->get_instance());
+
+	if (instance != nullptr) {
+		auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
+		vm->vm.global_hero()->set_instance(instSym->get_instance());
+	} else {
+		vm->vm.global_hero()->set_instance(nullptr);
+	}
+
 	return old;
 }
 
 PxVmInstance* pxVmSetGlobalItem(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalItem(vm);
-	auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
-	vm->vm.global_item()->set_instance(instSym->get_instance());
+
+	if (instance != nullptr) {
+		auto* instSym = vm->vm.find_symbol_by_index(instance->symbol_index());
+		vm->vm.global_item()->set_instance(instSym->get_instance());
+	} else {
+		vm->vm.global_item()->set_instance(nullptr);
+	}
+
 	return old;
 }
 
