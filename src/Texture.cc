@@ -53,7 +53,11 @@ uint8_t const* pxTexGetMipmap(PxTexture const* tex, uint32_t level, uint32_t* si
 	return data.data();
 }
 
-uint8_t const* pxTexGetDecompressedMipmap(PxTexture const* tex, uint32_t level, uint32_t* size, uint32_t* width, uint32_t* height) {
+uint8_t const* pxTexGetDecompressedMipmap(PxTexture const* tex, //
+                                          uint32_t level,
+                                          uint32_t* size,
+                                          uint32_t* width,
+                                          uint32_t* height) {
 	auto rgb = tex->as_rgba8(level);
 	*size = (uint32_t) rgb.size();
 	*width = tex->mipmap_width(level);
