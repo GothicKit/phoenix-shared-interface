@@ -45,18 +45,23 @@ void pxTexGetMeta(PxTexture const* tex,
 	*averageColor = tex->average_color();
 }
 
-uint8_t const*
-pxTexGetMipmap(PxTexture const* tex, uint32_t* length, uint32_t level, uint32_t* width, uint32_t* height) {
+uint8_t const* pxTexGetMipmap(PxTexture const* tex, uint32_t level, uint32_t* size, uint32_t* width, uint32_t* height) {
 	auto& data = tex->data(level);
-	*length = (uint32_t) data.size();
+	*size = (uint32_t) data.size();
 	*width = tex->mipmap_width(level);
 	*height = tex->mipmap_height(level);
 	return data.data();
 }
 
-uint8_t* pxTexGetDecompressedData(PxTexture const* tex, uint32_t level, uint32_t* size) {
+uint8_t const* pxTexGetDecompressedMipmap(PxTexture const* tex, //
+                                          uint32_t level,
+                                          uint32_t* size,
+                                          uint32_t* width,
+                                          uint32_t* height) {
 	auto rgb = tex->as_rgba8(level);
 	*size = (uint32_t) rgb.size();
+	*width = tex->mipmap_width(level);
+	*height = tex->mipmap_height(level);
 
 	// TODO: Performance!
 	auto* mem = static_cast<uint8_t*>(malloc(*size));
@@ -64,6 +69,6 @@ uint8_t* pxTexGetDecompressedData(PxTexture const* tex, uint32_t level, uint32_t
 	return mem;
 }
 
-void pxTexFreeDecompressedData(uint8_t* data) {
+void pxTexFreeDecompressedMipmap(uint8_t* data) {
 	free(data);
 }
