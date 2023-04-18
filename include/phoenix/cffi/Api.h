@@ -42,6 +42,11 @@ typedef struct {
 } PxQuat;
 
 typedef struct {
+	/// \note Column major column order!
+	float m[3][3];
+} PxMat3;
+
+typedef struct {
 	PxVec3 min, max;
 } PxAABB;
 

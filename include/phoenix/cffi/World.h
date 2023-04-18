@@ -117,7 +117,7 @@ PXC_API PxVob* pxWorldGetRootVob(PxWorld const* world, uint32_t i);
 
 PXC_API PxVobType pxVobGetType(PxVob const* vob);
 PXC_API uint32_t pxVobGetId(PxVob const* vob);
-// TODO: rotation
+PXC_API PxMat3 pxVobGetRotation(PxVob const* vob); ///< IMPORTANT: This matrix is column-major column order!
 PXC_API PxBool pxVobGetShowVisual(PxVob const* vob);
 PXC_API PxVobSpriteAlignment pxVobGetSpriteAlignment(PxVob const* vob);
 PXC_API PxBool pxVobGetCdStatic(PxVob const* vob);
