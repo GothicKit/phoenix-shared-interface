@@ -84,6 +84,11 @@ uint32_t pxVobGetId(PxVob const* vob) {
 	return vob->id;
 }
 
+PxVec3 pxVobGetPosition(PxVob const* vob) {
+	auto& pos = vob->position;
+	return {pos.x, pos.y, pos.z};
+}
+
 PxMat3 pxVobGetRotation(PxVob const* vob) {
 	PxMat3 mat = {};
 
