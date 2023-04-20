@@ -46,3 +46,27 @@ PxVdfEntry const* pxVdfGetEntryByName(PxVdf const* vdf, char const* name) {
 PxBuffer* pxVdfEntryOpenBuffer(PxVdfEntry const* entry) {
 	return new phoenix::buffer {entry->open()};
 }
+
+uint32_t pxVdfGetRootEntryCount(PxVdf const* vdf) {
+    return (uint32_t) vdf->entries.size();
+}
+
+PxVdfEntry const* pxVdfGetRootEntry(PxVdf const* vdf, uint32_t i) {
+	return &*std::next(vdf->entries.begin(), i);
+}
+
+char const* pxVdfEntryGetName(PxVdfEntry const* entry) {
+    return entry->name.c_str();
+}
+
+PxBool pxVdfEntryIsDirectory(PxVdfEntry const* entry) {
+    return entry->is_directory();
+}
+
+uint32_t pxVdfEntryGetChildCount(PxVdfEntry const* entry) {
+	return (uint32_t) entry->children.size();
+}
+
+PxVdfEntry const* pxVdfEntryGetChild(PxVdfEntry const* entry, uint32_t i) {
+	return &*std::next(entry->children.begin(), i);
+}

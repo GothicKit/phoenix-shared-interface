@@ -23,3 +23,10 @@ PXC_API void pxVdfDestroy(PxVdf* vdf);
 PXC_API void pxVdfMerge(PxVdf* vdf, PxVdf* other, PxBool override);
 PXC_API PxVdfEntry const* pxVdfGetEntryByName(PxVdf const* vdf, char const* name);
 PXC_API PxBuffer* pxVdfEntryOpenBuffer(PxVdfEntry const* entry);
+PXC_API uint32_t pxVdfGetRootEntryCount(PxVdf const* vdf);
+PXC_API PxVdfEntry const* pxVdfGetRootEntry(PxVdf const* vdf, uint32_t i);
+
+PXC_API char const* pxVdfEntryGetName(PxVdfEntry const* entry);
+PXC_API PxBool pxVdfEntryIsDirectory(PxVdfEntry const* entry);
+PXC_API uint32_t pxVdfEntryGetChildCount(PxVdfEntry const* entry);
+PXC_API PxVdfEntry const* pxVdfEntryGetChild(PxVdfEntry const* entry, uint32_t i);
