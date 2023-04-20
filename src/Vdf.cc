@@ -48,7 +48,7 @@ PxBuffer* pxVdfEntryOpenBuffer(PxVdfEntry const* entry) {
 }
 
 uint32_t pxVdfGetRootEntryCount(PxVdf const* vdf) {
-    return (uint32_t) vdf->entries.size();
+	return (uint32_t) vdf->entries.size();
 }
 
 PxVdfEntry const* pxVdfGetRootEntry(PxVdf const* vdf, uint32_t i) {
@@ -56,11 +56,11 @@ PxVdfEntry const* pxVdfGetRootEntry(PxVdf const* vdf, uint32_t i) {
 }
 
 char const* pxVdfEntryGetName(PxVdfEntry const* entry) {
-    return entry->name.c_str();
+	return entry->name.c_str();
 }
 
 PxBool pxVdfEntryIsDirectory(PxVdfEntry const* entry) {
-    return entry->is_directory();
+	return entry->is_directory();
 }
 
 uint32_t pxVdfEntryGetChildCount(PxVdfEntry const* entry) {
