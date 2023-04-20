@@ -94,6 +94,19 @@ typedef enum {
 	PxVobVisualUnknown = 7,             ///< The VOb presents an unknown visual or no visual at all.
 } PxVobVisualType;
 
+typedef struct {
+	/// \note Column major column order!
+    float m00;
+    float m01;
+    float m02;
+    float m10;
+    float m11;
+    float m12;
+    float m20;
+    float m21;
+    float m22;
+} PxMat3x3;
+
 // TODO
 PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
 PXC_API PxWorld* pxWorldLoadFromVdf(PxVdf const* vdf, char const* name);
@@ -118,7 +131,7 @@ PXC_API PxVob* pxWorldGetRootVob(PxWorld const* world, uint32_t i);
 PXC_API PxVobType pxVobGetType(PxVob const* vob);
 PXC_API uint32_t pxVobGetId(PxVob const* vob);
 PXC_API PxVec3 pxVobGetPosition(PxVob const* vob);
-PXC_API PxMat3 pxVobGetRotation(PxVob const* vob); ///< IMPORTANT: This matrix is column-major column order!
+PXC_API PxMat3x3 pxVobGetRotation(PxVob const* vob); ///< IMPORTANT: This matrix is column-major column order!
 PXC_API PxBool pxVobGetShowVisual(PxVob const* vob);
 PXC_API PxVobSpriteAlignment pxVobGetSpriteAlignment(PxVob const* vob);
 PXC_API PxBool pxVobGetCdStatic(PxVob const* vob);
