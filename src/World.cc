@@ -93,15 +93,15 @@ PxMat3x3 pxVobGetRotation(PxVob const* vob) {
 	PxMat3x3 mat = {};
 	auto& rot = vob->rotation;
 
-    mat.m00 = rot[0][0];
-    mat.m01 = rot[0][1];
-    mat.m02 = rot[0][2];
-    mat.m10 = rot[1][0];
-    mat.m11 = rot[1][1];
-    mat.m12 = rot[1][2];
-    mat.m20 = rot[2][0];
-    mat.m21 = rot[2][1];
-    mat.m22 = rot[2][2];
+	mat.m00 = rot[0][0];
+	mat.m01 = rot[0][1];
+	mat.m02 = rot[0][2];
+	mat.m10 = rot[1][0];
+	mat.m11 = rot[1][1];
+	mat.m12 = rot[1][2];
+	mat.m20 = rot[2][0];
+	mat.m21 = rot[2][1];
+	mat.m22 = rot[2][2];
 
 	return mat;
 }
