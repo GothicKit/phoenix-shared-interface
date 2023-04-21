@@ -41,6 +41,9 @@ PXC_API const char* pxMdsGetDisabledAnimation(PxModelScript* mds, uint32_t i);
 PXC_API uint32_t pxMdsGetModelTagCount(PxModelScript* mds);
 PXC_API const char* pxMdsGetModelTagBone(PxModelScript* mds, uint32_t i);
 
+PXC_API const char* pxMdsGetskeletonName(PxModelScript* mds);
+PXC_API bool pxMdsGetskeletonDisableMesh(PxModelScript* mds);
+
 PXC_API uint32_t pxMdsGetAnimationCombinationCount(PxModelScript* mds);
 PXC_API const char* pxMdsGetAnimationCombinationName(PxModelScript* mds, uint32_t i);
 PXC_API uint32_t pxMdsGetAnimationCombinationLayer(PxModelScript* mds, uint32_t i);

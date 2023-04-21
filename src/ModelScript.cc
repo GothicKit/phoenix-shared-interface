@@ -33,6 +33,15 @@ void pxMdsDestroy(PxModelScript* mdm) {
 }
 
 
+const char* pxMdsGetskeletonName(PxModelScript* mds)
+{
+	return mds->skeleton.name.c_str();
+}
+bool pxMdsGetskeletonDisableMesh(PxModelScript* mds)
+{
+	return mds->skeleton.disable_mesh;
+}
+
 
 uint32_t pxMdsGetMeshCount(PxModelScript* mds)
 {
