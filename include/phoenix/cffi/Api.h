@@ -43,8 +43,16 @@ typedef struct {
 
 typedef struct {
 	/// \note Column major column order!
-	float m[3][3];
-} PxMat3;
+	float m00;
+	float m01;
+	float m02;
+	float m10;
+	float m11;
+	float m12;
+	float m20;
+	float m21;
+	float m22;
+} PxMat3x3;
 
 typedef struct {
 	PxVec3 min, max;
