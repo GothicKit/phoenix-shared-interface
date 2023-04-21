@@ -59,37 +59,39 @@ uint32_t pxMdsGetModelTagCount(PxModelScript* mds)
 	return mds->model_tags.size();
 }
 
-void pxMdsGetModelTag(PxModelScript* mds, uint32_t i, const char* bone)
+const char* pxMdsGetModelTagBone(PxModelScript* mds, uint32_t i)
 {
-	auto &tag = mds->model_tags[i];
-	bone = tag.bone.c_str();
+	return mds->model_tags[i].bone.c_str();
 }
+
 
 uint32_t pxMdsGetAnimationCombinationCount(PxModelScript* mds)
 {
 	return mds->combinations.size();
 }
-
-void pxMdsGetAnimationCombination(PxModelScript* mds, uint32_t i,
-	const char* name,
-    uint32_t* layer,
-    const char* next,
-	float* blend_in,
-	float* blend_out,
-	PxAnimationFlags* flags,
-	const char* model,
-	int32_t* last_frame)
-{
-	auto &combination = mds->combinations[i];
-
-	name = combination.name.c_str(),
-    *layer = combination.layer,
-    next = combination.next.c_str(),
-	*blend_in = combination.blend_in,
-	*blend_out = combination.blend_out,
-	*flags = static_cast<PxAnimationFlags>(combination.flags),
-	model = combination.model.c_str(),
-	*last_frame = combination.last_frame;
+const char* pxMdsGetAnimationCombinationName(PxModelScript* mds, uint32_t i){
+	return mds->combinations[i].name.c_str();
+}
+uint32_t pxMdsGetAnimationCombinationLayer(PxModelScript* mds, uint32_t i){
+	return mds->combinations[i].layer;
+}
+const char* pxMdsGetAnimationCombinationNext(PxModelScript* mds, uint32_t i){
+	return mds->combinations[i].next.c_str();
+}
+float pxMdsGetAnimationCombinationBlendIn(PxModelScript* mds, uint32_t i){
+	return mds->combinations[i].blend_in;
+}
+float pxMdsGetAnimationCombinationBlendOut(PxModelScript* mds, uint32_t i){
+	return mds->combinations[i].blend_out;
+}
+PxAnimationFlags pxMdsGetAnimationCombinationFlags(PxModelScript* mds, uint32_t i){
+	return static_cast<PxAnimationFlags>(mds->combinations[i].flags);
+}
+const char* pxMdsGetAnimationCombinationModel(PxModelScript* mds, uint32_t i){
+	return mds->combinations[i].model.c_str();
+}
+int32_t pxMdsGetAnimationCombinationLastFrame(PxModelScript* mds, uint32_t i){
+	return mds->combinations[i].last_frame;
 }
 
 uint32_t pxMdsGetAnimationBlendingCount(PxModelScript* mds)
