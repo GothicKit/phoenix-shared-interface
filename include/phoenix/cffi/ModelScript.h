@@ -52,22 +52,20 @@ PXC_API const char* pxMdsGetAnimationCombinationModel(PxModelScript* mds, uint32
 PXC_API int32_t pxMdsGetAnimationCombinationLastFrame(PxModelScript* mds, uint32_t i);
 
 PXC_API uint32_t pxMdsGetAnimationBlendingCount(PxModelScript* mds);
-PXC_API void pxMdsGetAnimationBlending(PxModelScript* mds, uint32_t i,
-	const char* name,
-	const char* next,
-	float* blend_in,
-	float* blend_out);
+PXC_API const char* pxMdsGetAnimationBlendingName(PxModelScript* mds, uint32_t i);
+PXC_API const char* pxMdsGetAnimationBlendingNext(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationBlendingBlendIn(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationBlendingBlendOut(PxModelScript* mds, uint32_t i);
 
 PXC_API uint32_t pxMdsGetAnimationAliasCount(PxModelScript* mds);
-PXC_API void pxMdsGetAnimationAlias(PxModelScript* mds, uint32_t i,
-			const char* name,
-			uint32_t* layer,
-			const char* next,
-			float* blend_in,
-			float* blend_out,
-			PxAnimationFlags* flags,
-			const char* alias,
-			PxAnimationDirection* direction);
+PXC_API const char* pxMdsGetAnimationAliasName(PxModelScript* mds, uint32_t i);
+PXC_API uint32_t pxMdsGetAnimationAliasLayer(PxModelScript* mds, uint32_t i);
+PXC_API const char* pxMdsGetAnimationAliasNext(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationAliasBlendIn(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationAliasBlendOut(PxModelScript* mds, uint32_t i);
+PXC_API PxAnimationFlags pxMdsGetAnimationAliasFlags(PxModelScript* mds, uint32_t i);
+PXC_API const char* pxMdsGetAnimationAliasAlias(PxModelScript* mds, uint32_t i);
+PXC_API PxAnimationDirection pxMdsGetAnimationAliasDirection(PxModelScript* mds, uint32_t i);
 
 // TODO - Implement
 // mds::skeleton skeleton {};

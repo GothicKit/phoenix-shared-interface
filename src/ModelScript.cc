@@ -64,7 +64,7 @@ const char* pxMdsGetModelTagBone(PxModelScript* mds, uint32_t i)
 	return mds->model_tags[i].bone.c_str();
 }
 
-
+// AnimationCombination
 uint32_t pxMdsGetAnimationCombinationCount(PxModelScript* mds)
 {
 	return mds->combinations.size();
@@ -94,48 +94,63 @@ int32_t pxMdsGetAnimationCombinationLastFrame(PxModelScript* mds, uint32_t i){
 	return mds->combinations[i].last_frame;
 }
 
+// Blends
 uint32_t pxMdsGetAnimationBlendingCount(PxModelScript* mds)
 {
 	return mds->blends.size();
 }
-
-void pxMdsGetAnimationBlending(PxModelScript* mds, uint32_t i,
-	const char* name,
-	const char* next,
-	float* blend_in,
-	float* blend_out)
+const char* pxMdsGetAnimationBlendingName(PxModelScript* mds, uint32_t i)
 {
-	auto &blending = mds->blends[i];
-
-	name = blending.name.c_str();
-	next = blending.next.c_str();
-	*blend_in = blending.blend_in;
-	*blend_out = blending.blend_out;
+	return mds->blends[i].name.c_str();
+}
+const char* pxMdsGetAnimationBlendingNext(PxModelScript* mds, uint32_t i)
+{
+	return mds->blends[i].next.c_str();
+}
+float pxMdsGetAnimationBlendingBlendIn(PxModelScript* mds, uint32_t i)
+{
+	return mds->blends[i].blend_in;
+}
+float pxMdsGetAnimationBlendingBlendOut(PxModelScript* mds, uint32_t i)
+{
+	return mds->blends[i].blend_out;
 }
 
+
+// AnimationAlias
 uint32_t pxMdsGetAnimationAliasCount(PxModelScript* mds)
 {
 	return mds->aliases.size();
 }
-
-void pxMdsGetAnimationAlias(PxModelScript* mds, uint32_t i,
-			const char* name,
-			uint32_t* layer,
-			const char* next,
-			float* blend_in,
-			float* blend_out,
-			PxAnimationFlags* flags,
-			const char* alias,
-			PxAnimationDirection* direction)
+const char* pxMdsGetAnimationAliasName(PxModelScript* mds, uint32_t i)
 {
-	auto &animAlias = mds->aliases[i];
-
-	name = animAlias.name.c_str();
-	*layer = animAlias.layer;
-	next = animAlias.next.c_str();
-	*blend_in = animAlias.blend_in;
-	*blend_out = animAlias.blend_out;
-	*flags = static_cast<PxAnimationFlags>(animAlias.flags);
-	alias = animAlias.alias.c_str();
-	*direction = static_cast<PxAnimationDirection>(animAlias.direction);
+	return mds->aliases[i].name.c_str();
+}
+uint32_t pxMdsGetAnimationAliasLayer(PxModelScript* mds, uint32_t i)
+{
+	return mds->aliases[i].layer;
+}
+const char* pxMdsGetAnimationAliasNext(PxModelScript* mds, uint32_t i)
+{
+	return mds->aliases[i].next.c_str();
+}
+float pxMdsGetAnimationAliasBlendIn(PxModelScript* mds, uint32_t i)
+{
+	return mds->aliases[i].blend_in;
+}
+float pxMdsGetAnimationAliasBlendOut(PxModelScript* mds, uint32_t i)
+{
+	return mds->aliases[i].blend_out;
+}
+PxAnimationFlags pxMdsGetAnimationAliasFlags(PxModelScript* mds, uint32_t i)
+{
+	return static_cast<PxAnimationFlags>(mds->aliases[i].flags);
+}
+const char* pxMdsGetAnimationAliasAlias(PxModelScript* mds, uint32_t i)
+{
+	return mds->aliases[i].alias.c_str();
+}
+PxAnimationDirection pxMdsGetAnimationAliasDirection(PxModelScript* mds, uint32_t i)
+{
+	return static_cast<PxAnimationDirection>(mds->aliases[i].direction);
 }
