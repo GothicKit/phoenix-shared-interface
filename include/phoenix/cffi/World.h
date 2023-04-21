@@ -94,19 +94,6 @@ typedef enum {
 	PxVobVisualUnknown = 7,             ///< The VOb presents an unknown visual or no visual at all.
 } PxVobVisualType;
 
-typedef struct {
-	/// \note Column major column order!
-    float m00;
-    float m01;
-    float m02;
-    float m10;
-    float m11;
-    float m12;
-    float m20;
-    float m21;
-    float m22;
-} PxMat3x3;
-
 // TODO
 PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
 PXC_API PxWorld* pxWorldLoadFromVdf(PxVdf const* vdf, char const* name);
