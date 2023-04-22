@@ -14,4 +14,4 @@ jobs:
           submodules: 'recursive'
       - name: 'clang-format'
         shell: 'bash'
-        run: 'find include src -iname "*.hh" -or -iname "*.cc" | xargs clang-format --dry-run --output-replacements-xml --style=file --Werror'
+        run: 'find include src -iname "*.hh" -or -iname "*.cc" | xargs clang-format --dry-run --style=file --Werror'
