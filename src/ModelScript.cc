@@ -201,10 +201,8 @@ const char* pxMdsGetAnimation_EventTagSlot2(PxModelScript* mds, uint32_t animInd
 const char* pxMdsGetAnimation_EventTagItem(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex) {
 	return mds->animations[animIndex].events[eventTagIndex].item.c_str();
 }
-int32_t* pxMdsGetAnimation_EventTagFrames(PxModelScript* mds,
-										uint32_t animIndex,
-										uint32_t eventTagIndex,
-										uint32_t* size) {
+int32_t*
+pxMdsGetAnimation_EventTagFrames(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex, uint32_t* size) {
 	auto& frames = mds->animations[animIndex].events[eventTagIndex].frames;
 	*size = (uint32_t) frames.size();
 	return frames.data();
