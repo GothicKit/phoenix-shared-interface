@@ -35,8 +35,7 @@ void pxMdsDestroy(PxModelScript* mdm) {
 const char* pxMdsGetSkeletonName(PxModelScript* mds) {
 	return mds->skeleton.name.c_str();
 }
-bool pxMdsGetSkeletonDisableMesh(PxModelScript* mds)
-{
+bool pxMdsGetSkeletonDisableMesh(PxModelScript* mds) {
 	return mds->skeleton.disable_mesh;
 }
 
@@ -203,7 +202,10 @@ const char* pxMdsGetAnimation_EventTagSlot2(PxModelScript* mds, uint32_t animInd
 const char* pxMdsGetAnimation_EventTagItem(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex) {
 	return mds->animations[animIndex].events[eventTagIndex].item.c_str();
 }
-int32_t* pxMdsGetAnimation_EventTagFrames(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex, uint32_t* size) {
+int32_t* pxMdsGetAnimation_EventTagFrames(PxModelScript* mds,
+										  uint32_t animIndex,
+										  uint32_t eventTagIndex,
+										  uint32_t* size) {
 	auto& frames = mds->animations[animIndex].events[eventTagIndex].frames;
 	*size = (uint32_t) frames.size();
 	return frames.data();
@@ -240,7 +242,9 @@ uint32_t pxMdsGetAnimation_EventPfxStopCount(PxModelScript* mds, uint32_t i) {
 	return (uint32_t) mds->animations[i].pfx.size();
 }
 
-void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds, uint32_t animIndex, uint32_t pfxStopIndex,
+void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds,
+									uint32_t animIndex,
+									uint32_t pfxStopIndex,
 									int32_t* frame,
 									int32_t* index) {
 	auto& pfxStop = mds->animations[animIndex].pfx[pfxStopIndex];
@@ -300,7 +304,9 @@ const char* pxMdsGetAnimation_EventMorphAnimateNode(PxModelScript* mds, uint32_t
 uint32_t pxMdsGetAnimation_EventCameraTremorCount(PxModelScript* mds, uint32_t i) {
 	return (uint32_t) mds->animations[i].tremors.size();
 }
-void pxMdsGetAnimation_EventCameraTremor(PxModelScript* mds, uint32_t animIndex, uint32_t tremorIndex,
+void pxMdsGetAnimation_EventCameraTremor(PxModelScript* mds,
+										 uint32_t animIndex,
+										 uint32_t tremorIndex,
 										 int32_t* frame,
 										 int32_t* field1,
 										 int32_t* field2,

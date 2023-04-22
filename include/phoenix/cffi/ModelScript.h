@@ -133,7 +133,10 @@ PXC_API PxEventTagType pxMdsGetAnimation_EventTagType(PxModelScript* mds, uint32
 PXC_API const char* pxMdsGetAnimation_EventTagSlot(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
 PXC_API const char* pxMdsGetAnimation_EventTagSlot2(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
 PXC_API const char* pxMdsGetAnimation_EventTagItem(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
-PXC_API int32_t* pxMdsGetAnimation_EventTagFrames(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex, uint32_t* size);
+PXC_API int32_t* pxMdsGetAnimation_EventTagFrames(PxModelScript* mds,
+												  uint32_t animIndex,
+												  uint32_t eventTagIndex,
+												  uint32_t* size);
 PXC_API PxEventFightMode pxMdsGetAnimation_EventTagFightMode(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
 PXC_API bool pxMdsGetAnimation_EventTagAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
 
@@ -147,7 +150,9 @@ PXC_API bool pxMdsGetAnimation_EventPfxAttached(PxModelScript* mds, uint32_t ani
 
 // Animations -> PfxStop
 PXC_API uint32_t pxMdsGetAnimation_EventPfxStopCount(PxModelScript* mds, uint32_t i);
-PXC_API void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds, uint32_t animIndex, uint32_t pfxStopIndex,
+PXC_API void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds,
+											uint32_t animIndex,
+											uint32_t pfxStopIndex,
 											int32_t* frame,
 											int32_t* index);
 
@@ -173,7 +178,9 @@ PXC_API const char* pxMdsGetAnimation_EventMorphAnimateNode(PxModelScript* mds, 
 
 // Animations -> EventCameraTremor
 PXC_API uint32_t pxMdsGetAnimation_EventCameraTremorCount(PxModelScript* mds, uint32_t i);
-PXC_API void pxMdsGetAnimation_EventCameraTremor(PxModelScript* mds, uint32_t animIndex, uint32_t tremorIndex,
+PXC_API void pxMdsGetAnimation_EventCameraTremor(PxModelScript* mds,
+												 uint32_t animIndex,
+												 uint32_t tremorIndex,
 												 int32_t* frame,
 												 int32_t* field1,
 												 int32_t* field2,
