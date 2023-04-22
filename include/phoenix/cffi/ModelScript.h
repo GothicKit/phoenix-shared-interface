@@ -14,7 +14,7 @@ typedef phoenix::model_script PxModelScript;
 typedef struct PxInternal_ModelScript PxModelScript;
 #endif
 
-typedef enum : uint8_t {
+typedef enum {
 	PxAnimationFlagsNone = 0,
 	PxAnimationFlagsMove = 1,
 	PxAnimationFlagsRotate = 2,
@@ -23,7 +23,7 @@ typedef enum : uint8_t {
 	PxAnimationFlagsIdle = 16  
 } PxAnimationFlags;
 
-typedef enum : uint8_t {
+typedef enum {
 	PxAnimationDirectionForward = 0,  ///< The animation samples are played from first to last.
 	PxAnimationDirectionBackward = 1, ///< The animation samples are played from last to first.
 } PxAnimationDirection;
