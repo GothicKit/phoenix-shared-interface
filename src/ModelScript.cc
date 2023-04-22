@@ -204,7 +204,7 @@ const char* pxMdsGetAnimation_EventTagItem(PxModelScript* mds, uint32_t animInde
 	return mds->animations[animIndex].events[eventTagIndex].item.c_str();
 }
 int32_t* pxMdsGetAnimation_EventTagFrames(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex, uint32_t* size) {
-	auto &frames = mds->animations[animIndex].events[eventTagIndex].frames;
+	auto& frames = mds->animations[animIndex].events[eventTagIndex].frames;
 	*size = (uint32_t) frames.size();
 	return frames.data();
 }
@@ -241,17 +241,16 @@ uint32_t pxMdsGetAnimation_EventPfxStopCount(PxModelScript* mds, uint32_t i) {
 }
 
 void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds, uint32_t animIndex, uint32_t pfxStopIndex,
-	int32_t* frame,
-	int32_t* index)
-{
-	auto &pfxStop = mds->animations[animIndex].pfx[pfxStopIndex];
+									int32_t* frame,
+									int32_t* index) {
+	auto& pfxStop = mds->animations[animIndex].pfx[pfxStopIndex];
 	*frame = pfxStop.frame;
 	*index = pfxStop.index;
 }
 
 // Animations -> Sfx
 uint32_t pxMdsGetAnimation_EventSfxCount(PxModelScript* mds, uint32_t i) {
-	return  (uint32_t) mds->animations[i].sfx.size();
+	return (uint32_t) mds->animations[i].sfx.size();
 }
 int32_t pxMdsGetAnimation_EventSfxFrame(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
 	return mds->animations[animIndex].sfx[sfxIndex].frame;
@@ -268,47 +267,46 @@ bool pxMdsGetAnimation_EventSfxEmptySlot(PxModelScript* mds, uint32_t animIndex,
 
 // Animations -> SfxGround
 uint32_t pxMdsGetAnimationEventSfxGroundCount(PxModelScript* mds, uint32_t i) {
-	return  (uint32_t) mds->animations[i].sfx_ground.size();
+	return (uint32_t) mds->animations[i].sfx_ground.size();
 }
 int32_t pxMdsGetAnimation_EventSfxGroundFrame(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
-	return  mds->animations[animIndex].sfx_ground[sfxIndex].frame;
+	return mds->animations[animIndex].sfx_ground[sfxIndex].frame;
 }
 const char* pxMdsGetAnimation_EventSfxGroundName(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
-	return  mds->animations[animIndex].sfx_ground[sfxIndex].name.c_str();
+	return mds->animations[animIndex].sfx_ground[sfxIndex].name.c_str();
 }
 float pxMdsGetAnimation_EventSfxGroundRange(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
-	return  mds->animations[animIndex].sfx_ground[sfxIndex].range;
+	return mds->animations[animIndex].sfx_ground[sfxIndex].range;
 }
 bool pxMdsGetAnimation_EventSfxGroundEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
-	return  mds->animations[animIndex].sfx_ground[sfxIndex].empty_slot;
+	return mds->animations[animIndex].sfx_ground[sfxIndex].empty_slot;
 }
 
 // Animations -> EventMorphAnimate
 uint32_t pxMdsGetAnimation_EventMorphAnimateCount(PxModelScript* mds, uint32_t i) {
-	return  (uint32_t) mds->animations[i].morph.size();
+	return (uint32_t) mds->animations[i].morph.size();
 }
 int32_t pxMdsGetAnimation_EventMorphAnimateFrame(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex) {
-	return  mds->animations[animIndex].morph[morphIndex].frame;
+	return mds->animations[animIndex].morph[morphIndex].frame;
 }
 const char* pxMdsGetAnimation_EventMorphAnimateAnimation(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex) {
-	return  mds->animations[animIndex].morph[morphIndex].animation.c_str();
+	return mds->animations[animIndex].morph[morphIndex].animation.c_str();
 }
 const char* pxMdsGetAnimation_EventMorphAnimateNode(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex) {
-	return  mds->animations[animIndex].morph[morphIndex].node.c_str();
+	return mds->animations[animIndex].morph[morphIndex].node.c_str();
 }
 
 // Animations -> EventCameraTremor
 uint32_t pxMdsGetAnimation_EventCameraTremorCount(PxModelScript* mds, uint32_t i) {
-	return  (uint32_t) mds->animations[i].tremors.size();
+	return (uint32_t) mds->animations[i].tremors.size();
 }
 void pxMdsGetAnimation_EventCameraTremor(PxModelScript* mds, uint32_t animIndex, uint32_t tremorIndex,
-	int32_t* frame,
-	int32_t* field1,
-	int32_t* field2,
-	int32_t* field3,
-	int32_t* field4)
-{
-	auto &tremor = mds->animations[animIndex].tremors[tremorIndex];
+										 int32_t* frame,
+										 int32_t* field1,
+										 int32_t* field2,
+										 int32_t* field3,
+										 int32_t* field4) {
+	auto& tremor = mds->animations[animIndex].tremors[tremorIndex];
 	*frame = tremor.frame;
 	*field1 = tremor.field1;
 	*field2 = tremor.field2;

@@ -148,8 +148,8 @@ PXC_API bool pxMdsGetAnimation_EventPfxAttached(PxModelScript* mds, uint32_t ani
 // Animations -> PfxStop
 PXC_API uint32_t pxMdsGetAnimation_EventPfxStopCount(PxModelScript* mds, uint32_t i);
 PXC_API void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds, uint32_t animIndex, uint32_t pfxStopIndex,
-	int32_t* frame,
-	int32_t* index);
+											int32_t* frame,
+											int32_t* index);
 
 // Animations -> Sfx
 PXC_API uint32_t pxMdsGetAnimation_EventSfxCount(PxModelScript* mds, uint32_t i);
@@ -174,8 +174,8 @@ PXC_API const char* pxMdsGetAnimation_EventMorphAnimateNode(PxModelScript* mds, 
 // Animations -> EventCameraTremor
 PXC_API uint32_t pxMdsGetAnimation_EventCameraTremorCount(PxModelScript* mds, uint32_t i);
 PXC_API void pxMdsGetAnimation_EventCameraTremor(PxModelScript* mds, uint32_t animIndex, uint32_t tremorIndex,
-	int32_t* frame,
-	int32_t* field1,
-	int32_t* field2,
-	int32_t* field3,
-	int32_t* field4);
+												 int32_t* frame,
+												 int32_t* field1,
+												 int32_t* field2,
+												 int32_t* field3,
+												 int32_t* field4);
