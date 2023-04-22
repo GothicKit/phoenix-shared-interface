@@ -15,54 +15,54 @@ typedef struct PxInternal_ModelScript PxModelScript;
 #endif
 
 typedef enum : uint8_t {
-	af_none = 0,
-	af_move = 1,
-	af_rotate = 2,
-	af_queue = 4,
-	af_fly = 8,
-	af_idle = 16,   
+	PxAnimationFlagsNone = 0,
+	PxAnimationFlagsMove = 1,
+	PxAnimationFlagsRotate = 2,
+	PxAnimationFlagsQueue = 4,
+	PxAnimationFlagsFly = 8,
+	PxAnimationFlagsIdle = 16  
 } PxAnimationFlags;
 
 typedef enum : uint8_t {
-	forward = 0,  ///< The animation samples are played from first to last.
-	backward = 1, ///< The animation samples are played from last to first.
+	PxAnimationDirectionForward = 0,  ///< The animation samples are played from first to last.
+	PxAnimationDirectionBackward = 1, ///< The animation samples are played from last to first.
 } PxAnimationDirection;
 
 typedef enum {
-	unknown,
-	create_item,
-	insert_item,
-	remove_item,
-	destroy_item,
-	place_item,
-	exchange_item,
-	fight_mode,
-	place_munition,
-	remove_munition,
-	draw_sound,
-	undraw_sound,
-	swap_mesh,
-	draw_torch,
-	inventory_torch,
-	drop_torch,
-	hit_limb,
-	hit_direction,
-	dam_multiply,
-	par_frame,
-	opt_frame,
-	hit_end,
-	window,
+	PxEventTagTypeUnknown = 0,
+	PxEventTagTypeCreateItem = 1,
+	PxEventTagTypeInsertItem = 2,
+	PxEventTagTypeRemoveItem = 3,
+	PxEventTagTypeDestroyItem = 4,
+	PxEventTagTypePlaceItem = 5,
+	PxEventTagTypeExchangeItem = 6,
+	PxEventTagTypeFightMode = 7,
+	PxEventTagTypePlaceMunition = 8,
+	PxEventTagTypeRemoveMunition = 9,
+	PxEventTagTypeDrawSound = 10,
+	PxEventTagTypeUndrawSound = 11,
+	PxEventTagTypeSwapMesh = 12,
+	PxEventTagTypeDrawTorch = 13,
+	PxEventTagTypeInventoryTorch = 14,
+	PxEventTagTypeDropTorch = 15,
+	PxEventTagTypeHitLimb = 16,
+	PxEventTagTypeHitDirection = 17,
+	PxEventTagTypeDamMultiply = 18,
+	PxEventTagTypeParFrame = 19,
+	PxEventTagTypeOptFrame = 20,
+	PxEventTagTypeHitEnd = 21,
+	PxEventTagTypeWindow = 22
 } PxEventTagType;
 
 typedef enum {
-	fist,       ///< The player fights with his fists.
-	one_handed, ///< The player wields a one-handed weapon.
-	two_handed, ///< The player wields a two-handed weapon.
-	bow,        ///< The player wields a bow.
-	crossbow,   ///< The player wields a crossbow.
-	magic,      ///< The player casts a magic spell.
-	none,       ///< The player is not in a fighting stance.
-	invalid,    ///< A fight mode which acts as an `unset` marker. Added for OpenGothic compatibility.
+	PxEventFightModeFist = 0,       ///< The player fights with his fists.
+	PxEventFightModeOneHanded = 1,  ///< The player wields a one-handed weapon.
+	PxEventFightModeTwoHanded = 2,  ///< The player wields a two-handed weapon.
+	PxEventFightModeBow = 3,        ///< The player wields a bow.
+	PxEventFightModeCrossbow = 4,   ///< The player wields a crossbow.
+	PxEventFightModeMagic = 5,      ///< The player casts a magic spell.
+	PxEventFightModeNone = 6,       ///< The player is not in a fighting stance.
+	PxEventFightModeInvalid = 7     ///< A fight mode which acts as an `unset` marker. Added for OpenGothic compatibility.
 } PxEventFightMode;
 
 

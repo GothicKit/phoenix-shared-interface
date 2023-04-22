@@ -41,7 +41,7 @@ bool pxMdsGetSkeletonDisableMesh(PxModelScript* mds)
 }
 
 uint32_t pxMdsGetMeshCount(PxModelScript* mds) {
-	return mds->meshes.size();
+	return (uint32_t) mds->meshes.size();
 }
 
 const char* pxMdsGetMesh(PxModelScript* mds, uint32_t i) {
@@ -49,7 +49,7 @@ const char* pxMdsGetMesh(PxModelScript* mds, uint32_t i) {
 }
 
 uint32_t pxMdsGetDisabledAnimationsCount(PxModelScript* mds) {
-	return mds->disabled_animations.size();
+	return (uint32_t) mds->disabled_animations.size();
 }
 
 const char* pxMdsGetDisabledAnimation(PxModelScript* mds, uint32_t i) {
@@ -57,7 +57,7 @@ const char* pxMdsGetDisabledAnimation(PxModelScript* mds, uint32_t i) {
 }
 
 uint32_t pxMdsGetModelTagCount(PxModelScript* mds) {
-	return mds->model_tags.size();
+	return (uint32_t) mds->model_tags.size();
 }
 
 const char* pxMdsGetModelTagBone(PxModelScript* mds, uint32_t i) {
@@ -66,7 +66,7 @@ const char* pxMdsGetModelTagBone(PxModelScript* mds, uint32_t i) {
 
 // AnimationCombination
 uint32_t pxMdsGetAnimationCombinationCount(PxModelScript* mds) {
-	return mds->combinations.size();
+	return (uint32_t) mds->combinations.size();
 }
 const char* pxMdsGetAnimationCombinationName(PxModelScript* mds, uint32_t i) {
 	return mds->combinations[i].name.c_str();
@@ -95,7 +95,7 @@ int32_t pxMdsGetAnimationCombinationLastFrame(PxModelScript* mds, uint32_t i) {
 
 // Blends
 uint32_t pxMdsGetAnimationBlendingCount(PxModelScript* mds) {
-	return mds->blends.size();
+	return (uint32_t) mds->blends.size();
 }
 const char* pxMdsGetAnimationBlendingName(PxModelScript* mds, uint32_t i) {
 	return mds->blends[i].name.c_str();
@@ -113,7 +113,7 @@ float pxMdsGetAnimationBlendingBlendOut(PxModelScript* mds, uint32_t i) {
 
 // AnimationAlias
 uint32_t pxMdsGetAnimationAliasCount(PxModelScript* mds) {
-	return mds->aliases.size();
+	return (uint32_t) mds->aliases.size();
 }
 const char* pxMdsGetAnimationAliasName(PxModelScript* mds, uint32_t i) {
 	return mds->aliases[i].name.c_str();
@@ -142,7 +142,7 @@ PxAnimationDirection pxMdsGetAnimationAliasDirection(PxModelScript* mds, uint32_
 
 // Animations
 uint32_t pxMdsGetAnimationCount(PxModelScript* mds) {
-	return mds->animations.size();
+	return (uint32_t) mds->animations.size();
 }
 const char* pxMdsGetAnimationName(PxModelScript* mds, uint32_t i) {
 	return mds->animations[i].name.c_str();
@@ -186,7 +186,7 @@ float pxMdsGetAnimationCollisionVolumeScale(PxModelScript* mds, uint32_t i) {
 
 // Animations -> EventTags
 uint32_t pxMdsGetAnimation_EventTagCount(PxModelScript* mds, uint32_t i) {
-	return mds->animations[i].events.size();
+	return (uint32_t) mds->animations[i].events.size();
 }
 int32_t pxMdsGetAnimation_EventTagFrame(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex) {
 	return mds->animations[animIndex].events[eventTagIndex].frame;
@@ -205,7 +205,7 @@ const char* pxMdsGetAnimation_EventTagItem(PxModelScript* mds, uint32_t animInde
 }
 int32_t* pxMdsGetAnimation_EventTagFrames(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex, uint32_t* size) {
 	auto &frames = mds->animations[animIndex].events[eventTagIndex].frames;
-	*size = frames.size();
+	*size = (uint32_t) frames.size();
 	return frames.data();
 }
 PxEventFightMode pxMdsGetAnimation_EventTagFightMode(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex) {
@@ -217,7 +217,7 @@ bool pxMdsGetAnimation_EventTagAttached(PxModelScript* mds, uint32_t animIndex, 
 
 // Animations -> EventPfx
 uint32_t pxMdsGetAnimation_EventPfxCount(PxModelScript* mds, uint32_t i) {
-	return mds->animations[i].pfx.size();
+	return (uint32_t) mds->animations[i].pfx.size();
 }
 int32_t pxMdsGetAnimation_EventPfxFrame(PxModelScript* mds, uint32_t animIndex, uint32_t pfxIndex) {
 	return mds->animations[animIndex].pfx[pfxIndex].frame;
@@ -237,7 +237,7 @@ bool pxMdsGetAnimation_EventPfxAttached(PxModelScript* mds, uint32_t animIndex, 
 
 // Animations -> PfxStop
 uint32_t pxMdsGetAnimation_EventPfxStopCount(PxModelScript* mds, uint32_t i) {
-	return mds->animations[i].pfx.size();
+	return (uint32_t) mds->animations[i].pfx.size();
 }
 
 void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds, uint32_t animIndex, uint32_t pfxStopIndex,
@@ -251,7 +251,7 @@ void pxMdsGetAnimation_EventPfxStop(PxModelScript* mds, uint32_t animIndex, uint
 
 // Animations -> Sfx
 uint32_t pxMdsGetAnimation_EventSfxCount(PxModelScript* mds, uint32_t i) {
-	return  mds->animations[i].sfx.size();
+	return  (uint32_t) mds->animations[i].sfx.size();
 }
 int32_t pxMdsGetAnimation_EventSfxFrame(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
 	return mds->animations[animIndex].sfx[sfxIndex].frame;
@@ -268,7 +268,7 @@ bool pxMdsGetAnimation_EventSfxEmptySlot(PxModelScript* mds, uint32_t animIndex,
 
 // Animations -> SfxGround
 uint32_t pxMdsGetAnimationEventSfxGroundCount(PxModelScript* mds, uint32_t i) {
-	return  mds->animations[i].sfx_ground.size();
+	return  (uint32_t) mds->animations[i].sfx_ground.size();
 }
 int32_t pxMdsGetAnimation_EventSfxGroundFrame(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
 	return  mds->animations[animIndex].sfx_ground[sfxIndex].frame;
@@ -285,7 +285,7 @@ bool pxMdsGetAnimation_EventSfxGroundEmptySlot(PxModelScript* mds, uint32_t anim
 
 // Animations -> EventMorphAnimate
 uint32_t pxMdsGetAnimation_EventMorphAnimateCount(PxModelScript* mds, uint32_t i) {
-	return  mds->animations[i].morph.size();
+	return  (uint32_t) mds->animations[i].morph.size();
 }
 int32_t pxMdsGetAnimation_EventMorphAnimateFrame(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex) {
 	return  mds->animations[animIndex].morph[morphIndex].frame;
@@ -299,7 +299,7 @@ const char* pxMdsGetAnimation_EventMorphAnimateNode(PxModelScript* mds, uint32_t
 
 // Animations -> EventCameraTremor
 uint32_t pxMdsGetAnimation_EventCameraTremorCount(PxModelScript* mds, uint32_t i) {
-	return  mds->animations[i].tremors.size();
+	return  (uint32_t) mds->animations[i].tremors.size();
 }
 void pxMdsGetAnimation_EventCameraTremor(PxModelScript* mds, uint32_t animIndex, uint32_t tremorIndex,
 	int32_t* frame,
