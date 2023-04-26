@@ -17,10 +17,13 @@ jobs:
           submodules: 'recursive'
       - name: 'clang-format'
         shell: 'bash'
-        run: 'find include src -iname "*.h" -or -iname "*.cc" | xargs clang-format -i --style=file --Werror'
+        run: 'find include src -iname "*.h" -or -iname "*.cc" | xargs clang-format -i --style=file --Werror --verbose'
       - name: 'Workaround file ownership errors'
         shell: 'bash'
         run: 'git config --global --add safe.directory $GITHUB_WORKSPACE'
+      - name: 'Git Status'
+        shell: 'bash'
+        run: 'git status'
       - uses: 'EndBug/add-and-commit@v9'
         with:
           add: "['src', 'include']"
