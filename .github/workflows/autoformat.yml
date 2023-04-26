@@ -20,7 +20,7 @@ jobs:
         run: 'find include src -iname "*.h" -or -iname "*.cc" | xargs clang-format -i --style=file --Werror'
       - uses: 'EndBug/add-and-commit@v9'
         with:
-          add: ['src', 'include']
+          add: "['src', 'include']"
           message: 'lint(*): fix formatting'
           default_author: 'github_actor'
           push: true
