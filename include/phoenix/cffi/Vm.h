@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/vm.hh>
+	#include <phoenix/vm.hh>
 typedef struct PxInternal_Vm PxVm;
 typedef phoenix::instance PxVmInstance;
 #else
@@ -58,8 +58,10 @@ PXC_API PxBool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* arg
 
 PXC_API PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type);
 PXC_API PxVmInstance* pxVmInstanceAllocateByName(PxVm* vm, char const* name, PxVmInstanceType type);
-PXC_API PxVmInstance* pxVmInstanceInitializeByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type, PxVmInstance* existing);
-PXC_API PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing);
+PXC_API PxVmInstance*
+pxVmInstanceInitializeByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type, PxVmInstance* existing);
+PXC_API PxVmInstance*
+pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, PxVmInstance* existing);
 
 PXC_API void pxVmPrintStackTrace(PxVm const* vm);
 

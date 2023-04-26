@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/font.hh>
+	#include <phoenix/font.hh>
 typedef phoenix::font PxFont;
 #else
 typedef struct PxInternal_Font PxFont;

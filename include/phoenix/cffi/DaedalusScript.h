@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/script.hh>
+	#include <phoenix/script.hh>
 typedef phoenix::script PxDaedalusScript;
 typedef phoenix::symbol PxDaedalusSymbol;
 #else

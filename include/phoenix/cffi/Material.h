@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/material.hh>
+	#include <phoenix/material.hh>
 typedef phoenix::material PxMaterial;
 #else
 typedef struct PxInternal_Material PxMaterial;

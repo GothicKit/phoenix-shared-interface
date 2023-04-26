@@ -6,7 +6,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/buffer.hh>
+	#include <phoenix/buffer.hh>
 typedef phoenix::buffer PxBuffer;
 #else
 typedef struct PxInternal_Buffer PxBuffer;

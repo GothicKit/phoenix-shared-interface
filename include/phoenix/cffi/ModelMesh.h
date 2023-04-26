@@ -3,21 +3,20 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "Vdf.h"
 #include "MultiResolutionMesh.h"
+#include "Vdf.h"
 
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/model_mesh.hh>
-#include <phoenix/softskin_mesh.hh>
+	#include <phoenix/model_mesh.hh>
+	#include <phoenix/softskin_mesh.hh>
 typedef phoenix::model_mesh PxModelMesh;
 typedef phoenix::softskin_mesh PxSoftSkinMesh;
 #else
 typedef struct PxInternal_ModelMesh PxModelMesh;
 typedef struct PxInternal_SoftSkinMesh PxSoftSkinMesh;
 #endif
-
 
 PXC_API PxModelMesh* pxMdmLoad(PxBuffer* buffer);
 PXC_API PxModelMesh* pxMdmLoadFromVdf(PxVdf const* vdf, char const* name);
@@ -34,5 +33,10 @@ PXC_API uint32_t pxSsmGetWedgeNormalsCount(PxSoftSkinMesh const* ssm);
 PXC_API void pxSsmGetWedgeNormal(PxSoftSkinMesh const* ssm, uint32_t i, PxVec3* normal, uint32_t* index);
 PXC_API uint32_t pxSsmGetNodeCount(PxSoftSkinMesh const* ssm);
 PXC_API uint32_t pxSsmGetNodeWeightCount(PxSoftSkinMesh const* ssm, uint32_t node);
-PXC_API void pxSsmGetNodeWeight(PxSoftSkinMesh const* ssm, uint32_t node, uint32_t i, float* weight, PxVec3* position, uint8_t* index);
+PXC_API void pxSsmGetNodeWeight(PxSoftSkinMesh const* ssm,
+                                uint32_t node,
+                                uint32_t i,
+                                float* weight,
+                                PxVec3* position,
+                                uint8_t* index);
 PXC_API int32_t const* pxSsmGetNodes(PxSoftSkinMesh const* ssm, uint32_t* length);

@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/model_script.hh>
+	#include <phoenix/model_script.hh>
 typedef phoenix::model_script PxModelScript;
 #else
 typedef struct PxInternal_ModelScript PxModelScript;
@@ -20,7 +20,7 @@ typedef enum {
 	PxAnimationFlagsRotate = 2,
 	PxAnimationFlagsQueue = 4,
 	PxAnimationFlagsFly = 8,
-	PxAnimationFlagsIdle = 16  
+	PxAnimationFlagsIdle = 16
 } PxAnimationFlags;
 
 typedef enum {
@@ -55,16 +55,15 @@ typedef enum {
 } PxEventTagType;
 
 typedef enum {
-	PxEventFightModeFist = 0,       ///< The player fights with his fists.
-	PxEventFightModeOneHanded = 1,  ///< The player wields a one-handed weapon.
-	PxEventFightModeTwoHanded = 2,  ///< The player wields a two-handed weapon.
-	PxEventFightModeBow = 3,        ///< The player wields a bow.
-	PxEventFightModeCrossbow = 4,   ///< The player wields a crossbow.
-	PxEventFightModeMagic = 5,      ///< The player casts a magic spell.
-	PxEventFightModeNone = 6,       ///< The player is not in a fighting stance.
-	PxEventFightModeInvalid = 7     ///< A fight mode which acts as an `unset` marker. Added for OpenGothic compatibility.
+	PxEventFightModeFist = 0,      ///< The player fights with his fists.
+	PxEventFightModeOneHanded = 1, ///< The player wields a one-handed weapon.
+	PxEventFightModeTwoHanded = 2, ///< The player wields a two-handed weapon.
+	PxEventFightModeBow = 3,       ///< The player wields a bow.
+	PxEventFightModeCrossbow = 4,  ///< The player wields a crossbow.
+	PxEventFightModeMagic = 5,     ///< The player casts a magic spell.
+	PxEventFightModeNone = 6,      ///< The player is not in a fighting stance.
+	PxEventFightModeInvalid = 7 ///< A fight mode which acts as an `unset` marker. Added for OpenGothic compatibility.
 } PxEventFightMode;
-
 
 PXC_API PxModelScript* pxMdsLoad(PxBuffer* buffer);
 PXC_API PxModelScript* pxMdsLoadFromVdf(PxVdf const* vdf, char const* name);
@@ -115,16 +114,16 @@ PXC_API uint32_t pxMdsGetAnimationCount(PxModelScript* mds);
 PXC_API const char* pxMdsGetAnimationName(PxModelScript* mds, uint32_t i);
 PXC_API uint32_t pxMdsGetAnimationLayer(PxModelScript* mds, uint32_t i);
 PXC_API const char* pxMdsGetAnimationNext(PxModelScript* mds, uint32_t i);
-PXC_API  float pxMdsGetAnimationBlendIn(PxModelScript* mds, uint32_t i);
-PXC_API  float pxMdsGetAnimationBlendOut(PxModelScript* mds, uint32_t i);
-PXC_API  PxAnimationFlags pxMdsGetAnimationFlags(PxModelScript* mds, uint32_t i);
-PXC_API  const char* pxMdsGetAnimationModel(PxModelScript* mds, uint32_t i);
-PXC_API  PxAnimationDirection pxMdsGetAnimationDirection(PxModelScript* mds, uint32_t i);
-PXC_API  int32_t pxMdsGetAnimationFirstFrame(PxModelScript* mds, uint32_t i);
-PXC_API  int32_t pxMdsGetAnimationLastFrame(PxModelScript* mds, uint32_t i);
-PXC_API  float pxMdsGetAnimationFps(PxModelScript* mds, uint32_t i);
-PXC_API  float pxMdsGetAnimationSpeed(PxModelScript* mds, uint32_t i);
-PXC_API  float pxMdsGetAnimationCollisionVolumeScale(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationBlendIn(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationBlendOut(PxModelScript* mds, uint32_t i);
+PXC_API PxAnimationFlags pxMdsGetAnimationFlags(PxModelScript* mds, uint32_t i);
+PXC_API const char* pxMdsGetAnimationModel(PxModelScript* mds, uint32_t i);
+PXC_API PxAnimationDirection pxMdsGetAnimationDirection(PxModelScript* mds, uint32_t i);
+PXC_API int32_t pxMdsGetAnimationFirstFrame(PxModelScript* mds, uint32_t i);
+PXC_API int32_t pxMdsGetAnimationLastFrame(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationFps(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationSpeed(PxModelScript* mds, uint32_t i);
+PXC_API float pxMdsGetAnimationCollisionVolumeScale(PxModelScript* mds, uint32_t i);
 
 // Animations -> EventTags
 PXC_API uint32_t pxMdsGetAnimation_EventTagCount(PxModelScript* mds, uint32_t i);
@@ -135,7 +134,9 @@ PXC_API const char* pxMdsGetAnimation_EventTagSlot2(PxModelScript* mds, uint32_t
 PXC_API const char* pxMdsGetAnimation_EventTagItem(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
 PXC_API int32_t*
 pxMdsGetAnimation_EventTagFrames(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex, uint32_t* size);
-PXC_API PxEventFightMode pxMdsGetAnimation_EventTagFightMode(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
+PXC_API PxEventFightMode pxMdsGetAnimation_EventTagFightMode(PxModelScript* mds,
+                                                             uint32_t animIndex,
+                                                             uint32_t eventTagIndex);
 PXC_API bool pxMdsGetAnimation_EventTagAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
 
 // Animations -> EventPfx
@@ -162,7 +163,7 @@ PXC_API float pxMdsGetAnimation_EventSfxRange(PxModelScript* mds, uint32_t animI
 PXC_API bool pxMdsGetAnimation_EventSfxEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 
 // Animations -> SfxGround
-PXC_API  uint32_t pxMdsGetAnimationEventSfxGroundCount(PxModelScript* mds, uint32_t i);
+PXC_API uint32_t pxMdsGetAnimationEventSfxGroundCount(PxModelScript* mds, uint32_t i);
 PXC_API int32_t pxMdsGetAnimation_EventSfxGroundFrame(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 PXC_API const char* pxMdsGetAnimation_EventSfxGroundName(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 PXC_API float pxMdsGetAnimation_EventSfxGroundRange(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
@@ -171,8 +172,10 @@ PXC_API bool pxMdsGetAnimation_EventSfxGroundEmptySlot(PxModelScript* mds, uint3
 // Animations -> EventMorphAnimate
 PXC_API uint32_t pxMdsGetAnimation_EventMorphAnimateCount(PxModelScript* mds, uint32_t i);
 PXC_API int32_t pxMdsGetAnimation_EventMorphAnimateFrame(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex);
-PXC_API const char* pxMdsGetAnimation_EventMorphAnimateAnimation(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex);
-PXC_API const char* pxMdsGetAnimation_EventMorphAnimateNode(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex);
+PXC_API const char*
+pxMdsGetAnimation_EventMorphAnimateAnimation(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex);
+PXC_API const char*
+pxMdsGetAnimation_EventMorphAnimateNode(PxModelScript* mds, uint32_t animIndex, uint32_t morphIndex);
 
 // Animations -> EventCameraTremor
 PXC_API uint32_t pxMdsGetAnimation_EventCameraTremorCount(PxModelScript* mds, uint32_t i);

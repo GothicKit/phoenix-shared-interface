@@ -9,7 +9,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/mesh.hh>
+	#include <phoenix/mesh.hh>
 typedef phoenix::mesh PxMesh;
 #else
 typedef struct PxInternal_Mesh PxMesh;

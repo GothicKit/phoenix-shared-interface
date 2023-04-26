@@ -9,7 +9,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/world.hh>
+	#include <phoenix/world.hh>
 typedef phoenix::world PxWorld;
 typedef phoenix::vob PxVob;
 #else

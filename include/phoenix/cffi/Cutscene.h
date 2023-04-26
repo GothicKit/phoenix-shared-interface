@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/messages.hh>
+	#include <phoenix/messages.hh>
 typedef phoenix::messages PxCutsceneLib;
 #else
 typedef struct PxInternal_CutsceneLib PxCutsceneLib;

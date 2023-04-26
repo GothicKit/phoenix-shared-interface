@@ -3,14 +3,14 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "ModelMesh.h"
 #include "ModelHierarchy.h"
+#include "ModelMesh.h"
 #include "Vdf.h"
 
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/model.hh>
+	#include <phoenix/model.hh>
 typedef phoenix::model PxModel;
 #else
 typedef struct PxInternal_Model PxModel;

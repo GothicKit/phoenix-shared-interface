@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <phoenix/vdfs.hh>
+	#include <phoenix/vdfs.hh>
 typedef phoenix::vdf_file PxVdf;
 typedef phoenix::vdf_entry PxVdfEntry;
 #else
