@@ -14,8 +14,7 @@ typedef phoenix::font PxFont;
 typedef struct PxInternal_Font PxFont;
 #endif
 
-PXC_API PxFont* pxFntLoad(PxBuffer* buffer);
-PXC_API PxFont* pxFntLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxFont* pxFntLoad(PxBuffer* buffer);PXC_API PxFont* pxFntLoadFromVdf(PxVdf const* vdf, char const* name);
 PXC_API void pxFntDestroy(PxFont* fnt);
 
 PXC_API char const* pxFntGetName(PxFont const* fnt);
