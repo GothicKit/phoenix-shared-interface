@@ -26,5 +26,6 @@ PXC_API uint32_t pxManGetNodeCount(PxModelAnimation const* man);
 PXC_API float pxManGetFps(PxModelAnimation const* man);
 PXC_API PxAABB pxManGetBbox(PxModelAnimation const* man);
 PXC_API uint32_t pxManGetChecksum(PxModelAnimation const* man);
+PXC_API uint32_t pxManGetSampleCount(PxModelAnimation const* man);
 PXC_API void pxManGetSample(PxModelAnimation const* man, uint32_t i, PxVec3* position, PxQuat* rotation);
 PXC_API uint32_t const* pxManGetNodeIndices(PxModelAnimation const* man, uint32_t* length);

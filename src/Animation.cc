@@ -77,6 +77,10 @@ uint32_t const* pxManGetNodeIndices(PxModelAnimation const* man, uint32_t* lengt
 	return ni.data();
 }
 
+uint32_t pxManGetSampleCount(PxModelAnimation const* man) {
+	return (uint32_t) man->samples.size();
+}
+
 void pxManGetSample(PxModelAnimation const* man, uint32_t i, PxVec3* position, PxQuat* rotation) {
 	auto const& src = man->samples[i];
 	position->x = src.position.x;
