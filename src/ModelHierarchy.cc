@@ -61,11 +61,7 @@ uint32_t pxMdhGetNodeCount(PxModelHierarchy const* mdh) {
 	return (uint32_t) mdh->nodes.size();
 }
 
-void pxMdhGetNode(PxModelHierarchy const* mdh,
-                  uint32_t i,
-                  int16_t* parent,
-                  char const** name,
-				  PxMat4x4* transform) {
+void pxMdhGetNode(PxModelHierarchy const* mdh, uint32_t i, int16_t* parent, char const** name, PxMat4x4* transform) {
 	auto& node = mdh->nodes[i];
 	*parent = node.parent_index;
 	*name = node.name.c_str();
