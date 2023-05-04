@@ -178,10 +178,6 @@ PxVmInstance* pxVmGetGlobalItem(PxVm* vm) {
 	return vm->vm.global_item()->get_instance().get();
 }
 
-uint32_t pxVmInstanceGetSymbolIndex(PxVmInstance const* instance) {
-	return instance->symbol_index();
-}
-
 PxVmInstance* pxVmSetGlobalSelf(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalSelf(vm);
 
@@ -400,6 +396,10 @@ PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInsta
 	auto* sym = vm->vm.find_symbol_by_name(name);
 	if (sym == nullptr) return nullptr;
 	return pxInternalVmInstanceInitialize(vm, sym, type, existing);
+}
+
+uint32_t pxVmInstanceGetSymbolIndex(PxVmInstance const* instance) {
+	return instance->symbol_index();
 }
 
 void pxVmPrintStackTrace(PxVm const* vm) {
