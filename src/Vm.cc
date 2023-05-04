@@ -406,7 +406,7 @@ int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->id;
 }
 
-const uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance) {
+uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->symbol_index();
 }
 

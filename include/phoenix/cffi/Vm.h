@@ -66,7 +66,7 @@ pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, 
 PXC_API void pxVmPrintStackTrace(PxVm const* vm);
 
 PXC_API int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance);
-PXC_API const uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance);
 PXC_API uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceNpcGetName(PxVmInstance const* instance, uint32_t i);
 PXC_API int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance);
