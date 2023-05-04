@@ -402,11 +402,11 @@ void pxVmPrintStackTrace(PxVm const* vm) {
 	vm->vm.print_stack_trace();
 }
 
-uint32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
+int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->id;
 }
 
-uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance) {
+const uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->symbol_index();
 }
 
