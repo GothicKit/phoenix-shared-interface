@@ -46,6 +46,7 @@ PXC_API PxVmInstance* pxVmGetGlobalOther(PxVm* vm);
 PXC_API PxVmInstance* pxVmGetGlobalVictim(PxVm* vm);
 PXC_API PxVmInstance* pxVmGetGlobalHero(PxVm* vm);
 PXC_API PxVmInstance* pxVmGetGlobalItem(PxVm* vm);
+PXC_API uint32_t pxVmInstanceGetSymbolIndex(PxVmInstance const* instance);
 
 PXC_API PxVmInstance* pxVmSetGlobalSelf(PxVm* vm, PxVmInstance* instance);
 PXC_API PxVmInstance* pxVmSetGlobalOther(PxVm* vm, PxVmInstance* instance);

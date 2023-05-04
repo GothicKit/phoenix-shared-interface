@@ -178,6 +178,10 @@ PxVmInstance* pxVmGetGlobalItem(PxVm* vm) {
 	return vm->vm.global_item()->get_instance().get();
 }
 
+uint32_t pxVmInstanceGetSymbolIndex(PxVmInstance const* instance) {
+	return instance->symbol_index();
+}
+
 PxVmInstance* pxVmSetGlobalSelf(PxVm* vm, PxVmInstance* instance) {
 	auto* old = pxVmGetGlobalSelf(vm);
 
@@ -404,10 +408,6 @@ void pxVmPrintStackTrace(PxVm const* vm) {
 
 int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->id;
-}
-
-uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance) {
-	return RCC(phoenix::c_npc, instance)->symbol_index();
 }
 
 uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance) {
