@@ -402,6 +402,14 @@ void pxVmPrintStackTrace(PxVm const* vm) {
 	vm->vm.print_stack_trace();
 }
 
+uint32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->id;
+}
+
+uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->symbol_index();
+}
+
 uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->name_count;
 }
