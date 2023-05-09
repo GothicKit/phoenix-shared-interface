@@ -398,8 +398,16 @@ PxVmInstance* pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInsta
 	return pxInternalVmInstanceInitialize(vm, sym, type, existing);
 }
 
+uint32_t pxVmInstanceGetSymbolIndex(PxVmInstance const* instance) {
+	return instance->symbol_index();
+}
+
 void pxVmPrintStackTrace(PxVm const* vm) {
 	vm->vm.print_stack_trace();
+}
+
+int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->id;
 }
 
 uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance) {
