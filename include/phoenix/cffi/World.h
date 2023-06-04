@@ -12,9 +12,92 @@
 	#include <phoenix/world.hh>
 typedef phoenix::world PxWorld;
 typedef phoenix::vob PxVob;
+
+	#include <phoenix/vobs/camera.hh>
+typedef phoenix::vobs::camera_trj_frame PxVobCameraTrjFrame;
+typedef phoenix::vobs::cs_camera PxVobCsCamera;
+
+	#include <phoenix/vobs/light.hh>
+typedef phoenix::vobs::light_preset PxVobLightPreset;
+typedef phoenix::vobs::light PxVobLight;
+
+	#include <phoenix/vobs/misc.hh>
+typedef phoenix::vobs::animate PxVobAnimate;
+typedef phoenix::vobs::item PxVobItem;
+typedef phoenix::vobs::lens_flare PxVobLensFlare;
+typedef phoenix::vobs::pfx_controller PxVobPfxController;
+typedef phoenix::vobs::message_filter PxVobMessageFilter;
+typedef phoenix::vobs::code_master PxVobCodeMaster;
+typedef phoenix::vobs::mover_controller PxVobMoverController;
+typedef phoenix::vobs::touch_damage PxVobTouchDamage;
+typedef phoenix::vobs::earthquake PxVobEarthquake;
+typedef phoenix::vobs::npc PxVobNpc;
+
+	#include <phoenix/vobs/mob.hh>
+typedef phoenix::vobs::mob PxVobMob;
+typedef phoenix::vobs::mob_inter PxVobMobInter;
+typedef phoenix::vobs::mob_fire PxVobMobFire;
+typedef phoenix::vobs::mob_container PxVobMobContainer;
+typedef phoenix::vobs::mob_door PxVobMobDoor;
+
+	#include <phoenix/vobs/sound.hh>
+typedef phoenix::vobs::sound PxVobSound;
+typedef phoenix::vobs::sound_daytime PxVobSoundDaytime;
+
+	#include <phoenix/vobs/trigger.hh>
+typedef phoenix::vobs::trigger PxVobTrigger;
+typedef phoenix::vobs::trigger_mover PxVobTriggerMover;
+typedef phoenix::vobs::trigger_list PxVobTriggerList;
+typedef phoenix::vobs::trigger_script PxVobTriggerScript;
+typedef phoenix::vobs::trigger_change_level PxVobTriggerChangeLevel;
+typedef phoenix::vobs::trigger_world_start PxVobTriggerWorldStart;
+typedef phoenix::vobs::trigger_untouch PxVobTriggerOuntouched;
+
+	#include <phoenix/vobs/zone.hh>
+typedef phoenix::vobs::zone_music PxVobZoneMusic;
+typedef phoenix::vobs::zone_far_plane PxVobZoneFarPlane;
+typedef phoenix::vobs::zone_fog PxVobZoneFog;
 #else
 typedef struct PxInternal_World PxWorld;
 typedef struct PxInternal_WorldVob PxVob;
+
+typedef struct PxInternal_WorldVobCameraTrjFrame PxVobCameraTrjFrame;
+typedef struct PxInternal_WorldVobCsCamera PxVobCsCamera;
+
+typedef struct PxInternal_WorldVobLightPreset PxVobLightPreset;
+typedef struct PxInternal_WorldVobLight PxVobLight;
+
+typedef struct PxInternal_WorldVobAnimate PxVobAnimate;
+typedef struct PxInternal_WorldVobItem PxVobItem;
+typedef struct PxInternal_WorldVobLensFlare PxVobLensFlare;
+typedef struct PxInternal_WorldVobPfxController PxVobPfxController;
+typedef struct PxInternal_WorldVobMessageFilter PxVobMessageFilter;
+typedef struct PxInternal_WorldVobCodeMaster PxVobCodeMaster;
+typedef struct PxInternal_WorldVobMoverController PxVobMoverController;
+typedef struct PxInternal_WorldVobTouchDamage PxVobTouchDamage;
+typedef struct PxInternal_WorldVobEarthquake PxVobEarthquake;
+typedef struct PxInternal_WorldVobNpc PxVobNpc;
+
+typedef struct PxInternal_WorldVobMob PxVobMob;
+typedef struct PxInternal_WorldVobMobInter PxVobMobInter;
+typedef struct PxInternal_WorldVobMobFire PxVobMobFire;
+typedef struct PxInternal_WorldVobMobContainer PxVobMobContainer;
+typedef struct PxInternal_WorldVobMobDoor PxVobMobDoor;
+
+typedef struct PxInternal_WorldVobSound PxVobSound;
+typedef struct PxInternal_WorldVobSoundDaytime PxVobSoundDaytime;
+
+typedef struct PxInternal_WorldVobTrigger PxVobTrigger;
+typedef struct PxInternal_WorldVobTriggerMover PxVobTriggerMover;
+typedef struct PxInternal_WorldVobTriggerList PxVobTriggerList;
+typedef struct PxInternal_WorldVobTriggerScript PxVobTriggerScript;
+typedef struct PxInternal_WorldVobTriggerChangeLevel PxVobTriggerChangeLevel;
+typedef struct PxInternal_WorldVobTriggerWorldStart PxVobTriggerWorldStart;
+typedef struct PxInternal_WorldVobTriggerOuntouched PxVobTriggerOuntouched;
+
+typedef struct PxInternal_WorldVobZoneMusic PxVobZoneMusic;
+typedef struct PxInternal_WorldVobZoneFarPlane PxVobZoneFarPlane;
+typedef struct PxInternal_WorldVobZoneFog PxVobZoneFog;
 #endif
 
 typedef enum {
@@ -94,6 +177,15 @@ typedef enum {
 	PxVobVisualUnknown = 7,             ///< The VOb presents an unknown visual or no visual at all.
 } PxVobVisualType;
 
+typedef enum {
+	PxVobMobSoundWood = 0,
+	PxVobMobSoundStone = 1,
+	PxVobMobSoundMetal = 2,
+	PxVobMobSoundLeather = 3,
+	PxVobMobSoundClay = 4,
+	PxVobMobSoundGlass = 5,
+} PxVobMobSoundMaterial;
+
 // TODO
 PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
 PXC_API PxWorld* pxWorldLoadFromVdf(PxVdf const* vdf, char const* name);
@@ -139,3 +231,45 @@ PXC_API PxVobVisualType pxVobGetVisualType(PxVob const* vob);
 // TODO: saved
 PXC_API uint32_t pxVobGetChildCount(PxVob const* vob);
 PXC_API PxVob* pxVobGetChild(PxVob const* vob, uint32_t i);
+
+// TODO Vob - Camera
+// TODO Vob properties - Light
+// TODO Vob properties - Misc
+
+
+// Vob - Mob
+PXC_API char const* pxVobMobGetName(PxVobMob const* mob);
+PXC_API int32_t pxVobMobGetHp(PxVobMob const* mob);
+PXC_API int32_t pxVobMobGetDamage(PxVobMob const* mob);
+PXC_API PxBool pxVobMobGetMovable(PxVobMob const* mob);
+PXC_API PxBool pxVobMobGetTakable(PxVobMob const* mob);
+PXC_API PxBool pxVobMobGetFocusOverride(PxVobMob const* mob);
+PXC_API PxVobMobSoundMaterial pxVobMobGetMaterial(PxVobMob const* mob);
+PXC_API char const* pxVobMobGetVisualDestroyed(PxVobMob const* mob);
+PXC_API char const* pxVobMobGetOwner(PxVobMob const* mob);
+PXC_API char const* pxVobMobGetOwnerGuild(PxVobMob const* mob);
+PXC_API PxBool pxVobMobGetDestroyed(PxVobMob const* mob);
+//Vob - MobInter
+PXC_API int32_t pxVobMobInterGetState(PxVobMobInter const* mobInter);
+PXC_API char const* pxVobMobInterGetTarget(PxVobMobInter const* mobInter);
+PXC_API char const* pxVobMobInterGetItem(PxVobMobInter const* mobInter);
+PXC_API char const* pxVobMobInterGetConditionFunction(PxVobMobInter const* mobInter);
+PXC_API char const* pxVobMobInterGetOnStateChangeFunction(PxVobMobInter const* mobInter);
+PXC_API PxBool pxVobMobInterGetRewind(PxVobMobInter const* mobInter);
+// Vob - MobFire
+PXC_API char const* pxVobMobFireGetSlot(PxVobMobFire const* mobFire);
+PXC_API char const* pxVobMobFireGetVobTree(PxVobMobFire const* mobFire);
+// Vob - MobContainer
+PXC_API PxBool pxVobMobContainerGetLocked(PxVobMobContainer const* mobContainer);
+PXC_API char const* pxVobMobContainerGetKey(PxVobMobContainer const* mobContainer);
+PXC_API char const* pxVobMobContainerGetPickString(PxVobMobContainer const* mobContainer);
+PXC_API char const* pxVobMobContainerGetContents(PxVobMobContainer const* mobContainer);
+// Vob - MobDoor
+PXC_API PxBool pxVobMobDoorGetLocked(PxVobMobDoor const* mobDoor);
+PXC_API char const* pxVobMobDoorGetKey(PxVobMobDoor const* mobDoor);
+PXC_API char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor);
+
+
+// TODO Vob properties - Sound
+// TODO Vob properties - Trigger
+// TODO Vob properties - Zone

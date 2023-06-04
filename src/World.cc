@@ -177,3 +177,112 @@ uint32_t pxVobGetChildCount(PxVob const* vob) {
 PxVob* pxVobGetChild(PxVob const* vob, uint32_t i) {
 	return vob->children[i].get();
 }
+
+// Vob - Mob
+char const* pxVobMobGetName(PxVobMob const* mob) {
+	return mob->name.c_str();
+}
+
+int32_t pxVobMobGetHp(PxVobMob const* mob) {
+	return mob->hp;
+}
+
+int32_t pxVobMobGetDamage(PxVobMob const* mob) {
+	return mob->damage;
+}
+
+PxBool pxVobMobGetMovable(PxVobMob const* mob) {
+	return mob->movable;
+}
+
+PxBool pxVobMobGetTakable(PxVobMob const* mob) {
+	return mob->takable;
+}
+
+PxBool pxVobMobGetFocusOverride(PxVobMob const* mob) {
+	return mob->focus_override;
+}
+
+PxVobMobSoundMaterial pxVobMobGetMaterial(PxVobMob const* mob) {
+	return static_cast<PxVobMobSoundMaterial>(mob->material);
+}
+
+char const* pxVobMobGetVisualDestroyed(PxVobMob const* mob) {
+	return mob->visual_destroyed.c_str();
+}
+
+char const* pxVobMobGetOwner(PxVobMob const* mob) {
+	return mob->owner.c_str();
+}
+
+char const* pxVobMobGetOwnerGuild(PxVobMob const* mob) {
+	return mob->owner_guild.c_str();
+}
+
+PxBool pxVobMobGetDestroyed(PxVobMob const* mob) {
+	return mob->destroyed;
+}
+
+// Vob - MobInter
+int32_t pxVobMobInterGetState(PxVobMobInter const* mobInter) {
+	return mobInter->state;
+}
+
+char const* pxVobMobInterGetTarget(PxVobMobInter const* mobInter) {
+	return mobInter->target.c_str();
+}
+
+char const* pxVobMobInterGetItem(PxVobMobInter const* mobInter) {
+	return mobInter->item.c_str();
+}
+
+char const* pxVobMobInterGetConditionFunction(PxVobMobInter const* mobInter) {
+	return mobInter->condition_function.c_str();
+}
+
+char const* pxVobMobInterGetOnStateChangeFunction(PxVobMobInter const* mobInter) {
+	return mobInter->on_state_change_function.c_str();
+}
+
+PxBool pxVobMobInterGetRewind(PxVobMobInter const* mobInter) {
+	return mobInter->rewind;
+}
+
+// Vob - MobFire
+char const* pxVobMobFireGetSlot(PxVobMobFire const* mobFire) {
+	return mobFire->slot.c_str();
+}
+
+char const* pxVobMobFireGetVobTree(PxVobMobFire const* mobFire) {
+	return mobFire->vob_tree.c_str();
+}
+
+// Vob - MobContainer
+PxBool pxVobMobContainerGetLocked(PxVobMobContainer const* mobContainer) {
+	return mobContainer->locked;
+}
+
+char const* pxVobMobContainerGetKey(PxVobMobContainer const* mobContainer) {
+	return mobContainer->key.c_str();
+}
+
+char const* pxVobMobContainerGetPickString(PxVobMobContainer const* mobContainer) {
+	return mobContainer->pick_string.c_str();
+}
+
+char const* pxVobMobContainerGetContents(PxVobMobContainer const* mobContainer) {
+	return mobContainer->contents.c_str();
+}
+
+// Vob - MobDoor
+PxBool pxVobMobDoorGetLocked(PxVobMobDoor const* mobDoor) {
+	return mobDoor->locked;
+}
+
+char const* pxVobMobDoorGetKey(PxVobMobDoor const* mobDoor) {
+	return mobDoor->key.c_str();
+}
+
+char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor) {
+	return mobDoor->pick_string.c_str();
+}
