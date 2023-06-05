@@ -319,7 +319,7 @@ void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
                           bool* fade_out_sky,
                           bool* override_color) {
 	*range_center = zoneFog->range_center;
-	*inner_range_percentage;
+	*inner_range_percentage = zoneFog->inner_range_percentage;
 	*color = zoneFog->color;
 	*fade_out_sky = zoneFog->fade_out_sky;
 	*override_color = zoneFog->override_color;
