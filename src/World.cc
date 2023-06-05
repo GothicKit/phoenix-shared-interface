@@ -287,7 +287,6 @@ char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor) {
 	return mobDoor->pick_string.c_str();
 }
 
-
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
                             bool* enabled, 
