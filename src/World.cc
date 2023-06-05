@@ -290,12 +290,12 @@ char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor) {
 
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
-								bool* enabled, 
-								int32_t* priority,
-								bool* ellipsoid,
-								float* reverb,
-								float* volume,
-								bool* loop) {
+                            bool* enabled, 
+                            int32_t* priority,
+                            bool* ellipsoid,
+                            float* reverb,
+                            float* volume,
+                            bool* loop) {
 	*enabled = zoneMusic->enabled;
 	*priority = zoneMusic->priority;
 	*ellipsoid = zoneMusic->ellipsoid;
@@ -306,19 +306,19 @@ void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
 
 // Vob - ZoneFarPlane
 void pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane,
-								float* vob_far_plane_z,
-								float* inner_range_percentage) {
+                               float* vob_far_plane_z,
+                               float* inner_range_percentage) {
 	*vob_far_plane_z = zoneFarPlane->vob_far_plane_z;
 	*inner_range_percentage = zoneFarPlane->inner_range_percentage;
 }
 
 // Vob - ZoneFog
 void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
-							float* range_center,
-							float* inner_range_percentage,
-							glm::u8vec4* color,
-							bool* fade_out_sky,
-							bool* override_color) {
+                          float* range_center,
+                          float* inner_range_percentage,
+                          glm::u8vec4* color,
+                          bool* fade_out_sky,
+                          bool* override_color) {
 	*range_center = zoneFog->range_center;
 	*inner_range_percentage;
 	*color = zoneFog->color;

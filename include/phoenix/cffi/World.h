@@ -237,7 +237,6 @@ PXC_API PxVob* pxVobGetChild(PxVob const* vob, uint32_t i);
 // TODO Vob properties - Light
 // TODO Vob properties - Misc
 
-
 // Vob - Mob
 PXC_API char const* pxVobMobGetName(PxVobMob const* mob);
 PXC_API int32_t pxVobMobGetHp(PxVobMob const* mob);
@@ -250,7 +249,7 @@ PXC_API char const* pxVobMobGetVisualDestroyed(PxVobMob const* mob);
 PXC_API char const* pxVobMobGetOwner(PxVobMob const* mob);
 PXC_API char const* pxVobMobGetOwnerGuild(PxVobMob const* mob);
 PXC_API PxBool pxVobMobGetDestroyed(PxVobMob const* mob);
-//Vob - MobInter
+// Vob - MobInter
 PXC_API int32_t pxVobMobInterGetState(PxVobMobInter const* mobInter);
 PXC_API char const* pxVobMobInterGetTarget(PxVobMobInter const* mobInter);
 PXC_API char const* pxVobMobInterGetItem(PxVobMobInter const* mobInter);
@@ -276,20 +275,20 @@ PXC_API char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor);
 
 // Vob - ZoneMusic
 PXC_API void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
-									bool* enabled, 
-									int32_t* priority,
-									bool* ellipsoid,
-									float* reverb,
-									float* volume,
-									bool* loop);
+                                    bool* enabled,
+                                    int32_t* priority,
+                                    bool* ellipsoid,
+                                    float* reverb,
+                                    float* volume,
+                                    bool* loop);
 // Vob - ZoneFarPlane
 PXC_API void pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane,
-										float* vob_far_plane_z,
-										float* inner_range_percentage);
+                                       float* vob_far_plane_z,
+                                       float* inner_range_percentage);
 // Vob - ZoneFog
 PXC_API void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
-									float* range_center,
-									float* inner_range_percentage,
-									glm::u8vec4* color,
-									bool* fade_out_sky,
-									bool* override_color);
+                                  float* range_center,
+                                  float* inner_range_percentage,
+                                  glm::u8vec4* color,
+                                  bool* fade_out_sky,
+                                  bool* override_color);
