@@ -17,8 +17,8 @@ typedef struct PxInternal_VmInstance PxVmInstance;
 #endif
 
 typedef enum {
-	PxVmInstanceTypeNpc = 1,
-	PxVmInstanceTypeItem = 2
+	PxVm_InstanceTypeNpc = 1,
+	PxVm_InstanceTypeItem = 2,
 } PxVmInstanceType;
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
