@@ -269,7 +269,6 @@ PXC_API PxBool pxVobMobDoorGetLocked(PxVobMobDoor const* mobDoor);
 PXC_API char const* pxVobMobDoorGetKey(PxVobMobDoor const* mobDoor);
 PXC_API char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor);
 
-
 // TODO Vob properties - Sound
 // TODO Vob properties - Trigger
 
@@ -282,9 +281,8 @@ PXC_API void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
                                     float* volume,
                                     bool* loop);
 // Vob - ZoneFarPlane
-PXC_API void pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane,
-                                       float* vob_far_plane_z,
-                                       float* inner_range_percentage);
+PXC_API void
+pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane, float* vob_far_plane_z, float* inner_range_percentage);
 // Vob - ZoneFog
 PXC_API void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
                                   float* range_center,

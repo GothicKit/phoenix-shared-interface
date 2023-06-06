@@ -289,7 +289,7 @@ char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor) {
 
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
-                            bool* enabled, 
+                            bool* enabled,
                             int32_t* priority,
                             bool* ellipsoid,
                             float* reverb,
@@ -304,9 +304,7 @@ void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
 }
 
 // Vob - ZoneFarPlane
-void pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane,
-                               float* vob_far_plane_z,
-                               float* inner_range_percentage) {
+void pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane, float* vob_far_plane_z, float* inner_range_percentage) {
 	*vob_far_plane_z = zoneFarPlane->vob_far_plane_z;
 	*inner_range_percentage = zoneFarPlane->inner_range_percentage;
 }
