@@ -15,3 +15,5 @@ typedef struct PxInternal_Buffer PxBuffer;
 PXC_API PxBuffer* pxBufferCreate(uint8_t const* bytes, uint64_t size);
 PXC_API PxBuffer* pxBufferMmap(char const* file);
 PXC_API void pxBufferDestroy(PxBuffer* buffer);
+PXC_API uint64_t pxBufferSize(PxBuffer* buffer);
+PXC_API std::byte* pxBufferArray(PxBuffer* buffer);
