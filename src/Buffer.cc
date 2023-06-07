@@ -60,3 +60,13 @@ PxBuffer* pxBufferMmap(char const* file) {
 void pxBufferDestroy(PxBuffer* buffer) {
 	delete buffer;
 }
+
+uint64_t pxBufferSize(PxBuffer* buffer) {
+	return buffer->limit();
+}
+
+std::byte* pxBufferArray(PxBuffer* buffer) {
+	std::byte* data = new std::byte[buffer->limit()];
+	buffer->get(data, buffer->limit());
+	return data;
+}
