@@ -416,7 +416,6 @@ void pxVmPrintStackTrace(PxVm const* vm) {
 
 void pxVmEnumerateInstancesByClassName(PxVm* vm, char const* name, PxVmEnumerateInstancesCallback cb) {
 	std::function<void(phoenix::symbol&)> internalCallback = {[cb](phoenix::symbol& symbol) {
-		symbol.mjnnj 
 		cb(symbol.name().c_str());
 	}};
 	
