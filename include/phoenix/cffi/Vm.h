@@ -17,7 +17,8 @@ typedef struct PxInternal_VmInstance PxVmInstance;
 #endif
 
 typedef enum {
-	PxVmInstanceTypeNpc = 1,
+	PxVm_InstanceTypeNpc = 1,
+	PxVm_InstanceTypeItem = 2,
 } PxVmInstanceType;
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
@@ -66,8 +67,13 @@ PXC_API uint32_t pxVmInstanceGetSymbolIndex(PxVmInstance const* instance);
 
 PXC_API void pxVmPrintStackTrace(PxVm const* vm);
 
+// C_Npc
 PXC_API int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance);
-PXC_API uint32_t pxVmInstanceNpcGetSymbolIndex(PxVmInstance const* instance);
 PXC_API uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceNpcGetName(PxVmInstance const* instance, uint32_t i);
 PXC_API int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance);
+
+// C_Item
+PXC_API char const* pxVmInstanceItemGetName(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceItemGetDescription(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceItemGetVisual(PxVmInstance const* instance);

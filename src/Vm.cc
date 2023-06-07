@@ -341,8 +341,11 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 	try {
 		phoenix::instance* instance = nullptr;
 		switch (type) {
-		case PxVmInstanceTypeNpc:
+		case PxVm_InstanceTypeNpc:
 			instance = vm->vm.allocate_instance<phoenix::c_npc>(sym).get();
+			break;
+		case PxVm_InstanceTypeItem:
+			instance = vm->vm.allocate_instance<phoenix::c_item>(sym).get();
 			break;
 		}
 
@@ -372,9 +375,14 @@ pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType 
 
 	try {
 		switch (type) {
-		case PxVmInstanceTypeNpc: {
+		case PxVm_InstanceTypeNpc: {
 			auto* v = reinterpret_cast<px::c_npc*>(sym->get_instance().get());
 			vm->vm.init_instance<phoenix::c_npc>({sym->get_instance(), v}, sym);
+			break;
+		}
+		case PxVm_InstanceTypeItem: {
+			auto* v = reinterpret_cast<px::c_item*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_item>({sym->get_instance(), v}, sym);
 			break;
 		}
 		}
@@ -420,4 +428,17 @@ char const* pxVmInstanceNpcGetName(PxVmInstance const* instance, uint32_t i) {
 
 int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->daily_routine;
+}
+
+// C_Item
+char const* pxVmInstanceItemGetName(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->name.c_str();
+}
+
+char const* pxVmInstanceItemGetDescription(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->description.c_str();
+}
+
+char const* pxVmInstanceItemGetVisual(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->visual.c_str();
 }
