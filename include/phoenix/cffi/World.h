@@ -186,7 +186,19 @@ typedef enum {
 	PxVobMobSoundGlass = 5,
 } PxVobMobSoundMaterial;
 
-// TODO
+typedef enum {
+	PxVobSoundModeLoop = 0,   ///< The sound should be player forever until the player exits the trigger volume.
+	PxVobSoundModeOnce = 1,   ///< The sound should be played once when the player enters the trigger volume.
+	PxVobSoundModeRandom = 2, ///< While the player is in the trigger volume, the should should play randomly.
+} PxVobSoundMode;
+
+typedef enum {
+	PxVobSoundTriggerVolumeSpherical = 0, ///< The sound is triggered when the player enters a spherical area around the
+	                                      ///< VOb indicated by its radius setting.
+	PxVobSoundTriggerVolumeEllipsoidal = 1, ///< The sound is triggered when the player enters a ellipsoidal area around
+	                                        ///< the VOb indicated by its radius setting.
+} PxVobSoundTriggerVolume;
+
 PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
 PXC_API PxWorld* pxWorldLoadFromVdf(PxVdf const* vdf, char const* name);
 PXC_API void pxWorldDestroy(PxWorld* world);
@@ -269,7 +281,23 @@ PXC_API PxBool pxVobMobDoorGetLocked(PxVobMobDoor const* mobDoor);
 PXC_API char const* pxVobMobDoorGetKey(PxVobMobDoor const* mobDoor);
 PXC_API char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor);
 
-// TODO Vob properties - Sound
+// Vob - Sound
+PXC_API float pxVobSoundGetVolume(PxVobSound const* sound);
+PXC_API PxVobSoundMode pxVobSoundGetSoundMode(PxVobSound const* sound);
+PXC_API float pxVobSoundGetRandomDelay(PxVobSound const* sound);
+PXC_API float pxVobSoundGetRandomDelayVar(PxVobSound const* sound);
+PXC_API PxBool pxVobSoundGetInitiallyPlaying(PxVobSound const* sound);
+PXC_API PxBool pxVobSoundGetAmbient3d(PxVobSound const* sound);
+PXC_API PxBool pxVobSoundGetObstruction(PxVobSound const* sound);
+PXC_API float pxVobSoundGetConeAngle(PxVobSound const* sound);
+PXC_API PxVobSoundTriggerVolume pxVobSoundGetSoundTriggerVolume(PxVobSound const* sound);
+PXC_API float pxVobSoundGetRadius(PxVobSound const* sound);
+PXC_API char const* pxVobSoundGetSoundName(PxVobSound const* sound);
+// Vob - SoundDaytime
+PXC_API float pxVobSoundDaytimeStartTime(PxVobSoundDaytime const* soundDaytime);
+PXC_API float pxVobSoundDaytimeEndTime(PxVobSoundDaytime const* soundDaytime);
+PXC_API char const* pxVobSoundDaytimeSoundName2(PxVobSoundDaytime const* soundDaytime);
+
 // TODO Vob properties - Trigger
 
 // Vob - ZoneMusic

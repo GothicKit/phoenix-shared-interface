@@ -287,6 +287,64 @@ char const* pxVobMobDoorGetPickString(PxVobMobDoor const* mobDoor) {
 	return mobDoor->pick_string.c_str();
 }
 
+// Vob - Sound
+float pxVobSoundGetVolume(PxVobSound const* sound) {
+	return sound->volume;
+}
+
+PxVobSoundMode pxVobSoundGetSoundMode(PxVobSound const* sound) {
+	return static_cast<PxVobSoundMode>(sound->mode);
+}
+
+float pxVobSoundGetRandomDelay(PxVobSound const* sound) {
+	return sound->random_delay;
+}
+
+float pxVobSoundGetRandomDelayVar(PxVobSound const* sound) {
+	return sound->random_delay_var;
+}
+
+PxBool pxVobSoundGetInitiallyPlaying(PxVobSound const* sound) {
+	return sound->initially_playing;
+}
+
+PxBool pxVobSoundGetAmbient3d(PxVobSound const* sound) {
+	return sound->ambient3d;
+}
+
+PxBool pxVobSoundGetObstruction(PxVobSound const* sound) {
+	return sound->obstruction;
+}
+
+float pxVobSoundGetConeAngle(PxVobSound const* sound) {
+	return sound->cone_angle;
+}
+
+PxVobSoundTriggerVolume pxVobSoundGetSoundTriggerVolume(PxVobSound const* sound) {
+	return static_cast<PxVobSoundTriggerVolume>(sound->mode);
+}
+
+float pxVobSoundGetRadius(PxVobSound const* sound) {
+	return sound->radius;
+}
+
+char const* pxVobSoundGetSoundName(PxVobSound const* sound) {
+	return sound->sound_name.c_str();
+}
+
+// Vob - SoundDaytime
+float pxVobSoundDaytimeStartTime(PxVobSoundDaytime const* soundDaytime) {
+	return soundDaytime->start_time;
+}
+
+float pxVobSoundDaytimeEndTime(PxVobSoundDaytime const* soundDaytime) {
+	return soundDaytime->end_time;
+}
+
+char const* pxVobSoundDaytimeSoundName2(PxVobSoundDaytime const* soundDaytime) {
+	return soundDaytime->sound_name2.c_str();
+}
+
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
                             bool* enabled,
