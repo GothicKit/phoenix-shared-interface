@@ -451,7 +451,6 @@ char const* pxVmInstanceItemGetVisual(PxVmInstance const* instance) {
 	return RCC(phoenix::c_item, instance)->visual.c_str();
 }
 
-
 // C_Sfx
 char const* pxVmInstanceSfxGetFile(PxVmInstance const* instance) {
 	return RCC(phoenix::c_sfx, instance)->file.c_str();
