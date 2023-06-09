@@ -347,6 +347,9 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 		case PxVm_InstanceTypeItem:
 			instance = vm->vm.allocate_instance<phoenix::c_item>(sym).get();
 			break;
+		case PxVm_InstanceTypeSfx:
+			instance = vm->vm.allocate_instance<phoenix::c_sfx>(sym).get();
+			break;
 		}
 
 		return instance;
@@ -383,6 +386,11 @@ pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType 
 		case PxVm_InstanceTypeItem: {
 			auto* v = reinterpret_cast<px::c_item*>(sym->get_instance().get());
 			vm->vm.init_instance<phoenix::c_item>({sym->get_instance(), v}, sym);
+			break;
+		}
+		case PxVm_InstanceTypeSfx: {
+			auto* v = reinterpret_cast<px::c_sfx*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_sfx>({sym->get_instance(), v}, sym);
 			break;
 		}
 		}
@@ -441,4 +449,42 @@ char const* pxVmInstanceItemGetDescription(PxVmInstance const* instance) {
 
 char const* pxVmInstanceItemGetVisual(PxVmInstance const* instance) {
 	return RCC(phoenix::c_item, instance)->visual.c_str();
+}
+
+
+// C_Sfx
+char const* pxVmInstanceSfxGetFile(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->file.c_str();
+}
+
+int32_t pxVmInstanceSfxGetPitchOff(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->pitch_off;
+}
+
+int32_t pxVmInstanceSfxGetPitchVar(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->pitch_var;
+}
+
+int32_t pxVmInstanceSfxGetVol(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->vol;
+}
+
+int32_t pxVmInstanceSfxGetLoop(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->loop;
+}
+
+int32_t pxVmInstanceSfxGetLoopStartOffset(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->loop_start_offset;
+}
+
+int32_t pxVmInstanceSfxGetLoopEndOffset(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->loop_end_offset;
+}
+
+float pxVmInstanceSfxGetReverbLevel(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->reverb_level;
+}
+
+char const* pxVmInstanceSfxGetPfxName(PxVmInstance const* instance) {
+	return RCC(phoenix::c_sfx, instance)->pfx_name.c_str();
 }
