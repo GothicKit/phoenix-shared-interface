@@ -422,6 +422,13 @@ void pxVmPrintStackTrace(PxVm const* vm) {
 	vm->vm.print_stack_trace();
 }
 
+void pxVmEnumerateInstancesByClassName(PxVm* vm, char const* name, PxVmEnumerateInstancesCallback cb) {
+	std::function<void(phoenix::symbol&)> internalCallback = {
+	    [cb](phoenix::symbol& symbol) { cb(symbol.name().c_str()); }};
+
+	vm->vm.enumerate_instances_by_class_name(name, internalCallback);
+}
+
 int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->id;
 }

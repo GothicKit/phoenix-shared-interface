@@ -24,6 +24,7 @@ typedef enum {
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
 typedef void (*PxVmExternalDefaultCallback)(PxVm* vm, char const* name);
+typedef void (*PxVmEnumerateInstancesCallback)(char const* name);
 
 // TODO
 PXC_API PxVm* pxVmLoad(PxBuffer* buffer);
@@ -67,6 +68,7 @@ pxVmInstanceInitializeByName(PxVm* vm, char const* name, PxVmInstanceType type, 
 PXC_API uint32_t pxVmInstanceGetSymbolIndex(PxVmInstance const* instance);
 
 PXC_API void pxVmPrintStackTrace(PxVm const* vm);
+PXC_API void pxVmEnumerateInstancesByClassName(PxVm* vm, char const* name, PxVmEnumerateInstancesCallback cb);
 
 // C_Npc
 PXC_API int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance);
