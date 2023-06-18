@@ -9,8 +9,8 @@ char const* pxMatGetName(PxMaterial const* mat) {
 	return mat->name.c_str();
 }
 
-uint8_t pxMatGetGroup(PxMaterial const* mat) {
-	return (uint8_t) mat->group;
+PxMaterialGroup pxMatGetGroup(PxMaterial const* mat) {
+	return static_cast<PxMaterialGroup>(mat->group);
 }
 
 uint32_t pxMatGetColor(PxMaterial const* mat) {
@@ -35,8 +35,8 @@ float pxMatGetTextureAnimFps(PxMaterial const* mat) {
 	return mat->texture_anim_fps;
 }
 
-uint8_t pxMatGetTextureAnimMapMode(PxMaterial const* mat) {
-	return (uint8_t) mat->texture_anim_map_mode;
+PxMaterialAnimationMappingMode pxMatGetTextureAnimMapMode(PxMaterial const* mat) {
+	return static_cast<PxMaterialAnimationMappingMode>(mat->texture_anim_map_mode);
 }
 
 PxVec2 pxMatGetTextureAnimMapDir(PxMaterial const* mat) {
@@ -65,7 +65,7 @@ PxVec2 pxMatGetDetailTextureScale(PxMaterial const* mat) {
 	return {sc.x, sc.y};
 }
 
-PxBool pxMatGetForceOcculuder(PxMaterial const* mat) {
+PxBool pxMatGetForceOccluder(PxMaterial const* mat) {
 	return mat->force_occluder;
 }
 
@@ -77,12 +77,12 @@ float pxMatGetEnvironmentMappingStrength(PxMaterial const* mat) {
 	return mat->environment_mapping_strength;
 }
 
-uint8_t pxMatGetWaveMode(PxMaterial const* mat) {
-	return (uint8_t) mat->wave_mode;
+PxMaterialWaveModeType pxMatGetWaveMode(PxMaterial const* mat) {
+	return static_cast<PxMaterialWaveModeType>(mat->wave_mode);
 }
 
-uint8_t pxMatGetWaveSpeed(PxMaterial const* mat) {
-	return (uint8_t) mat->wave_speed;
+PxMaterialWaveSpeedType pxMatGetWaveSpeed(PxMaterial const* mat) {
+	return static_cast<PxMaterialWaveSpeedType>(mat->wave_speed);
 }
 
 float pxMatGetWaveMaxAmplitude(PxMaterial const* mat) {
@@ -97,8 +97,8 @@ PxBool pxMatGetIgnoreSun(PxMaterial const* mat) {
 	return mat->ignore_sun;
 }
 
-uint8_t pxMatGetAlphaFunc(PxMaterial const* mat) {
-	return (uint8_t) mat->alpha_func;
+PxMaterialAlphaFunction pxMatGetAlphaFunc(PxMaterial const* mat) {
+	return static_cast<PxMaterialAlphaFunction>(mat->alpha_func);
 }
 
 PxVec2 pxMatGetDefaultMapping(PxMaterial const* mat) {
