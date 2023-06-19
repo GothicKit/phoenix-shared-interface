@@ -350,6 +350,9 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 		case PxVm_InstanceTypeSfx:
 			instance = vm->vm.allocate_instance<phoenix::c_sfx>(sym).get();
 			break;
+		case PxVm_InstanceTypeMusic:
+			instance = vm->vm.allocate_instance<phoenix::c_music_theme>(sym).get();
+			break;
 		}
 
 		return instance;
@@ -391,6 +394,11 @@ pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType 
 		case PxVm_InstanceTypeSfx: {
 			auto* v = reinterpret_cast<px::c_sfx*>(sym->get_instance().get());
 			vm->vm.init_instance<phoenix::c_sfx>({sym->get_instance(), v}, sym);
+			break;
+		}
+		case PxVm_InstanceTypeMusic: {
+			auto* v = reinterpret_cast<px::c_music_theme*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_music_theme>({sym->get_instance(), v}, sym);
 			break;
 		}
 		}
@@ -493,4 +501,33 @@ float pxVmInstanceSfxGetReverbLevel(PxVmInstance const* instance) {
 
 char const* pxVmInstanceSfxGetPfxName(PxVmInstance const* instance) {
 	return RCC(phoenix::c_sfx, instance)->pfx_name.c_str();
+}
+
+// C_MUSIC_THEME
+char const* pxVmInstanceMusicGetFile(PxVmInstance const* instance) {
+	return RCC(phoenix::c_music_theme, instance)->file.c_str();
+}
+
+float pxVmInstanceMusicGetVol(PxVmInstance const* instance) {
+	return RCC(phoenix::c_music_theme, instance)->vol;
+}
+
+int32_t pxVmInstanceMusicGetLoop(PxVmInstance const* instance) {
+	return RCC(phoenix::c_music_theme, instance)->loop;
+}
+
+float pxVmInstanceMusicGetReverbMix(PxVmInstance const* instance) {
+	return RCC(phoenix::c_music_theme, instance)->reverbmix;
+}
+
+float pxVmInstanceMusicGetReverbTime(PxVmInstance const* instance) {
+	return RCC(phoenix::c_music_theme, instance)->reverbtime;
+}
+
+int32_t pxVmInstanceMusicGetTransitionType(PxVmInstance const* instance) {
+	return (int32_t)RCC(phoenix::c_music_theme, instance)->transtype;
+}
+
+int32_t pxVmInstanceMusicGetTransitionSubType(PxVmInstance const* instance) {
+	return (int32_t)RCC(phoenix::c_music_theme, instance)->transsubtype;
 }
