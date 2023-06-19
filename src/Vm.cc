@@ -525,9 +525,9 @@ float pxVmInstanceMusicGetReverbTime(PxVmInstance const* instance) {
 }
 
 int32_t pxVmInstanceMusicGetTransitionType(PxVmInstance const* instance) {
-	return (int32_t)RCC(phoenix::c_music_theme, instance)->transtype;
+	return (int32_t) RCC(phoenix::c_music_theme, instance)->transtype;
 }
 
 int32_t pxVmInstanceMusicGetTransitionSubType(PxVmInstance const* instance) {
-	return (int32_t)RCC(phoenix::c_music_theme, instance)->transsubtype;
+	return (int32_t) RCC(phoenix::c_music_theme, instance)->transsubtype;
 }
