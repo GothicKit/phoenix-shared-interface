@@ -20,6 +20,7 @@ typedef enum {
 	PxVm_InstanceTypeNpc = 1,
 	PxVm_InstanceTypeItem = 2,
 	PxVm_InstanceTypeSfx = 3,
+	PxVm_InstanceTypeMusic = 4
 } PxVmInstanceType;
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
@@ -91,3 +92,12 @@ PXC_API int32_t pxVmInstanceSfxGetLoopStartOffset(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceSfxGetLoopEndOffset(PxVmInstance const* instance);
 PXC_API float pxVmInstanceSfxGetReverbLevel(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceSfxGetPfxName(PxVmInstance const* instance);
+
+// C_MUSIC_THEME
+PXC_API char const* pxVmInstanceMusicGetFile(PxVmInstance const* instance);
+PXC_API float pxVmInstanceMusicGetVol(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMusicGetLoop(PxVmInstance const* instance);
+PXC_API float pxVmInstanceMusicGetReverbMix(PxVmInstance const* instance);
+PXC_API float pxVmInstanceMusicGetReverbTime(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMusicGetTransitionType(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMusicGetTransitionSubType(PxVmInstance const* instance);
