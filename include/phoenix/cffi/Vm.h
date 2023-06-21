@@ -19,6 +19,7 @@ typedef struct PxInternal_VmInstance PxVmInstance;
 typedef enum {
 	PxVm_InstanceTypeNpc = 1,
 	PxVm_InstanceTypeItem = 2,
+	PxVm_InstanceTypeSfx = 3,
 } PxVmInstanceType;
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
@@ -79,3 +80,14 @@ PXC_API int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceItemGetName(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceItemGetDescription(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceItemGetVisual(PxVmInstance const* instance);
+
+// C_SFX
+PXC_API char const* pxVmInstanceSfxGetFile(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceSfxGetPitchOff(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceSfxGetPitchVar(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceSfxGetVol(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceSfxGetLoop(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceSfxGetLoopStartOffset(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceSfxGetLoopEndOffset(PxVmInstance const* instance);
+PXC_API float pxVmInstanceSfxGetReverbLevel(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceSfxGetPfxName(PxVmInstance const* instance);
