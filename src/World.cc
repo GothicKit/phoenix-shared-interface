@@ -186,6 +186,11 @@ PxVob* pxVobGetChild(PxVob const* vob, uint32_t i) {
 	return vob->children[i].get();
 }
 
+// Vob - Item
+char const* pxVobItemGetInstance(PxVobItem const* item) {
+	return item->instance.c_str();
+}
+
 // Vob - Mob
 char const* pxVobMobGetName(PxVobMob const* mob) {
 	return mob->name.c_str();
