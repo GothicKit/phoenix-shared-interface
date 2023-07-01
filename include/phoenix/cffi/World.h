@@ -247,6 +247,9 @@ PXC_API PxVob* pxVobGetChild(PxVob const* vob, uint32_t i);
 
 // TODO Vob - Camera
 
+// Vob - Item
+PXC_API char const* pxVobItemGetInstance(PxVobItem const* item);
+
 // TODO Vob properties - Light
 // TODO Vob properties - Misc
 
