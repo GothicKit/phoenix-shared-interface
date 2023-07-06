@@ -240,10 +240,22 @@ PXC_API char const* pxVobGetPresetName(PxVob const* vob);
 PXC_API char const* pxVobGetVobName(PxVob const* vob);
 PXC_API char const* pxVobGetVisualName(PxVob const* vob);
 PXC_API PxVobVisualType pxVobGetVisualType(PxVob const* vob);
-// TODO: decal
+
 // TODO: saved
+
 PXC_API uint32_t pxVobGetChildCount(PxVob const* vob);
 PXC_API PxVob* pxVobGetChild(PxVob const* vob, uint32_t i);
+
+// Decal
+PXC_API PxBool pxVobGetGetHasDecal(PxVob const* vob);
+PXC_API char const* pxVobGetDecalName(PxVob const* vob);
+PXC_API glm::vec2 pxVobGetDecalDimension(PxVob const* vob);
+PXC_API glm::vec2 pxVobGetDecalOffset(PxVob const* vob);
+PXC_API bool pxVobGetDecalTwoSided(PxVob const* vob);
+PXC_API PxMaterialAlphaFunction pxVobGetDecalAlphaFunc(PxVob const* vob);
+PXC_API float pxVobGetDecalTextureAnimFps(PxVob const* vob);
+PXC_API std::uint8_t pxVobGetDecalAlphaWeight(PxVob const* vob);
+PXC_API bool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
 
 // TODO Vob - Camera
 

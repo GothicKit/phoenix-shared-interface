@@ -186,6 +186,43 @@ PxVob* pxVobGetChild(PxVob const* vob, uint32_t i) {
 	return vob->children[i].get();
 }
 
+// Decal
+PxBool pxVobGetGetHasDecal(PxVob const* vob) {
+	return vob->visual_decal.has_value();
+}
+
+char const* pxVobGetDecalName(PxVob const* vob) {
+	return vob->visual_decal->name.c_str();
+}
+
+glm::vec2 pxVobGetDecalDimension(PxVob const* vob) {
+	return vob->visual_decal->dimension;
+}
+
+glm::vec2 pxVobGetDecalOffset(PxVob const* vob) {
+	return vob->visual_decal->offset;
+}
+
+bool pxVobGetDecalTwoSided(PxVob const* vob) {
+	return vob->visual_decal->two_sided;
+}
+
+PxMaterialAlphaFunction pxVobGetDecalAlphaFunc(PxVob const* vob) {
+	return static_cast<PxMaterialAlphaFunction>(vob->visual_decal->alpha_func);
+}
+
+float pxVobGetDecalTextureAnimFps(PxVob const* vob) {
+	return vob->visual_decal->texture_anim_fps;
+}
+
+std::uint8_t pxVobGetDecalAlphaWeight(PxVob const* vob) {
+	return vob->visual_decal->alpha_weight;
+}
+
+bool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
+	return vob->visual_decal->ignore_daylight;
+}
+
 // Vob - Item
 char const* pxVobItemGetInstance(PxVobItem const* item) {
 	return item->instance.c_str();
