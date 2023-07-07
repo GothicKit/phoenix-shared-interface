@@ -316,6 +316,16 @@ PXC_API char const* pxVobSoundDaytimeSoundName2(PxVobSoundDaytime const* soundDa
 
 // TODO Vob properties - Trigger
 
+// Trigger
+PXC_API char const* pxVobTriggerGetTarget(PxVobTrigger const* trigger);
+PXC_API std::uint8_t pxVobTriggerGetFlags(PxVobTrigger const* trigger);
+PXC_API std::uint8_t pxVobTriggerGetFilterFlags(PxVobTrigger const* trigger);
+PXC_API char const* pxVobTriggerGetVobTarget(PxVobTrigger const* trigger);
+PXC_API int32_t pxVobTriggerGetMaxActivationCount(PxVobTrigger const* trigger);
+PXC_API float pxVobTriggerGetRetriggerDelaySec(PxVobTrigger const* trigger);
+PXC_API float pxVobTriggerGetDamageThreshold(PxVobTrigger const* trigger);
+PXC_API float pxVobTriggerGetFireDelaySec(PxVobTrigger const* trigger);
+// TODO Trigger save-game only variables
 // Vob - ZoneMusic
 PXC_API void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
                                     bool* enabled,
