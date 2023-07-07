@@ -427,6 +427,16 @@ float pxVobTriggerGetDamageThreshold(PxVobTrigger const* trigger) {
 float pxVobTriggerGetFireDelaySec(PxVobTrigger const* trigger) {
 	return trigger->fire_delay_sec;
 }
+
+// Trigger - Change Level
+char const* pxVobTriggerChangeLevelGetLevelName(PxVobTriggerChangeLevel const* trigger) {
+	return trigger->level_name.c_str();
+}
+
+char const* pxVobTriggerChangeLevelGetStartVob(PxVobTriggerChangeLevel const* trigger) {
+	return trigger->start_vob.c_str();
+}
+
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
                             bool* enabled,
