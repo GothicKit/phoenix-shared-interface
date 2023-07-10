@@ -395,6 +395,48 @@ char const* pxVobSoundDaytimeSoundName2(PxVobSoundDaytime const* soundDaytime) {
 	return soundDaytime->sound_name2.c_str();
 }
 
+// Trigger
+char const* pxVobTriggerGetTarget(PxVobTrigger const* trigger) {
+	return trigger->target.c_str();
+}
+
+std::uint8_t pxVobTriggerGetFlags(PxVobTrigger const* trigger) {
+	return static_cast<std::uint8_t>(trigger->flags);
+}
+
+std::uint8_t pxVobTriggerGetFilterFlags(PxVobTrigger const* trigger) {
+	return static_cast<std::uint8_t>(trigger->filter_flags);
+}
+
+char const* pxVobTriggerGetVobTarget(PxVobTrigger const* trigger) {
+	return trigger->vob_target.c_str();
+}
+
+int32_t pxVobTriggerGetMaxActivationCount(PxVobTrigger const* trigger) {
+	return trigger->max_activation_count;
+}
+
+float pxVobTriggerGetRetriggerDelaySec(PxVobTrigger const* trigger) {
+	return trigger->retrigger_delay_sec;
+}
+
+float pxVobTriggerGetDamageThreshold(PxVobTrigger const* trigger) {
+	return trigger->damage_threshold;
+}
+
+float pxVobTriggerGetFireDelaySec(PxVobTrigger const* trigger) {
+	return trigger->fire_delay_sec;
+}
+
+// Trigger - Change Level
+char const* pxVobTriggerChangeLevelGetLevelName(PxVobTriggerChangeLevel const* trigger) {
+	return trigger->level_name.c_str();
+}
+
+char const* pxVobTriggerChangeLevelGetStartVob(PxVobTriggerChangeLevel const* trigger) {
+	return trigger->start_vob.c_str();
+}
+
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
                             bool* enabled,
