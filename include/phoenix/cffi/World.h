@@ -362,7 +362,7 @@ PXC_API bool pxVobTriggerGetSIsEnabled(PxVobTrigger const* trigger);
 
 // Trigger - Mover
 PXC_API PxVobTriggerMoverBehaviour pxVobTriggerMoverGetBehaviour(PxVobTriggerMover const* trigger);
-PXC_API float pxVobTriggerMoverGetTouchBLockerDamange(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetTouchBlockerDamage(PxVobTriggerMover const* trigger);
 PXC_API float pxVobTriggerMoverGetStayOpenTimeSec(PxVobTriggerMover const* trigger);
 PXC_API bool pxVobTriggerMoverGetLocked(PxVobTriggerMover const* trigger);
 PXC_API bool pxVobTriggerMoverGetAutoLink(PxVobTriggerMover const* trigger);
