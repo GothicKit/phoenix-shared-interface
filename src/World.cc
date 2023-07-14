@@ -446,7 +446,7 @@ PxVobTriggerMoverBehaviour pxVobTriggerMoverGetBehaviour(PxVobTriggerMover const
 	return static_cast<PxVobTriggerMoverBehaviour>(trigger->behavior);
 }
 
-float pxVobTriggerMoverGetTouchBLockerDamange(PxVobTriggerMover const* trigger) {
+float pxVobTriggerMoverGetTouchBlockerDamage(PxVobTriggerMover const* trigger) {
 	return trigger->touch_blocker_damage;
 }
 
