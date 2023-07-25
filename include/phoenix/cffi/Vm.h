@@ -14,7 +14,7 @@ typedef phoenix::symbol PxVmSymbol;
 typedef phoenix::instance PxVmInstance;
 #else
 typedef struct PxInternal_Vm PxVm;
-typedef PxInternal_VmSymbol PxVmSymbol;
+typedef struct PxInternal_VmSymbol PxVmSymbol;
 typedef struct PxInternal_VmInstance PxVmInstance;
 #endif
 
