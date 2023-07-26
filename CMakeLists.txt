@@ -31,7 +31,7 @@ set(PXC_SOURCES
         src/MorphMesh.cc
         src/MultiResolutionMesh.cc
         src/Texture.cc
-        src/Vdf.cc
+        src/Vfs.cc
         src/World.cc)
 
 bs_select_cflags(${PXC_ENABLE_ASAN} PXC_COMPILE_FLAGS PXC_LINK_FLAGS)

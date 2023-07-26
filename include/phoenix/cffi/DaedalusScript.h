@@ -3,7 +3,7 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -18,7 +18,7 @@ typedef struct PxInternal_DaedalusSymbol PxDaedalusSymbol;
 
 // TODO
 PXC_API PxDaedalusScript* pxScriptLoad(PxBuffer* buffer);
-PXC_API PxDaedalusScript* pxScriptLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxDaedalusScript* pxScriptLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxScriptDestroy(PxDaedalusScript* scr);
 
 PXC_API PxDaedalusSymbol const* pxScriptGetSymbolById(PxDaedalusScript const* scr, uint32_t id);

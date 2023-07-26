@@ -3,7 +3,7 @@
 #include "Prelude.h"
 #include "phoenix/cffi/Api.h"
 #include "phoenix/cffi/Buffer.h"
-#include "phoenix/cffi/Vdf.h"
+#include "phoenix/cffi/Vfs.h"
 
 #include <phoenix/animation.hh>
 #include <phoenix/cffi/Animation.h>
@@ -18,14 +18,14 @@ PxModelAnimation* pxManLoad(PxBuffer* buffer) {
 	}
 }
 
-PxModelAnimation* pxManLoadFromVdf(PxVdf const* vdf, char const* name) {
-	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+PxModelAnimation* pxManLoadFromVfs(PxVfs const* vfs, char const* name) {
+	PxVfsNode const* node = pxVfsGetEntryByName(vfs, name);
+	if (node == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
 		return nullptr;
 	}
 
-	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
+	PxBuffer* buf = pxVfsNodeOpenBuffer(node);
 	PxModelAnimation* result = pxManLoad(buf);
 	pxBufferDestroy(buf);
 	return result;

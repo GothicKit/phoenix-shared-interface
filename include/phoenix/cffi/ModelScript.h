@@ -3,7 +3,7 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -66,7 +66,7 @@ typedef enum {
 } PxEventFightMode;
 
 PXC_API PxModelScript* pxMdsLoad(PxBuffer* buffer);
-PXC_API PxModelScript* pxMdsLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxModelScript* pxMdsLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMdsDestroy(PxModelScript* mds);
 
 PXC_API const char* pxMdsGetSkeletonName(PxModelScript* mds);

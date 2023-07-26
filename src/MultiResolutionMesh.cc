@@ -17,14 +17,14 @@ PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer) {
 	}
 }
 
-PxMultiResolutionMesh* pxMrmLoadFromVdf(PxVdf const* vdf, char const* name) {
-	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+PxMultiResolutionMesh* pxMrmLoadFromVfs(PxVfs const* vfs, char const* name) {
+	PxVfsNode const* node = pxVfsGetEntryByName(vfs, name);
+	if (node == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
 		return nullptr;
 	}
 
-	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
+	PxBuffer* buf = pxVfsNodeOpenBuffer(node);
 	PxMultiResolutionMesh* result = pxMrmLoad(buf);
 	pxBufferDestroy(buf);
 	return result;

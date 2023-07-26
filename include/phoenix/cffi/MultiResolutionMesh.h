@@ -4,7 +4,7 @@
 #include "Api.h"
 #include "Buffer.h"
 #include "Material.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -19,7 +19,7 @@ typedef struct PxInternal_MultiResolutionSubMesh PxMultiResolutionSubMesh;
 
 // TODO
 PXC_API PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer);
-PXC_API PxMultiResolutionMesh* pxMrmLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxMultiResolutionMesh* pxMrmLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMrmDestroy(PxMultiResolutionMesh* mrm);
 
 PXC_API uint32_t pxMrmGetPositionCount(PxMultiResolutionMesh const* mrm);

@@ -3,7 +3,7 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -33,7 +33,7 @@ typedef enum {
 } PxTextureFormat;
 
 PXC_API PxTexture* pxTexLoad(PxBuffer* buffer);
-PXC_API PxTexture* pxTexLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxTexture* pxTexLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxTexDestroy(PxTexture* tex);
 
 PXC_API void pxTexGetMeta(PxTexture const* tex,

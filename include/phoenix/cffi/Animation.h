@@ -3,7 +3,7 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -15,7 +15,7 @@ typedef struct PxInternal_ModelAnimation PxModelAnimation;
 #endif
 
 PXC_API PxModelAnimation* pxManLoad(PxBuffer* buffer);
-PXC_API PxModelAnimation* pxManLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxModelAnimation* pxManLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxManDestroy(PxModelAnimation* ani);
 
 PXC_API char const* pxManGetName(PxModelAnimation const* man);
