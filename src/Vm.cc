@@ -470,16 +470,212 @@ int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance) {
 }
 
 // C_Item
+int32_t pxVmInstanceItemGetId(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->id;
+}
+
 char const* pxVmInstanceItemGetName(PxVmInstance const* instance) {
 	return RCC(phoenix::c_item, instance)->name.c_str();
+}
+
+char const* pxVmInstanceItemGetNameId(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->name_id.c_str();
+}
+
+int32_t pxVmInstanceItemGetHp(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->hp;
+}
+
+int32_t pxVmInstanceItemGetHpMax(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->hp_max;
+}
+
+int32_t pxVmInstanceItemGetMainFlag(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->main_flag;
+}
+
+int32_t pxVmInstanceItemGetWeight(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->weight;
+}
+
+int32_t pxVmInstanceItemGetValue(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->value;
+}
+
+int32_t pxVmInstanceItemGetDamageType(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->damage_type;
+}
+
+int32_t pxVmInstanceItemGetDamageTotal(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->damage_total;
+}
+
+uint32_t pxVmInstanceItemGetDamageLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->damage_type::count;
+}
+
+int32_t pxVmInstanceItemGetDamage(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->damage[i];
+}
+
+int32_t pxVmInstanceItemGetWear(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->wear;
+}
+
+uint32_t pxVmInstanceItemGetProtectionLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->damage_type::count;
+}
+
+int32_t pxVmInstanceItemGetProtection(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->protection[i];
+}
+
+int32_t pxVmInstanceItemGetNutrition(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->nutrition;
+}
+
+uint32_t pxVmInstanceItemGetCondAtrLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->condition_count;
+}
+
+int32_t pxVmInstanceItemGetCondAtr(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->cond_atr[i];
+}
+
+uint32_t pxVmInstanceItemGetCondValueLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->condition_count;
+}
+
+int32_t pxVmInstanceItemGetCondValue(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->cond_value[i];
+}
+
+uint32_t pxVmInstanceItemGetChangeAtrLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->condition_count;
+}
+
+int32_t pxVmInstanceItemGetChangeAtr(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->change_atr[i];
+}
+
+uint32_t pxVmInstanceItemGetChangeValueLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->condition_count;
+}
+
+int32_t pxVmInstanceItemGetChangeValue(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->change_value[i];
+}
+
+int32_t pxVmInstanceItemGetMagic(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->magic;
+}
+
+int32_t pxVmInstanceItemGetOnEquip(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->on_equip;
+}
+
+int32_t pxVmInstanceItemGetOnUnequip(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->on_unequip;
+}
+
+uint32_t pxVmInstanceItemGetOnStateLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->state_count;
+}
+
+int32_t pxVmInstanceItemGetOnState(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->on_state[i];
+}
+
+int32_t pxVmInstanceItemGetOwner(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->owner;
+}
+
+int32_t pxVmInstanceItemGetOwnerGuild(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->owner_guild;
+}
+
+int32_t pxVmInstanceItemGetDisguiseGuild(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->disguise_guild;
+}
+
+char const* pxVmInstanceItemGetVisual(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->visual.c_str();
+}
+
+char const* pxVmInstanceItemGetVisualChange(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->visual_change.c_str();
+}
+
+char const* pxVmInstanceItemGetEffect(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->effect.c_str();
+}
+
+int32_t pxVmInstanceItemGetVisualSkin(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->visual_skin;
+}
+
+char const* pxVmInstanceItemGetSchemeName(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->scheme_name.c_str();
+}
+
+int32_t pxVmInstanceItemGetMaterial(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->material;
+}
+
+int32_t pxVmInstanceItemGetMunition(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->munition;
+}
+
+int32_t pxVmInstanceItemGetSpell(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->spell;
+}
+
+int32_t pxVmInstanceItemGetRange(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->range;
+}
+
+int32_t pxVmInstanceItemGetMagCircle(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->mag_circle;
 }
 
 char const* pxVmInstanceItemGetDescription(PxVmInstance const* instance) {
 	return RCC(phoenix::c_item, instance)->description.c_str();
 }
 
-char const* pxVmInstanceItemGetVisual(PxVmInstance const* instance) {
-	return RCC(phoenix::c_item, instance)->visual.c_str();
+uint32_t pxVmInstanceItemGetTextLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->text_count;
+}
+
+char const* pxVmInstanceItemGetText(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->text[i].c_str();
+}
+
+uint32_t pxVmInstanceItemGetCountLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->text_count;
+}
+
+int32_t pxVmInstanceItemGetCount(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_item, instance)->count[i];
+}
+
+int32_t pxVmInstanceItemGetInvZbias(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->inv_zbias;
+}
+
+int32_t pxVmInstanceItemGetInvRotX(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->inv_rot_x;
+}
+
+int32_t pxVmInstanceItemGetInvRotY(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->inv_rot_y;
+}
+
+int32_t pxVmInstanceItemGetInvRotZ(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->inv_rot_z;
+}
+
+int32_t pxVmInstanceItemGetInvAnimate(PxVmInstance const* instance) {
+	return RCC(phoenix::c_item, instance)->inv_animate;
 }
 
 // C_Sfx
