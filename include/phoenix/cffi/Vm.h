@@ -89,6 +89,7 @@ PXC_API char const* pxVmInstanceItemGetNameId(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetHp(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetHpMax(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetMainFlag(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceItemGetFlags(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetWeight(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetValue(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetDamageType(PxVmInstance const* instance);
