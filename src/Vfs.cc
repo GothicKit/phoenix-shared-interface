@@ -6,10 +6,10 @@
 #include <phoenix/cffi/Vfs.h>
 
 PxVfs* pxVfsNew() {
-	return RC(PxVfs, new phoenix::Vfs());
+	return new phoenix::Vfs();
 }
 
-void pxVfsMountFile(PxVfs* vfs, char const* path) {
+void pxVfsMountDisk(PxVfs* vfs, char const* path) {
 	try {
 		vfs->mount_disk(std::filesystem::path(path), px::VfsOverwriteBehavior::NEWER);
 	} catch (std::exception const& e) {
