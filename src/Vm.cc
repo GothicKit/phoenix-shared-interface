@@ -495,7 +495,7 @@ int32_t pxVmInstanceItemGetMainFlag(PxVmInstance const* instance) {
 }
 
 uint32_t pxVmInstanceItemGetFlags(PxVmInstance const* instance) {
-	return RCC(phoenix::c_item, instance)->flags;
+	return static_cast<uint32_t>(RCC(phoenix::c_item, instance)->flags);
 }
 
 int32_t pxVmInstanceItemGetWeight(PxVmInstance const* instance) {
@@ -515,7 +515,7 @@ int32_t pxVmInstanceItemGetDamageTotal(PxVmInstance const* instance, uint32_t i)
 }
 
 uint32_t pxVmInstanceItemGetDamageLength(PxVmInstance const* instance) {
-	return RCC(phoenix::c_item, instance)->damage_type::count;
+	return phoenix::damage_type::count;
 }
 
 int32_t pxVmInstanceItemGetDamage(PxVmInstance const* instance, uint32_t i) {
@@ -527,7 +527,7 @@ int32_t pxVmInstanceItemGetWear(PxVmInstance const* instance) {
 }
 
 uint32_t pxVmInstanceItemGetProtectionLength(PxVmInstance const* instance) {
-	return RCC(phoenix::c_item, instance)->damage_type::count;
+	return phoenix::damage_type::count;
 }
 
 int32_t pxVmInstanceItemGetProtection(PxVmInstance const* instance, uint32_t i) {
