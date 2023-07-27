@@ -19,5 +19,5 @@ PXC_API PxVfs* pxVfsNew();
 PXC_API void pxVfsMountFile(PxVfs* vfs, char const* path);
 PXC_API void pxVfsDestroy(PxVfs* vfs);
 
-PXC_API PxVfsNode const* pxVfsGetEntryByName(PxVfs const* vfs, char const* name);
+PXC_API PxVfsNode const* pxVfsGetNodeByName(PxVfs const* vfs, char const* name);
 PXC_API PxBuffer* pxVfsNodeOpenBuffer(PxVfsNode const* node);

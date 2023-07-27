@@ -17,7 +17,7 @@ PxMesh* pxMshLoad(PxBuffer* buffer) {
 }
 
 PxMesh* pxMshLoadFromVfs(PxVfs const* vfs, char const* name) {
-	PxVfsNode const* node = pxVfsGetEntryByName(vfs, name);
+	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
 		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
 		return nullptr;

@@ -74,7 +74,7 @@ PxVm* pxVmLoad(PxBuffer* buffer) {
 }
 
 PxVm* pxVmLoadFromVfs(PxVfs const* vfs, char const* name) {
-	PxVfsNode const* node = pxVfsGetEntryByName(vfs, name);
+	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) return nullptr;
 
 	PxBuffer* buf = pxVfsNodeOpenBuffer(node);

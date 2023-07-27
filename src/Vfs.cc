@@ -21,7 +21,7 @@ void pxVfsDestroy(PxVfs* vfs) {
 	delete vfs;
 }
 
-PxVfsNode const* pxVfsGetEntryByName(PxVfs const* vfs, char const* name) {
+PxVfsNode const* pxVfsGetNodeByName(PxVfs const* vfs, char const* name) {
 	return vfs->find(name);
 }
 

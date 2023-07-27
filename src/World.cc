@@ -16,7 +16,7 @@ PxWorld* pxWorldLoad(PxBuffer* buffer) {
 }
 
 PxWorld* pxWorldLoadFromVfs(PxVfs const* vfs, char const* name) {
-	auto* entry = pxVfsGetEntryByName(vfs, name);
+	auto* entry = pxVfsGetNodeByName(vfs, name);
 	if (entry == nullptr) return nullptr;
 
 	PxBuffer* buf = pxVfsNodeOpenBuffer(entry);
