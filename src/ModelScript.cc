@@ -15,14 +15,14 @@ PxModelScript* pxMdsLoad(PxBuffer* buffer) {
 	}
 }
 
-PxModelScript* pxMdsLoadFromVdf(PxVdf const* vdf, char const* name) {
-	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vdf entry ", name);
+PxModelScript* pxMdsLoadFromVfs(PxVfs const* vfs, char const* name) {
+	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
+	if (node == nullptr) {
+		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
 		return nullptr;
 	}
 
-	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
+	PxBuffer* buf = pxVfsNodeOpenBuffer(node);
 	PxModelScript* result = pxMdsLoad(buf);
 	pxBufferDestroy(buf);
 	return result;

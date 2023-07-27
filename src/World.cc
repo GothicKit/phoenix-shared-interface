@@ -15,11 +15,11 @@ PxWorld* pxWorldLoad(PxBuffer* buffer) {
 	}
 }
 
-PxWorld* pxWorldLoadFromVdf(PxVdf const* vdf, char const* name) {
-	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
+PxWorld* pxWorldLoadFromVfs(PxVfs const* vfs, char const* name) {
+	auto* entry = pxVfsGetNodeByName(vfs, name);
 	if (entry == nullptr) return nullptr;
 
-	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
+	PxBuffer* buf = pxVfsNodeOpenBuffer(entry);
 	PxWorld* result = pxWorldLoad(buf);
 	pxBufferDestroy(buf);
 	return result;

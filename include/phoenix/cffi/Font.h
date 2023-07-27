@@ -3,7 +3,7 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -15,7 +15,7 @@ typedef struct PxInternal_Font PxFont;
 #endif
 
 PXC_API PxFont* pxFntLoad(PxBuffer* buffer);
-PXC_API PxFont* pxFntLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxFont* pxFntLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxFntDestroy(PxFont* fnt);
 
 PXC_API char const* pxFntGetName(PxFont const* fnt);

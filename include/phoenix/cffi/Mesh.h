@@ -4,7 +4,7 @@
 #include "Api.h"
 #include "Buffer.h"
 #include "Material.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -17,7 +17,7 @@ typedef struct PxInternal_Mesh PxMesh;
 
 // TODO: Lightmaps
 PXC_API PxMesh* pxMshLoad(PxBuffer* buffer);
-PXC_API PxMesh* pxMshLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxMesh* pxMshLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMshDestroy(PxMesh* msh);
 
 PXC_API char const* pxMshGetName(PxMesh const* msh);

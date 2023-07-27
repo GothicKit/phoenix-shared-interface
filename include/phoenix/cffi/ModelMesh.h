@@ -4,7 +4,7 @@
 #include "Api.h"
 #include "Buffer.h"
 #include "MultiResolutionMesh.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -19,7 +19,7 @@ typedef struct PxInternal_SoftSkinMesh PxSoftSkinMesh;
 #endif
 
 PXC_API PxModelMesh* pxMdmLoad(PxBuffer* buffer);
-PXC_API PxModelMesh* pxMdmLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxModelMesh* pxMdmLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMdmDestroy(PxModelMesh* mdm);
 
 PXC_API uint32_t pxMdmGetMeshCount(PxModelMesh const* mdm);

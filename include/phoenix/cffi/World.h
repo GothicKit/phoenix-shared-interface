@@ -4,7 +4,7 @@
 #include "Api.h"
 #include "Buffer.h"
 #include "Mesh.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -200,7 +200,7 @@ typedef enum {
 } PxVobSoundTriggerVolume;
 
 PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
-PXC_API PxWorld* pxWorldLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxWorld* pxWorldLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxWorldDestroy(PxWorld* world);
 
 PXC_API PxMesh const* pxWorldGetMesh(PxWorld const* world);

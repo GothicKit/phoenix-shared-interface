@@ -3,7 +3,7 @@
 #pragma once
 #include "Api.h"
 #include "Buffer.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -29,9 +29,8 @@ typedef void (*PxVmExternalCallback)(PxVm* vm);
 typedef void (*PxVmExternalDefaultCallback)(PxVm* vm, char const* name);
 typedef void (*PxVmEnumerateInstancesCallback)(char const* name);
 
-// TODO
 PXC_API PxVm* pxVmLoad(PxBuffer* buffer);
-PXC_API PxVm* pxVmLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxVm* pxVmLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxVmDestroy(PxVm* vm);
 
 PXC_API PxVmInstance* pxVmStackPopInstance(PxVm* vm);

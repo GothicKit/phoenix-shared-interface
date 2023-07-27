@@ -4,7 +4,7 @@
 #include "Api.h"
 #include "Buffer.h"
 #include "MultiResolutionMesh.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -19,7 +19,7 @@ typedef struct PxInternal_MorphMeshAnimation PxMorphMeshAnimation;
 
 // TODO
 PXC_API PxMorphMesh* pxMmbLoad(PxBuffer* buffer);
-PXC_API PxMorphMesh* pxMmbLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxMorphMesh* pxMmbLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMmbDestroy(PxMorphMesh* mmb);
 
 PXC_API char const* pxMmbGetName(PxMorphMesh const* mmb);

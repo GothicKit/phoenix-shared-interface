@@ -73,11 +73,11 @@ PxVm* pxVmLoad(PxBuffer* buffer) {
 	}
 }
 
-PxVm* pxVmLoadFromVdf(PxVdf const* vdf, char const* name) {
-	PxVdfEntry const* entry = pxVdfGetEntryByName(vdf, name);
-	if (entry == nullptr) return nullptr;
+PxVm* pxVmLoadFromVfs(PxVfs const* vfs, char const* name) {
+	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
+	if (node == nullptr) return nullptr;
 
-	PxBuffer* buf = pxVdfEntryOpenBuffer(entry);
+	PxBuffer* buf = pxVfsNodeOpenBuffer(node);
 	PxVm* result = pxVmLoad(buf);
 	pxBufferDestroy(buf);
 	return result;

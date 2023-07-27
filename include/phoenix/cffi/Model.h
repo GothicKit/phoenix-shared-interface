@@ -5,7 +5,7 @@
 #include "Buffer.h"
 #include "ModelHierarchy.h"
 #include "ModelMesh.h"
-#include "Vdf.h"
+#include "Vfs.h"
 
 #include <stdint.h>
 
@@ -17,7 +17,7 @@ typedef struct PxInternal_Model PxModel;
 #endif
 
 PXC_API PxModel* pxMdlLoad(PxBuffer* buffer);
-PXC_API PxModel* pxMdlLoadFromVdf(PxVdf const* vdf, char const* name);
+PXC_API PxModel* pxMdlLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMdlDestroy(PxModel* mdl);
 
 PXC_API PxModelHierarchy const* pxMdlGetHierarchy(PxModel const* mdl);
