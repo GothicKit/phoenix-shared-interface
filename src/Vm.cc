@@ -494,7 +494,7 @@ int32_t pxVmInstanceItemGetMainFlag(PxVmInstance const* instance) {
 	return RCC(phoenix::c_item, instance)->main_flag;
 }
 
-uint32_t pxVmInstanceItemGetFlags(PxVmInstance const* instance){
+uint32_t pxVmInstanceItemGetFlags(PxVmInstance const* instance) {
 	return RCC(phoenix::c_item, instance)->flags;
 }
 
