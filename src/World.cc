@@ -574,11 +574,13 @@ PxVobTriggerBatchMode pxVobTriggerListGetTriggerBatchMode(PxVobTriggerList const
 uint32_t pxVobTriggerListGetTargetsCount(PxVobTriggerList const* trigger) {
 	return (uint32_t) trigger->targets.size();
 }
-
-void pxVobTriggerListGetTarget(PxVobTriggerList const* trigger, uint32_t i, char const* name, float* delay) {
+char const* pxVobTriggerListGetTargetName(PxVobTriggerList const* trigger, uint32_t i) {
 	auto const& src = trigger->targets[i];
-	name = src.name.c_str();
-	*delay = src.delay;
+	return src.name.c_str();
+}
+float pxVobTriggerListGetTargetDelay(PxVobTriggerList const* trigger, uint32_t i) {
+	auto const& src = trigger->targets[i];
+	return src.delay;
 }
 
 // Trigger - List save-game only variables

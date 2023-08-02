@@ -7,6 +7,7 @@
 #include "Vfs.h"
 
 #include <stdint.h>
+#include <cstring>
 
 #ifdef __cplusplus
 	#include <phoenix/world.hh>
@@ -395,7 +396,8 @@ PXC_API float pxVobTriggerMoverGetSStayOpenTimeDest(PxVobTriggerMover const* tri
 // Trigger - List
 PXC_API PxVobTriggerBatchMode pxVobTriggerListGetTriggerBatchMode(PxVobTriggerList const* trigger);
 PXC_API uint32_t pxVobTriggerListGetTargetsCount(PxVobTriggerList const* trigger);
-PXC_API void pxVobTriggerListGetTarget(PxVobTriggerList const* trigger, uint32_t i, char const* name, float* delay);
+PXC_API char const* pxVobTriggerListGetTargetName(PxVobTriggerList const* trigger, uint32_t i);
+PXC_API float pxVobTriggerListGetTargetDelay(PxVobTriggerList const* trigger, uint32_t i);
 // Trigger - List save-game only variables
 PXC_API uint8_t pxVobTriggerListGetSActTarget(PxVobTriggerList const* trigger);
 PXC_API bool pxVobTriggerListGetSSendOnTrigger(PxVobTriggerList const* trigger);
