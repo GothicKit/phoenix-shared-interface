@@ -6,7 +6,6 @@
 #include "Mesh.h"
 #include "Vfs.h"
 
-#include <cstring>
 #include <stdint.h>
 
 #ifdef __cplusplus
