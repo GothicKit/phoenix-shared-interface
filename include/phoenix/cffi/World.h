@@ -6,8 +6,8 @@
 #include "Mesh.h"
 #include "Vfs.h"
 
-#include <stdint.h>
 #include <cstring>
+#include <stdint.h>
 
 #ifdef __cplusplus
 	#include <phoenix/world.hh>
