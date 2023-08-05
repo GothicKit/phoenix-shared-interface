@@ -195,12 +195,12 @@ char const* pxVobGetDecalName(PxVob const* vob) {
 	return vob->visual_decal->name.c_str();
 }
 
-glm::vec2 pxVobGetDecalDimension(PxVob const* vob) {
-	return vob->visual_decal->dimension;
+PxVec2 pxVobGetDecalDimension(PxVob const* vob) {
+	return {vob->visual_decal->dimension.x, vob->visual_decal->dimension.y};
 }
 
-glm::vec2 pxVobGetDecalOffset(PxVob const* vob) {
-	return vob->visual_decal->offset;
+PxVec2 pxVobGetDecalOffset(PxVob const* vob) {
+	return {vob->visual_decal->offset.x, vob->visual_decal->offset.y};
 }
 
 bool pxVobGetDecalTwoSided(PxVob const* vob) {
@@ -654,9 +654,13 @@ void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
                           glm::u8vec4* color,
                           bool* fade_out_sky,
                           bool* override_color) {
+                          PxColor* color,
 	*range_center = zoneFog->range_center;
 	*inner_range_percentage = zoneFog->inner_range_percentage;
-	*color = zoneFog->color;
+	color->r = zoneFog->color.r;
+	color->g = zoneFog->color.g;
+	color->b = zoneFog->color.b;
+	color->a = zoneFog->color.a;
 	*fade_out_sky = zoneFog->fade_out_sky;
 	*override_color = zoneFog->override_color;
 }
