@@ -36,7 +36,7 @@ const char* pxMdsGetSkeletonName(PxModelScript* mds) {
 	return mds->skeleton.name.c_str();
 }
 
-bool pxMdsGetSkeletonDisableMesh(PxModelScript* mds) {
+PxBool pxMdsGetSkeletonDisableMesh(PxModelScript* mds) {
 	return mds->skeleton.disable_mesh;
 }
 
@@ -254,7 +254,7 @@ PxEventFightMode pxMdsGetAnimation_EventTagFightMode(PxModelScript* mds, uint32_
 	return static_cast<PxEventFightMode>(mds->animations[animIndex].events[eventTagIndex].fight_mode);
 }
 
-bool pxMdsGetAnimation_EventTagAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex) {
+PxBool pxMdsGetAnimation_EventTagAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex) {
 	return mds->animations[animIndex].events[eventTagIndex].attached;
 }
 
@@ -279,7 +279,7 @@ const char* pxMdsGetAnimation_EventPfxPosition(PxModelScript* mds, uint32_t anim
 	return mds->animations[animIndex].pfx[pfxIndex].position.c_str();
 }
 
-bool pxMdsGetAnimation_EventPfxAttached(PxModelScript* mds, uint32_t animIndex, uint32_t pfxIndex) {
+PxBool pxMdsGetAnimation_EventPfxAttached(PxModelScript* mds, uint32_t animIndex, uint32_t pfxIndex) {
 	return mds->animations[animIndex].pfx[pfxIndex].attached;
 }
 
@@ -315,7 +315,7 @@ float pxMdsGetAnimation_EventSfxRange(PxModelScript* mds, uint32_t animIndex, ui
 	return mds->animations[animIndex].sfx[sfxIndex].range;
 }
 
-bool pxMdsGetAnimation_EventSfxEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
+PxBool pxMdsGetAnimation_EventSfxEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
 	return mds->animations[animIndex].sfx[sfxIndex].empty_slot;
 }
 
@@ -336,7 +336,7 @@ float pxMdsGetAnimation_EventSfxGroundRange(PxModelScript* mds, uint32_t animInd
 	return mds->animations[animIndex].sfx_ground[sfxIndex].range;
 }
 
-bool pxMdsGetAnimation_EventSfxGroundEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
+PxBool pxMdsGetAnimation_EventSfxGroundEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex) {
 	return mds->animations[animIndex].sfx_ground[sfxIndex].empty_slot;
 }
 

@@ -203,7 +203,7 @@ PxVec2 pxVobGetDecalOffset(PxVob const* vob) {
 	return {vob->visual_decal->offset.x, vob->visual_decal->offset.y};
 }
 
-bool pxVobGetDecalTwoSided(PxVob const* vob) {
+PxBool pxVobGetDecalTwoSided(PxVob const* vob) {
 	return vob->visual_decal->two_sided;
 }
 
@@ -219,7 +219,7 @@ std::uint8_t pxVobGetDecalAlphaWeight(PxVob const* vob) {
 	return vob->visual_decal->alpha_weight;
 }
 
-bool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
+PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
 	return vob->visual_decal->ignore_daylight;
 }
 
@@ -437,7 +437,7 @@ int pxVobTriggerGetSCountCanBeActivated(PxVobTrigger const* trigger) {
 	return trigger->s_count_can_be_activated;
 }
 
-bool pxVobTriggerGetSIsEnabled(PxVobTrigger const* trigger) {
+PxBool pxVobTriggerGetSIsEnabled(PxVobTrigger const* trigger) {
 	return trigger->s_is_enabled;
 }
 
@@ -454,15 +454,15 @@ float pxVobTriggerMoverGetStayOpenTimeSec(PxVobTriggerMover const* trigger) {
 	return trigger->stay_open_time_sec;
 }
 
-bool pxVobTriggerMoverGetLocked(PxVobTriggerMover const* trigger) {
+PxBool pxVobTriggerMoverGetLocked(PxVobTriggerMover const* trigger) {
 	return trigger->locked;
 }
 
-bool pxVobTriggerMoverGetAutoLink(PxVobTriggerMover const* trigger) {
+PxBool pxVobTriggerMoverGetAutoLink(PxVobTriggerMover const* trigger) {
 	return trigger->auto_link;
 }
 
-bool pxVobTriggerMoverGetAutoRotate(PxVobTriggerMover const* trigger) {
+PxBool pxVobTriggerMoverGetAutoRotate(PxVobTriggerMover const* trigger) {
 	return trigger->auto_rotate;
 }
 
@@ -588,7 +588,7 @@ uint8_t pxVobTriggerListGetSActTarget(PxVobTriggerList const* trigger) {
 	return trigger->s_act_target;
 }
 
-bool pxVobTriggerListGetSSendOnTrigger(PxVobTriggerList const* trigger) {
+PxBool pxVobTriggerListGetSSendOnTrigger(PxVobTriggerList const* trigger) {
 	return trigger->s_send_on_trigger;
 }
 
@@ -611,12 +611,12 @@ char const* pxVobTriggerWorldStartGetTarget(PxVobTriggerWorldStart const* trigge
 	return trigger->target.c_str();
 }
 
-bool pxVobTriggerWorldStartGetFireOnce(PxVobTriggerWorldStart const* trigger) {
+PxBool pxVobTriggerWorldStartGetFireOnce(PxVobTriggerWorldStart const* trigger) {
 	return trigger->fire_once;
 }
 
 // Trigger - World Start save-game only variables
-bool pxVobTriggerWorldStartGetSHasFired(PxVobTriggerWorldStart const* trigger) {
+PxBool pxVobTriggerWorldStartGetSHasFired(PxVobTriggerWorldStart const* trigger) {
 	return trigger->s_has_fired;
 }
 
@@ -627,12 +627,12 @@ char const* pxVobTriggerUntouchGetTarget(PxVobTriggerUntouch const* trigger) {
 
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
-                            bool* enabled,
+                            PxBool* enabled,
                             int32_t* priority,
-                            bool* ellipsoid,
+                            PxBool* ellipsoid,
                             float* reverb,
                             float* volume,
-                            bool* loop) {
+                            PxBool* loop) {
 	*enabled = zoneMusic->enabled;
 	*priority = zoneMusic->priority;
 	*ellipsoid = zoneMusic->ellipsoid;
@@ -651,10 +651,9 @@ void pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane, float* vob_far_p
 void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
                           float* range_center,
                           float* inner_range_percentage,
-                          glm::u8vec4* color,
-                          bool* fade_out_sky,
-                          bool* override_color) {
                           PxColor* color,
+                          PxBool* fade_out_sky,
+                          PxBool* override_color) {
 	*range_center = zoneFog->range_center;
 	*inner_range_percentage = zoneFog->inner_range_percentage;
 	color->r = zoneFog->color.r;

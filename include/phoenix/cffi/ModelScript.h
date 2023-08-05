@@ -70,7 +70,7 @@ PXC_API PxModelScript* pxMdsLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMdsDestroy(PxModelScript* mds);
 
 PXC_API const char* pxMdsGetSkeletonName(PxModelScript* mds);
-PXC_API bool pxMdsGetSkeletonDisableMesh(PxModelScript* mds);
+PXC_API PxBool pxMdsGetSkeletonDisableMesh(PxModelScript* mds);
 
 PXC_API uint32_t pxMdsGetMeshCount(PxModelScript* mds);
 PXC_API const char* pxMdsGetMesh(PxModelScript* mds, uint32_t i);
@@ -137,7 +137,7 @@ pxMdsGetAnimation_EventTagFrames(PxModelScript* mds, uint32_t animIndex, uint32_
 PXC_API PxEventFightMode pxMdsGetAnimation_EventTagFightMode(PxModelScript* mds,
                                                              uint32_t animIndex,
                                                              uint32_t eventTagIndex);
-PXC_API bool pxMdsGetAnimation_EventTagAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
+PXC_API PxBool pxMdsGetAnimation_EventTagAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventTagIndex);
 
 // Animations -> EventPfx
 PXC_API uint32_t pxMdsGetAnimation_EventPfxCount(PxModelScript* mds, uint32_t i);
@@ -145,7 +145,7 @@ PXC_API int32_t pxMdsGetAnimation_EventPfxFrame(PxModelScript* mds, uint32_t ani
 PXC_API int32_t pxMdsGetAnimation_EventPfxIndex(PxModelScript* mds, uint32_t animIndex, uint32_t eventIndex);
 PXC_API const char* pxMdsGetAnimation_EventPfxName(PxModelScript* mds, uint32_t animIndex, uint32_t eventIndex);
 PXC_API const char* pxMdsGetAnimation_EventPfxPosition(PxModelScript* mds, uint32_t animIndex, uint32_t eventIndex);
-PXC_API bool pxMdsGetAnimation_EventPfxAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventIndex);
+PXC_API PxBool pxMdsGetAnimation_EventPfxAttached(PxModelScript* mds, uint32_t animIndex, uint32_t eventIndex);
 
 // Animations -> PfxStop
 PXC_API uint32_t pxMdsGetAnimation_EventPfxStopCount(PxModelScript* mds, uint32_t i);
@@ -160,14 +160,14 @@ PXC_API uint32_t pxMdsGetAnimation_EventSfxCount(PxModelScript* mds, uint32_t i)
 PXC_API int32_t pxMdsGetAnimation_EventSfxFrame(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 PXC_API const char* pxMdsGetAnimation_EventSfxName(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 PXC_API float pxMdsGetAnimation_EventSfxRange(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
-PXC_API bool pxMdsGetAnimation_EventSfxEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
+PXC_API PxBool pxMdsGetAnimation_EventSfxEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 
 // Animations -> SfxGround
 PXC_API uint32_t pxMdsGetAnimationEventSfxGroundCount(PxModelScript* mds, uint32_t i);
 PXC_API int32_t pxMdsGetAnimation_EventSfxGroundFrame(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 PXC_API const char* pxMdsGetAnimation_EventSfxGroundName(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 PXC_API float pxMdsGetAnimation_EventSfxGroundRange(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
-PXC_API bool pxMdsGetAnimation_EventSfxGroundEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
+PXC_API PxBool pxMdsGetAnimation_EventSfxGroundEmptySlot(PxModelScript* mds, uint32_t animIndex, uint32_t sfxIndex);
 
 // Animations -> EventMorphAnimate
 PXC_API uint32_t pxMdsGetAnimation_EventMorphAnimateCount(PxModelScript* mds, uint32_t i);
