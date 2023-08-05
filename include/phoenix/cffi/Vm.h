@@ -10,11 +10,9 @@
 #ifdef __cplusplus
 	#include <phoenix/vm.hh>
 typedef struct PxInternal_Vm PxVm;
-typedef phoenix::symbol PxVmSymbol;
 typedef phoenix::instance PxVmInstance;
 #else
 typedef struct PxInternal_Vm PxVm;
-typedef struct PxInternal_VmSymbol PxVmSymbol;
 typedef struct PxInternal_VmInstance PxVmInstance;
 #endif
 
@@ -61,10 +59,6 @@ PXC_API PxVmInstance* pxVmSetGlobalItem(PxVm* vm, PxVmInstance* instance);
 PXC_API PxBool pxVmCallFunction(PxVm* vm, char const* func, ...);
 PXC_API PxBool pxVmCallFunctionByIndex(PxVm* vm, uint32_t index, char const* args, ...);
 
-PXC_API PxVmSymbol* pxVmGetSymbolByIndex(PxVm* vm, uint32_t index);
-PXC_API PxVmSymbol* pxVmGetSymbolByName(PxVm* vm, char const* name);
-PXC_API uint32_t pxVmSymbolGetId(PxVmSymbol* symbol);
-PXC_API char const* pxVmSymbolGetName(PxVmSymbol* symbol);
 PXC_API PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type);
 PXC_API PxVmInstance* pxVmInstanceAllocateByName(PxVm* vm, char const* name, PxVmInstanceType type);
 PXC_API PxVmInstance*

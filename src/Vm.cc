@@ -362,22 +362,6 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 	}
 }
 
-PxVmSymbol* pxVmGetSymbolByIndex(PxVm* vm, uint32_t index) {
-	return vm->vm.find_symbol_by_index(index);
-}
-
-PxVmSymbol* pxVmGetSymbolByName(PxVm* vm, char const* name) {
-	return vm->vm.find_symbol_by_name(name);
-}
-
-uint32_t pxVmSymbolGetId(PxVmSymbol* symbol) {
-	return symbol->index();
-}
-
-char const* pxVmSymbolGetName(PxVmSymbol* symbol) {
-	return symbol->name().c_str();
-}
-
 PxVmInstance* pxVmInstanceAllocateByIndex(PxVm* vm, uint32_t index, PxVmInstanceType type) {
 	auto* sym = vm->vm.find_symbol_by_index(index);
 	if (sym == nullptr) return nullptr;
