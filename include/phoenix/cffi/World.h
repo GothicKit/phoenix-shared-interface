@@ -284,7 +284,7 @@ PXC_API PxVec2 pxVobGetDecalOffset(PxVob const* vob);
 PXC_API PxBool pxVobGetDecalTwoSided(PxVob const* vob);
 PXC_API PxMaterialAlphaFunction pxVobGetDecalAlphaFunc(PxVob const* vob);
 PXC_API float pxVobGetDecalTextureAnimFps(PxVob const* vob);
-PXC_API std::uint8_t pxVobGetDecalAlphaWeight(PxVob const* vob);
+PXC_API uint8_t pxVobGetDecalAlphaWeight(PxVob const* vob);
 PXC_API PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
 
 // TODO Vob - Camera
@@ -348,8 +348,8 @@ PXC_API char const* pxVobSoundDaytimeSoundName2(PxVobSoundDaytime const* soundDa
 
 // Trigger
 PXC_API char const* pxVobTriggerGetTarget(PxVobTrigger const* trigger);
-PXC_API std::uint8_t pxVobTriggerGetFlags(PxVobTrigger const* trigger);
-PXC_API std::uint8_t pxVobTriggerGetFilterFlags(PxVobTrigger const* trigger);
+PXC_API uint8_t pxVobTriggerGetFlags(PxVobTrigger const* trigger);
+PXC_API uint8_t pxVobTriggerGetFilterFlags(PxVobTrigger const* trigger);
 PXC_API char const* pxVobTriggerGetVobTarget(PxVobTrigger const* trigger);
 PXC_API int32_t pxVobTriggerGetMaxActivationCount(PxVobTrigger const* trigger);
 PXC_API float pxVobTriggerGetRetriggerDelaySec(PxVobTrigger const* trigger);
