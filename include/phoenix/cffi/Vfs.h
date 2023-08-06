@@ -15,8 +15,15 @@ typedef struct PxInternal_Vfs PxVfs;
 typedef struct PxInternal_VfsNode PxVfsNode;
 #endif
 
+typedef enum {
+	PxVfsOverwrite_None = 0,  ///< Overwrite no conflicting nodes.
+	PxVfsOverwrite_All = 1,   ///< Overwrite all conflicting nodes.
+	PxVfsOverwrite_Newer = 2, ///< Overwrite newer conflicting nodes. (i.e. use older versions)
+	PxVfsOverwrite_Older = 3  ///< Overwrite older conflicting nodes. (i.e. use newer versions)
+} PxVfsOverwriteBehavior;
+
 PXC_API PxVfs* pxVfsNew();
-PXC_API void pxVfsMountDisk(PxVfs* vfs, char const* path);
+PXC_API void pxVfsMountDisk(PxVfs* vfs, char const* path, PxVfsOverwriteBehavior overwriteFlag);
 PXC_API void pxVfsDestroy(PxVfs* vfs);
 
 PXC_API PxVfsNode const* pxVfsGetNodeByName(PxVfs const* vfs, char const* name);
