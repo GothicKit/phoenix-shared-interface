@@ -51,7 +51,7 @@ typedef phoenix::vobs::trigger_list PxVobTriggerList;
 typedef phoenix::vobs::trigger_script PxVobTriggerScript;
 typedef phoenix::vobs::trigger_change_level PxVobTriggerChangeLevel;
 typedef phoenix::vobs::trigger_world_start PxVobTriggerWorldStart;
-typedef phoenix::vobs::trigger_untouch PxVobTriggerOuntouched;
+typedef phoenix::vobs::trigger_untouch PxVobTriggerUntouch;
 
 	#include <phoenix/vobs/zone.hh>
 typedef phoenix::vobs::zone_music PxVobZoneMusic;
@@ -93,7 +93,7 @@ typedef struct PxInternal_WorldVobTriggerList PxVobTriggerList;
 typedef struct PxInternal_WorldVobTriggerScript PxVobTriggerScript;
 typedef struct PxInternal_WorldVobTriggerChangeLevel PxVobTriggerChangeLevel;
 typedef struct PxInternal_WorldVobTriggerWorldStart PxVobTriggerWorldStart;
-typedef struct PxInternal_WorldVobTriggerOuntouched PxVobTriggerOuntouched;
+typedef struct PxInternal_WorldVobTriggerUntouch PxVobTriggerUntouch;
 
 typedef struct PxInternal_WorldVobZoneMusic PxVobZoneMusic;
 typedef struct PxInternal_WorldVobZoneFarPlane PxVobZoneFarPlane;
@@ -199,6 +199,36 @@ typedef enum {
 	                                        ///< the VOb indicated by its radius setting.
 } PxVobSoundTriggerVolume;
 
+typedef enum {
+	PxVobTriggerMoverBehaviourToggle = 0,
+	PxVobTriggerMoverBehaviourTriggerControl = 1,
+	PxVobTriggerMoverBehaviourOpenTimed = 2,
+	PxVobTriggerMoverBehaviourLoop = 3,
+	PxVobTriggerMoverBehaviourSingleKeys = 4,
+} PxVobTriggerMoverBehaviour;
+
+typedef enum {
+	PxVobTriggerMoverLerpModeCurve = 0,
+	PxVobTriggerMoverLerpModeLinear = 1,
+} PxVobTriggerMoverLerpMode;
+
+typedef enum {
+	PxVobTriggerMoverSpeedModeSegConstant = 0,
+	PxVobTriggerMoverSpeedModeSlowStartEnd = 1,
+	PxVobTriggerMoverSpeedModeSlowStart = 2,
+	PxVobTriggerMoverSpeedModeSlowEnd = 3,
+	PxVobTriggerMoverSpeedModeSegSlowStarEnd = 4,
+	PxVobTriggerMoverSpeedModeSegSlowStart = 5,
+	PxVobTriggerMoverSpeedModeSegSlowEnd = 6,
+
+} PxVobTriggerMoverSpeedMode;
+
+typedef enum {
+	PxVobTriggerBatchModeAll = 0,
+	PxVobTriggerBatchModeNext = 1,
+	PxVobTriggerBatchModeRandom = 2,
+} PxVobTriggerBatchMode;
+
 PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
 PXC_API PxWorld* pxWorldLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxWorldDestroy(PxWorld* world);
@@ -249,13 +279,13 @@ PXC_API PxVob* pxVobGetChild(PxVob const* vob, uint32_t i);
 // Decal
 PXC_API PxBool pxVobGetGetHasDecal(PxVob const* vob);
 PXC_API char const* pxVobGetDecalName(PxVob const* vob);
-PXC_API glm::vec2 pxVobGetDecalDimension(PxVob const* vob);
-PXC_API glm::vec2 pxVobGetDecalOffset(PxVob const* vob);
-PXC_API bool pxVobGetDecalTwoSided(PxVob const* vob);
+PXC_API PxVec2 pxVobGetDecalDimension(PxVob const* vob);
+PXC_API PxVec2 pxVobGetDecalOffset(PxVob const* vob);
+PXC_API PxBool pxVobGetDecalTwoSided(PxVob const* vob);
 PXC_API PxMaterialAlphaFunction pxVobGetDecalAlphaFunc(PxVob const* vob);
 PXC_API float pxVobGetDecalTextureAnimFps(PxVob const* vob);
 PXC_API std::uint8_t pxVobGetDecalAlphaWeight(PxVob const* vob);
-PXC_API bool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
+PXC_API PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
 
 // TODO Vob - Camera
 
@@ -325,20 +355,76 @@ PXC_API int32_t pxVobTriggerGetMaxActivationCount(PxVobTrigger const* trigger);
 PXC_API float pxVobTriggerGetRetriggerDelaySec(PxVobTrigger const* trigger);
 PXC_API float pxVobTriggerGetDamageThreshold(PxVobTrigger const* trigger);
 PXC_API float pxVobTriggerGetFireDelaySec(PxVobTrigger const* trigger);
-// TODO Trigger save-game only variables
+// Trigger save-game only variables
+PXC_API float pxVobTriggerGetSNextTimeTriggerable(PxVobTrigger const* trigger);
+PXC_API int pxVobTriggerGetSCountCanBeActivated(PxVobTrigger const* trigger);
+PXC_API PxBool pxVobTriggerGetSIsEnabled(PxVobTrigger const* trigger);
+
+// Trigger - Mover
+PXC_API PxVobTriggerMoverBehaviour pxVobTriggerMoverGetBehaviour(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetTouchBlockerDamage(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetStayOpenTimeSec(PxVobTriggerMover const* trigger);
+PXC_API PxBool pxVobTriggerMoverGetLocked(PxVobTriggerMover const* trigger);
+PXC_API PxBool pxVobTriggerMoverGetAutoLink(PxVobTriggerMover const* trigger);
+PXC_API PxBool pxVobTriggerMoverGetAutoRotate(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetSpeed(PxVobTriggerMover const* trigger);
+PXC_API PxVobTriggerMoverLerpMode pxVobTriggerMoverGetLerpMode(PxVobTriggerMover const* trigger);
+PXC_API PxVobTriggerMoverSpeedMode pxVobTriggerMoverGetSpeedMode(PxVobTriggerMover const* trigger);
+PXC_API uint32_t pxVobTriggerMoverGetKeyframeCount(PxVobTriggerMover const* trigger);
+PXC_API void
+pxVobTriggerMoverGetKeyframe(PxVobTriggerMover const* trigger, uint32_t i, PxVec3* position, PxQuat* rotation);
+PXC_API char const* pxVobTriggerMoverGetSfxOpenStart(PxVobTriggerMover const* trigger);
+PXC_API char const* pxVobTriggerMoverGetSfxOpenEnd(PxVobTriggerMover const* trigger);
+PXC_API char const* pxVobTriggerMoverGetSfxTransitioning(PxVobTriggerMover const* trigger);
+PXC_API char const* pxVobTriggerMoverGetSfxCloseStart(PxVobTriggerMover const* trigger);
+PXC_API char const* pxVobTriggerMoverGetSfxCloseEnd(PxVobTriggerMover const* trigger);
+PXC_API char const* pxVobTriggerMoverGetSfxLock(PxVobTriggerMover const* trigger);
+PXC_API char const* pxVobTriggerMoverGetSfxUnlock(PxVobTriggerMover const* trigger);
+PXC_API char const* pxVobTriggerMoverGetSfxUseLocked(PxVobTriggerMover const* trigger);
+// Trigger - Mover save-game only variables
+PXC_API PxVec3 pxVobTriggerMoverGetSActKeyPosDelta(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetSActKeyframeF(PxVobTriggerMover const* trigger);
+PXC_API int pxVobTriggerMoverGetSActKeyframe(PxVobTriggerMover const* trigger);
+PXC_API int pxVobTriggerMoverGetSNextKeyFrame(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetMoveSpeedUnit(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetSAdvanceDir(PxVobTriggerMover const* trigger);
+PXC_API uint32_t pxVobTriggerMoverGetSMoverState(PxVobTriggerMover const* trigger);
+PXC_API int pxVobTriggerMoverGetSTriggerEventCount(PxVobTriggerMover const* trigger);
+PXC_API float pxVobTriggerMoverGetSStayOpenTimeDest(PxVobTriggerMover const* trigger);
+
+// Trigger - List
+PXC_API PxVobTriggerBatchMode pxVobTriggerListGetTriggerBatchMode(PxVobTriggerList const* trigger);
+PXC_API uint32_t pxVobTriggerListGetTargetsCount(PxVobTriggerList const* trigger);
+PXC_API char const* pxVobTriggerListGetTargetName(PxVobTriggerList const* trigger, uint32_t i);
+PXC_API float pxVobTriggerListGetTargetDelay(PxVobTriggerList const* trigger, uint32_t i);
+// Trigger - List save-game only variables
+PXC_API uint8_t pxVobTriggerListGetSActTarget(PxVobTriggerList const* trigger);
+PXC_API PxBool pxVobTriggerListGetSSendOnTrigger(PxVobTriggerList const* trigger);
+
+// Trigger - Script
+PXC_API char const* pxVobTriggerScriptGetFunction(PxVobTriggerScript const* trigger);
 
 // Trigger - Change Level
 PXC_API char const* pxVobTriggerChangeLevelGetLevelName(PxVobTriggerChangeLevel const* trigger);
 PXC_API char const* pxVobTriggerChangeLevelGetStartVob(PxVobTriggerChangeLevel const* trigger);
 
+// Trigger - World Start
+PXC_API char const* pxVobTriggerWorldStartGetTarget(PxVobTriggerWorldStart const* trigger);
+PXC_API PxBool pxVobTriggerWorldStartGetFireOnce(PxVobTriggerWorldStart const* trigger);
+// Trigger - World Start save-game only variables
+PXC_API PxBool pxVobTriggerWorldStartGetSHasFired(PxVobTriggerWorldStart const* trigger);
+
+// Trigger - Untouch
+PXC_API char const* pxVobTriggerUntouchGetTarget(PxVobTriggerUntouch const* trigger);
+
 // Vob - ZoneMusic
 PXC_API void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
-                                    bool* enabled,
+                                    PxBool* enabled,
                                     int32_t* priority,
-                                    bool* ellipsoid,
+                                    PxBool* ellipsoid,
                                     float* reverb,
                                     float* volume,
-                                    bool* loop);
+                                    PxBool* loop);
 // Vob - ZoneFarPlane
 PXC_API void
 pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane, float* vob_far_plane_z, float* inner_range_percentage);
@@ -346,6 +432,6 @@ pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane, float* vob_far_plane_
 PXC_API void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
                                   float* range_center,
                                   float* inner_range_percentage,
-                                  glm::u8vec4* color,
-                                  bool* fade_out_sky,
-                                  bool* override_color);
+                                  PxColor* color,
+                                  PxBool* fade_out_sky,
+                                  PxBool* override_color);

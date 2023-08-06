@@ -195,15 +195,15 @@ char const* pxVobGetDecalName(PxVob const* vob) {
 	return vob->visual_decal->name.c_str();
 }
 
-glm::vec2 pxVobGetDecalDimension(PxVob const* vob) {
-	return vob->visual_decal->dimension;
+PxVec2 pxVobGetDecalDimension(PxVob const* vob) {
+	return {vob->visual_decal->dimension.x, vob->visual_decal->dimension.y};
 }
 
-glm::vec2 pxVobGetDecalOffset(PxVob const* vob) {
-	return vob->visual_decal->offset;
+PxVec2 pxVobGetDecalOffset(PxVob const* vob) {
+	return {vob->visual_decal->offset.x, vob->visual_decal->offset.y};
 }
 
-bool pxVobGetDecalTwoSided(PxVob const* vob) {
+PxBool pxVobGetDecalTwoSided(PxVob const* vob) {
 	return vob->visual_decal->two_sided;
 }
 
@@ -219,7 +219,7 @@ std::uint8_t pxVobGetDecalAlphaWeight(PxVob const* vob) {
 	return vob->visual_decal->alpha_weight;
 }
 
-bool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
+PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
 	return vob->visual_decal->ignore_daylight;
 }
 
@@ -428,6 +428,175 @@ float pxVobTriggerGetFireDelaySec(PxVobTrigger const* trigger) {
 	return trigger->fire_delay_sec;
 }
 
+// Trigger save-game only variables
+float pxVobTriggerGetSNextTimeTriggerable(PxVobTrigger const* trigger) {
+	return trigger->s_next_time_triggerable;
+}
+
+int pxVobTriggerGetSCountCanBeActivated(PxVobTrigger const* trigger) {
+	return trigger->s_count_can_be_activated;
+}
+
+PxBool pxVobTriggerGetSIsEnabled(PxVobTrigger const* trigger) {
+	return trigger->s_is_enabled;
+}
+
+// Trigger - Mover
+PxVobTriggerMoverBehaviour pxVobTriggerMoverGetBehaviour(PxVobTriggerMover const* trigger) {
+	return static_cast<PxVobTriggerMoverBehaviour>(trigger->behavior);
+}
+
+float pxVobTriggerMoverGetTouchBlockerDamage(PxVobTriggerMover const* trigger) {
+	return trigger->touch_blocker_damage;
+}
+
+float pxVobTriggerMoverGetStayOpenTimeSec(PxVobTriggerMover const* trigger) {
+	return trigger->stay_open_time_sec;
+}
+
+PxBool pxVobTriggerMoverGetLocked(PxVobTriggerMover const* trigger) {
+	return trigger->locked;
+}
+
+PxBool pxVobTriggerMoverGetAutoLink(PxVobTriggerMover const* trigger) {
+	return trigger->auto_link;
+}
+
+PxBool pxVobTriggerMoverGetAutoRotate(PxVobTriggerMover const* trigger) {
+	return trigger->auto_rotate;
+}
+
+float pxVobTriggerMoverGetSpeed(PxVobTriggerMover const* trigger) {
+	return trigger->speed;
+}
+
+PxVobTriggerMoverLerpMode pxVobTriggerMoverGetLerpMode(PxVobTriggerMover const* trigger) {
+	return static_cast<PxVobTriggerMoverLerpMode>(trigger->lerp_mode);
+}
+
+PxVobTriggerMoverSpeedMode pxVobTriggerMoverGetSpeedMode(PxVobTriggerMover const* trigger) {
+	return static_cast<PxVobTriggerMoverSpeedMode>(trigger->speed_mode);
+}
+
+uint32_t pxVobTriggerMoverGetKeyframeCount(PxVobTriggerMover const* trigger) {
+	return (uint32_t) trigger->keyframes.size();
+}
+
+void pxVobTriggerMoverGetKeyframe(PxVobTriggerMover const* trigger, uint32_t i, PxVec3* position, PxQuat* rotation) {
+	auto const& src = trigger->keyframes[i];
+	position->x = src.position.x;
+	position->y = src.position.y;
+	position->z = src.position.z;
+	rotation->x = src.rotation.x;
+	rotation->y = src.rotation.y;
+	rotation->z = src.rotation.z;
+	rotation->w = src.rotation.w;
+}
+
+char const* pxVobTriggerMoverGetSfxOpenStart(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_open_start.c_str();
+}
+
+char const* pxVobTriggerMoverGetSfxOpenEnd(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_open_end.c_str();
+}
+
+char const* pxVobTriggerMoverGetSfxTransitioning(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_transitioning.c_str();
+}
+
+char const* pxVobTriggerMoverGetSfxCloseStart(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_close_start.c_str();
+}
+
+char const* pxVobTriggerMoverGetSfxCloseEnd(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_close_end.c_str();
+}
+
+char const* pxVobTriggerMoverGetSfxLock(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_lock.c_str();
+}
+
+char const* pxVobTriggerMoverGetSfxUnlock(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_unlock.c_str();
+}
+
+char const* pxVobTriggerMoverGetSfxUseLocked(PxVobTriggerMover const* trigger) {
+	return trigger->sfx_use_locked.c_str();
+}
+
+// Trigger - Mover save-game only variables
+PxVec3 pxVobTriggerMoverGetSActKeyPosDelta(PxVobTriggerMover const* trigger) {
+	PxVec3 vector;
+	vector.x = trigger->s_act_key_pos_delta.x;
+	vector.y = trigger->s_act_key_pos_delta.y;
+	vector.z = trigger->s_act_key_pos_delta.z;
+	return vector;
+}
+
+float pxVobTriggerMoverGetSActKeyframeF(PxVobTriggerMover const* trigger) {
+	return trigger->s_act_keyframe_f;
+}
+
+int pxVobTriggerMoverGetSActKeyframe(PxVobTriggerMover const* trigger) {
+	return trigger->s_act_keyframe;
+}
+
+int pxVobTriggerMoverGetSNextKeyFrame(PxVobTriggerMover const* trigger) {
+	return trigger->s_next_keyframe;
+}
+
+float pxVobTriggerMoverGetMoveSpeedUnit(PxVobTriggerMover const* trigger) {
+	return trigger->s_move_speed_unit;
+}
+
+float pxVobTriggerMoverGetSAdvanceDir(PxVobTriggerMover const* trigger) {
+	return trigger->s_advance_dir;
+}
+
+uint32_t pxVobTriggerMoverGetSMoverState(PxVobTriggerMover const* trigger) {
+	return trigger->s_mover_state;
+}
+
+int pxVobTriggerMoverGetSTriggerEventCount(PxVobTriggerMover const* trigger) {
+	return trigger->s_trigger_event_count;
+}
+
+float pxVobTriggerMoverGetSStayOpenTimeDest(PxVobTriggerMover const* trigger) {
+	return trigger->s_stay_open_time_dest;
+}
+
+// Trigger - List
+PxVobTriggerBatchMode pxVobTriggerListGetTriggerBatchMode(PxVobTriggerList const* trigger) {
+	return static_cast<PxVobTriggerBatchMode>(trigger->mode);
+}
+
+uint32_t pxVobTriggerListGetTargetsCount(PxVobTriggerList const* trigger) {
+	return (uint32_t) trigger->targets.size();
+}
+char const* pxVobTriggerListGetTargetName(PxVobTriggerList const* trigger, uint32_t i) {
+	auto const& src = trigger->targets[i];
+	return src.name.c_str();
+}
+float pxVobTriggerListGetTargetDelay(PxVobTriggerList const* trigger, uint32_t i) {
+	auto const& src = trigger->targets[i];
+	return src.delay;
+}
+
+// Trigger - List save-game only variables
+uint8_t pxVobTriggerListGetSActTarget(PxVobTriggerList const* trigger) {
+	return trigger->s_act_target;
+}
+
+PxBool pxVobTriggerListGetSSendOnTrigger(PxVobTriggerList const* trigger) {
+	return trigger->s_send_on_trigger;
+}
+
+// Trigger - Script
+char const* pxVobTriggerScriptGetFunction(PxVobTriggerScript const* trigger) {
+	return trigger->function.c_str();
+}
+
 // Trigger - Change Level
 char const* pxVobTriggerChangeLevelGetLevelName(PxVobTriggerChangeLevel const* trigger) {
 	return trigger->level_name.c_str();
@@ -437,14 +606,33 @@ char const* pxVobTriggerChangeLevelGetStartVob(PxVobTriggerChangeLevel const* tr
 	return trigger->start_vob.c_str();
 }
 
+// Trigger - World Start
+char const* pxVobTriggerWorldStartGetTarget(PxVobTriggerWorldStart const* trigger) {
+	return trigger->target.c_str();
+}
+
+PxBool pxVobTriggerWorldStartGetFireOnce(PxVobTriggerWorldStart const* trigger) {
+	return trigger->fire_once;
+}
+
+// Trigger - World Start save-game only variables
+PxBool pxVobTriggerWorldStartGetSHasFired(PxVobTriggerWorldStart const* trigger) {
+	return trigger->s_has_fired;
+}
+
+// Trigger - Untouch
+char const* pxVobTriggerUntouchGetTarget(PxVobTriggerUntouch const* trigger) {
+	return trigger->target.c_str();
+}
+
 // Vob - ZoneMusic
 void pxWorldVobGetZoneMusic(PxVobZoneMusic const* zoneMusic,
-                            bool* enabled,
+                            PxBool* enabled,
                             int32_t* priority,
-                            bool* ellipsoid,
+                            PxBool* ellipsoid,
                             float* reverb,
                             float* volume,
-                            bool* loop) {
+                            PxBool* loop) {
 	*enabled = zoneMusic->enabled;
 	*priority = zoneMusic->priority;
 	*ellipsoid = zoneMusic->ellipsoid;
@@ -463,12 +651,15 @@ void pxWorldVobGetZoneFarPlane(PxVobZoneFarPlane* zoneFarPlane, float* vob_far_p
 void pxWorldVobGetZoneFog(PxVobZoneFog* zoneFog,
                           float* range_center,
                           float* inner_range_percentage,
-                          glm::u8vec4* color,
-                          bool* fade_out_sky,
-                          bool* override_color) {
+                          PxColor* color,
+                          PxBool* fade_out_sky,
+                          PxBool* override_color) {
 	*range_center = zoneFog->range_center;
 	*inner_range_percentage = zoneFog->inner_range_percentage;
-	*color = zoneFog->color;
+	color->r = zoneFog->color.r;
+	color->g = zoneFog->color.g;
+	color->b = zoneFog->color.b;
+	color->a = zoneFog->color.a;
 	*fade_out_sky = zoneFog->fade_out_sky;
 	*override_color = zoneFog->override_color;
 }

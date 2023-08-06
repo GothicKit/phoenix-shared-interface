@@ -74,6 +74,10 @@ typedef struct {
 } PxMat4x4;
 
 typedef struct {
+	uint8_t r, g, b, a;
+} PxColor;
+
+typedef struct {
 	PxVec3 min, max;
 } PxAABB;
 
