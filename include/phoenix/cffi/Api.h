@@ -5,7 +5,6 @@
 #ifdef __cplusplus
 	#define PXC_EXTERN extern "C"
 #else
-	#include <stdbool.h>
 	#define PXC_EXTERN
 #endif
 
@@ -81,4 +80,4 @@ typedef struct {
 	PxVec3 min, max;
 } PxAABB;
 
-typedef bool PxBool;
+typedef int PxBool;
