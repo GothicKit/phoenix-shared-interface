@@ -9,9 +9,9 @@ PxVfs* pxVfsNew() {
 	return new phoenix::Vfs();
 }
 
-void pxVfsMountDisk(PxVfs* vfs, char const* path) {
+void pxVfsMountDisk(PxVfs* vfs, char const* path, PxVfsOverwriteBehavior overwriteFlag) {
 	try {
-		vfs->mount_disk(std::filesystem::path(path), px::VfsOverwriteBehavior::NEWER);
+		vfs->mount_disk(std::filesystem::path(path), static_cast<px::VfsOverwriteBehavior>(overwriteFlag));
 	} catch (std::exception const& e) {
 		px::logging::log(px::logging::level::error, "encountered exception while parsing PxVfs: ", e.what());
 	}
