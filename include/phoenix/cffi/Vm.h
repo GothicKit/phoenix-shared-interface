@@ -20,7 +20,9 @@ typedef enum {
 	PxVm_InstanceTypeNpc = 1,
 	PxVm_InstanceTypeItem = 2,
 	PxVm_InstanceTypeSfx = 3,
-	PxVm_InstanceTypeMusic = 4
+	PxVm_InstanceTypeMusic = 4,
+	PxVm_InstanceTypeMenu = 5,
+	PxVm_InstanceTypeMenuItem = 6
 } PxVmInstanceType;
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
@@ -130,6 +132,56 @@ PXC_API int32_t pxVmInstanceItemGetInvRotX(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetInvRotY(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetInvRotZ(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceItemGetInvAnimate(PxVmInstance const* instance);
+
+// C_MENU
+PXC_API char const* pxVmInstanceMenuGetBackPic(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuGetBackWorld(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetPosX(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetPosY(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetDimX(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetDimY(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetAlpha(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuGetMusicTheme(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetEventTimerMsec(PxVmInstance const* instance);
+PXC_API uint8_t pxVmInstanceMenuGetItemsLength(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuGetItems(PxVmInstance const* instance, uint8_t i);
+PXC_API uint32_t pxVmInstanceMenuGetFlags(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetDefaultOutgame(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuGetDefaultIngame(PxVmInstance const* instance);
+
+// C_MENU_ITEM
+PXC_API char const* pxVmInstanceMenuItemGetFontname(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceMenuItemGetTextLength(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuItemGetText(PxVmInstance const* instance, uint32_t i);
+PXC_API char const* pxVmInstanceMenuItemGetBackpic(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuItemGetAlphamode(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetAlpha(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceMenuItemGetType(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceMenuItemGetOnSelActionLength(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetOnSelAction(PxVmInstance const* instance, uint32_t i);
+PXC_API uint32_t pxVmInstanceMenuItemGetOnSelActionSLength(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuItemGetOnSelActionS(PxVmInstance const* instance, uint32_t i);
+PXC_API char const* pxVmInstanceMenuItemGetOnChgSetOption(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuItemGetOnChgSetOptionSection(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceMenuItemGetOnEventActionLength(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetOnEventAction(PxVmInstance const* instance, uint32_t i);
+PXC_API int32_t pxVmInstanceMenuItemGetPosX(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetPosY(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetDimX(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetDimY(PxVmInstance const* instance);
+PXC_API float pxVmInstanceMenuItemGetSizeStartScale(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceMenuItemGetFlags(PxVmInstance const* instance);
+PXC_API float pxVmInstanceMenuItemGetOpenDelayTime(PxVmInstance const* instance);
+PXC_API float pxVmInstanceMenuItemGetOpenDuration(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceMenuItemGetUserFloatLength(PxVmInstance const* instance);
+PXC_API float pxVmInstanceMenuItemGetUserFloat(PxVmInstance const* instance, uint32_t i);
+PXC_API uint32_t pxVmInstanceMenuItemGetUserStringLength(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuItemGetUserString(PxVmInstance const* instance, uint32_t i);
+PXC_API int32_t pxVmInstanceMenuItemGetFrameSizex(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetFrameSizey(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuItemGetHideIfOptionSectionSet(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceMenuItemGetHideIfOptionSet(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceMenuItemGetHideOnValue(PxVmInstance const* instance);
 
 // C_SFX
 PXC_API char const* pxVmInstanceSfxGetFile(PxVmInstance const* instance);

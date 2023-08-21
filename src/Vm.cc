@@ -353,6 +353,12 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 		case PxVm_InstanceTypeMusic:
 			instance = vm->vm.allocate_instance<phoenix::c_music_theme>(sym).get();
 			break;
+		case PxVm_InstanceTypeMenu:
+			instance = vm->vm.allocate_instance<phoenix::c_menu>(sym).get();
+			break;
+		case PxVm_InstanceTypeMenuItem:
+			instance = vm->vm.allocate_instance<phoenix::c_menu_item>(sym).get();
+			break;
 		}
 
 		return instance;
@@ -399,6 +405,16 @@ pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType 
 		case PxVm_InstanceTypeMusic: {
 			auto* v = reinterpret_cast<px::c_music_theme*>(sym->get_instance().get());
 			vm->vm.init_instance<phoenix::c_music_theme>({sym->get_instance(), v}, sym);
+			break;
+		}
+		case PxVm_InstanceTypeMenu: {
+			auto* v = reinterpret_cast<px::c_menu*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_menu>({sym->get_instance(), v}, sym);
+			break;
+		}
+		case PxVm_InstanceTypeMenuItem: {
+			auto* v = reinterpret_cast<px::c_menu_item*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_menu_item>({sym->get_instance(), v}, sym);
 			break;
 		}
 		}
@@ -664,6 +680,192 @@ int32_t pxVmInstanceItemGetInvRotZ(PxVmInstance const* instance) {
 
 int32_t pxVmInstanceItemGetInvAnimate(PxVmInstance const* instance) {
 	return RCC(phoenix::c_item, instance)->inv_animate;
+}
+
+// C_Menu
+char const* pxVmInstanceMenuGetBackPic(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->back_pic.c_str();
+}
+
+char const* pxVmInstanceMenuGetBackWorld(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->back_world.c_str();
+}
+
+int32_t pxVmInstanceMenuGetPosX(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->pos_x;
+}
+
+int32_t pxVmInstanceMenuGetPosY(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->pos_y;
+}
+
+int32_t pxVmInstanceMenuGetDimX(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->dim_x;
+}
+
+int32_t pxVmInstanceMenuGetDimY(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->dim_y;
+}
+
+int32_t pxVmInstanceMenuGetAlpha(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->alpha;
+}
+
+char const* pxVmInstanceMenuGetMusicTheme(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->music_theme.c_str();
+}
+
+int32_t pxVmInstanceMenuGetEventTimerMsec(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->event_timer_msec;
+}
+
+uint8_t pxVmInstanceMenuGetItemsLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->item_count;
+}
+
+char const* pxVmInstanceMenuGetItems(PxVmInstance const* instance, uint8_t i) {
+	return RCC(phoenix::c_menu, instance)->items[i].c_str();
+}
+
+uint32_t pxVmInstanceMenuGetFlags(PxVmInstance const* instance) {
+	return static_cast<uint32_t>(RCC(phoenix::c_menu, instance)->flags);
+}
+
+int32_t pxVmInstanceMenuGetDefaultOutgame(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->default_outgame;
+}
+
+int32_t pxVmInstanceMenuGetDefaultIngame(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu, instance)->default_ingame;
+}
+
+// C_Menu_Item
+char const* pxVmInstanceMenuItemGetFontname(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->fontname.c_str();
+}
+
+uint32_t pxVmInstanceMenuItemGetTextLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->text_count;
+}
+
+char const* pxVmInstanceMenuItemGetText(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_menu_item, instance)->text[i].c_str();
+}
+
+char const* pxVmInstanceMenuItemGetBackpic(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->backpic.c_str();
+}
+
+char const* pxVmInstanceMenuItemGetAlphamode(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->alphamode.c_str();
+}
+
+int32_t pxVmInstanceMenuItemGetAlpha(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->alpha;
+}
+
+uint32_t pxVmInstanceMenuItemGetType(PxVmInstance const* instance) {
+	return static_cast<uint32_t>(RCC(phoenix::c_menu_item, instance)->type);
+}
+
+uint32_t pxVmInstanceMenuItemGetOnSelActionLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->select_action_count;
+}
+
+int32_t pxVmInstanceMenuItemGetOnSelAction(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_menu_item, instance)->on_sel_action[i];
+}
+
+uint32_t pxVmInstanceMenuItemGetOnSelActionSLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->select_action_count;
+}
+
+char const* pxVmInstanceMenuItemGetOnSelActionS(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_menu_item, instance)->on_sel_action_s[i].c_str();
+}
+
+char const* pxVmInstanceMenuItemGetOnChgSetOption(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->on_chg_set_option.c_str();
+}
+
+char const* pxVmInstanceMenuItemGetOnChgSetOptionSection(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->on_chg_set_option_section.c_str();
+}
+
+uint32_t pxVmInstanceMenuItemGetOnEventActionLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->event_action_count;
+}
+
+int32_t pxVmInstanceMenuItemGetOnEventAction(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_menu_item, instance)->on_event_action[i];
+}
+
+int32_t pxVmInstanceMenuItemGetPosX(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->pos_x;
+}
+
+int32_t pxVmInstanceMenuItemGetPosY(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->pos_y;
+}
+
+int32_t pxVmInstanceMenuItemGetDimX(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->dim_x;
+}
+
+int32_t pxVmInstanceMenuItemGetDimY(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->dim_y;
+}
+
+float pxVmInstanceMenuItemGetSizeStartScale(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->size_start_scale;
+}
+
+uint32_t pxVmInstanceMenuItemGetFlags(PxVmInstance const* instance) {
+	return static_cast<uint32_t>(RCC(phoenix::c_menu_item, instance)->flags);
+}
+
+float pxVmInstanceMenuItemGetOpenDelayTime(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->open_delay_time;
+}
+
+float pxVmInstanceMenuItemGetOpenDuration(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->open_duration;
+}
+
+uint32_t pxVmInstanceMenuItemGetUserFloatLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->user_item_count;
+}
+
+float pxVmInstanceMenuItemGetUserFloat(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_menu_item, instance)->user_float[i];
+}
+
+uint32_t pxVmInstanceMenuItemGetUserStringLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->user_item_count;
+}
+
+char const* pxVmInstanceMenuItemGetUserString(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_menu_item, instance)->user_string[i].c_str();
+}
+
+int32_t pxVmInstanceMenuItemGetFrameSizex(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->frame_sizex;
+}
+
+int32_t pxVmInstanceMenuItemGetFrameSizey(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->frame_sizey;
+}
+
+char const* pxVmInstanceMenuItemGetHideIfOptionSectionSet(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->hide_if_option_section_set.c_str();
+}
+
+char const* pxVmInstanceMenuItemGetHideIfOptionSet(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->hide_if_option_set.c_str();
+}
+
+int32_t pxVmInstanceMenuItemGetHideOnValue(PxVmInstance const* instance) {
+	return RCC(phoenix::c_menu_item, instance)->hide_on_value;
 }
 
 // C_Sfx
