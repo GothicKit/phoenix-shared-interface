@@ -46,11 +46,10 @@ uint32_t pxMdmGetAttachmentCount(PxModelMesh const* mdm) {
 
 char const* pxMdmGetAttachmentKey(PxModelMesh const* mdm, uint32_t index) {
 	auto& attachments = mdm->attachments;
-    uint32_t currentIndex = 0;
+	uint32_t currentIndex = 0;
 
-	for (auto i = attachments.begin(); i != attachments.end(); i++) {
-		if (currentIndex++ == index)
-			return i->first.c_str();
+	for (const auto& attachment : attachments) {
+		if (currentIndex++ == index) return attachment.first.c_str();
 	}
 
 	return nullptr;
@@ -60,8 +59,7 @@ PxMultiResolutionMesh const* pxMdmGetAttachmentValue(PxModelMesh const* mdm, cha
 	auto& attachments = mdm->attachments;
 	auto rv = attachments.find(name);
 
-	if (rv == attachments.end())
-		return nullptr;
+	if (rv == attachments.end()) return nullptr;
 
 	return &rv->second;
 }
