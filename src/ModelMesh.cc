@@ -40,10 +40,25 @@ PxSoftSkinMesh const* pxMdmGetMesh(PxModelMesh const* mdm, uint32_t i) {
 	return &mdm->meshes[i];
 }
 
-PxMultiResolutionMesh const* pxMdmGetAttachment(PxModelMesh const* mdm, char const* name) {
-	auto& attachments = mdm->attachments;
+uint32_t pxMdmGetAttachmentCount(PxModelMesh const* mdm) {
+	return (uint32_t) mdm->attachments.size();
+}
 
+char const* pxMdmGetAttachmentKey(PxModelMesh const* mdm, uint32_t index) {
+	auto& attachments = mdm->attachments;
+	uint32_t currentIndex = 0;
+
+	for (const auto& attachment : attachments) {
+		if (currentIndex++ == index) return attachment.first.c_str();
+	}
+
+	return nullptr;
+}
+
+PxMultiResolutionMesh const* pxMdmGetAttachmentValue(PxModelMesh const* mdm, char const* name) {
+	auto& attachments = mdm->attachments;
 	auto rv = attachments.find(name);
+
 	if (rv == attachments.end()) return nullptr;
 
 	return &rv->second;

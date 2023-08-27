@@ -24,7 +24,9 @@ PXC_API void pxMdmDestroy(PxModelMesh* mdm);
 
 PXC_API uint32_t pxMdmGetMeshCount(PxModelMesh const* mdm);
 PXC_API PxSoftSkinMesh const* pxMdmGetMesh(PxModelMesh const* mdm, uint32_t i);
-PXC_API PxMultiResolutionMesh const* pxMdmGetAttachment(PxModelMesh const* mdm, char const* name);
+PXC_API uint32_t pxMdmGetAttachmentCount(PxModelMesh const* mdm);
+PXC_API char const* pxMdmGetAttachmentKey(PxModelMesh const* mdm, uint32_t index);
+PXC_API PxMultiResolutionMesh const* pxMdmGetAttachmentValue(PxModelMesh const* mdm, char const* name);
 PXC_API uint32_t pxMdmGetChecksum(PxModelMesh const* mdm);
 
 PXC_API PxMultiResolutionMesh const* pxSsmGetMesh(PxSoftSkinMesh const* ssm);
