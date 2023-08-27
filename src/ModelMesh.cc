@@ -41,7 +41,7 @@ PxSoftSkinMesh const* pxMdmGetMesh(PxModelMesh const* mdm, uint32_t i) {
 }
 
 uint32_t pxMdmGetAttachmentCount(PxModelMesh const* mdm) {
-	return mdm->attachments.size();
+	return (uint32_t) mdm->attachments.size();
 }
 
 char const* pxMdmGetAttachmentKey(PxModelMesh const* mdm, uint32_t index) {
