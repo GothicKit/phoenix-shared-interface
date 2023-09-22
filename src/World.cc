@@ -224,19 +224,19 @@ PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
 }
 
 // Vob - Light Preset
-PXC_API char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset) {
+char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset) {
 	return lightPreset->preset.c_str();
 }
 
-PXC_API PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset) {
+PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset) {
 	return static_cast<PxVobLightMode>(lightPreset->light_type);
 }
 
-PXC_API float pxLightPresetGetRange(PxVobLightPreset const* lightPreset) {
+float pxLightPresetGetRange(PxVobLightPreset const* lightPreset) {
 	return lightPreset->range;
 }
 
-PXC_API PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset) {
+PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset) {
 	PxColor color;
 	color.r = lightPreset->color.r;
 	color.g = lightPreset->color.g;
@@ -245,47 +245,47 @@ PXC_API PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset) {
 	return color;
 }
 
-PXC_API float pxLightPresetGetConeAngle(PxVobLightPreset const* lightPreset) {
+float pxLightPresetGetConeAngle(PxVobLightPreset const* lightPreset) {
 	return lightPreset->cone_angle;
 }
 
-PXC_API PxBool pxLightPresetGetIsStatic(PxVobLightPreset const* lightPreset) {
+PxBool pxLightPresetGetIsStatic(PxVobLightPreset const* lightPreset) {
 	return lightPreset->is_static;
 }
 
-PXC_API PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset) {
+PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset) {
 	return static_cast<PxVobLightQuality>(lightPreset->quality);
 }
 
-PXC_API char const* pxLightPresetGetLensFlareFx(PxVobLightPreset const* lightPreset) {
+char const* pxLightPresetGetLensFlareFx(PxVobLightPreset const* lightPreset) {
 	return lightPreset->lensflare_fx.c_str();
 }
 
-PXC_API PxBool pxLightPresetGetOn(PxVobLightPreset const* lightPreset) {
+PxBool pxLightPresetGetOn(PxVobLightPreset const* lightPreset) {
 	return lightPreset->on;
 }
 
-PXC_API uint32_t pxLightPresetGetRangeAnimationScaleCount(PxVobLightPreset const* lightPreset) {
+uint32_t pxLightPresetGetRangeAnimationScaleCount(PxVobLightPreset const* lightPreset) {
 	return (uint32_t) lightPreset->range_animation_scale.size();
 }
 
-PXC_API float pxLightPresetGetRangeAnimationScale(PxVobLightPreset const* lightPreset, uint32_t i) {
+float pxLightPresetGetRangeAnimationScale(PxVobLightPreset const* lightPreset, uint32_t i) {
 	return lightPreset->range_animation_scale[i];
 }
 
-PXC_API float pxLightPresetGetRangeAnimationFps(PxVobLightPreset const* lightPreset) {
+float pxLightPresetGetRangeAnimationFps(PxVobLightPreset const* lightPreset) {
 	return lightPreset->range_animation_fps;
 }
 
-PXC_API PxBool pxLightPresetGetRangeAnimationSmooth(PxVobLightPreset const* lightPreset) {
+PxBool pxLightPresetGetRangeAnimationSmooth(PxVobLightPreset const* lightPreset) {
 	return lightPreset->range_animation_smooth;
 }
 
-PXC_API uint32_t pxLightPresetGetColorAnimationListCount(PxVobLightPreset const* lightPreset) {
+uint32_t pxLightPresetGetColorAnimationListCount(PxVobLightPreset const* lightPreset) {
 	return (uint32_t) lightPreset->color_animation_list.size();
 }
 
-PXC_API PxColor pxLightPresetGetColorAnimationList(PxVobLightPreset const* lightPreset, uint32_t i) {
+PxColor pxLightPresetGetColorAnimationList(PxVobLightPreset const* lightPreset, uint32_t i) {
 	PxColor color;
 	color.r = lightPreset->color_animation_list[i].r;
 	color.g = lightPreset->color_animation_list[i].g;
@@ -294,160 +294,160 @@ PXC_API PxColor pxLightPresetGetColorAnimationList(PxVobLightPreset const* light
 	return color;
 }
 
-PXC_API float pxLightPresetGetColorAnimationFps(PxVobLightPreset const* lightPreset) {
+float pxLightPresetGetColorAnimationFps(PxVobLightPreset const* lightPreset) {
 	return lightPreset->color_animation_fps;
 }
 
-PXC_API PxBool pxLightPresetGetColorAnimationSmooth(PxVobLightPreset const* lightPreset) {
+PxBool pxLightPresetGetColorAnimationSmooth(PxVobLightPreset const* lightPreset) {
 	return lightPreset->color_animation_smooth;
 }
 
-PXC_API PxBool pxLightPresetGetCanMove(PxVobLightPreset const* lightPreset) {
+PxBool pxLightPresetGetCanMove(PxVobLightPreset const* lightPreset) {
 	return lightPreset->can_move;
 }
 
 // Vob - Animate
-PXC_API PxBool pxVobAnimateGetStartOn(PxVobAnimate const* animate) {
+PxBool pxVobAnimateGetStartOn(PxVobAnimate const* animate) {
 	return animate->start_on;
 }
 
 // Vob - Item
-PXC_API char const* pxVobItemGetInstance(PxVobItem const* item) {
+char const* pxVobItemGetInstance(PxVobItem const* item) {
 	return item->instance.c_str();
 }
 
 // Vob - Lens Flare
-PXC_API char const* pxVobLensFlareGetFx(PxVobLensFlare const* lensFlare) {
+char const* pxVobLensFlareGetFx(PxVobLensFlare const* lensFlare) {
 	return lensFlare->fx.c_str();
 }
 
 // Vob - Pfx Controller
-PXC_API char const* pxVobPfxControllerGetPfxName(PxVobPfxController const* pfxController) {
+char const* pxVobPfxControllerGetPfxName(PxVobPfxController const* pfxController) {
 	return pfxController->pfx_name.c_str();
 }
 
-PXC_API PxBool pxVobPfxControllerGetKillWhenDone(PxVobPfxController const* pfxController) {
+PxBool pxVobPfxControllerGetKillWhenDone(PxVobPfxController const* pfxController) {
 	return pfxController->kill_when_done;
 }
 
-PXC_API PxBool pxVobPfxControllerGetInitiallyRunning(PxVobPfxController const* pfxController) {
+PxBool pxVobPfxControllerGetInitiallyRunning(PxVobPfxController const* pfxController) {
 	return (uint32_t) pfxController->initially_running;
 }
 
 // Vob - Message Filter
-PXC_API char const* pxVobMessageFilterGetTarget(PxVobMessageFilter const* messageFilter) {
+char const* pxVobMessageFilterGetTarget(PxVobMessageFilter const* messageFilter) {
 	return messageFilter->target.c_str();
 }
 
-PXC_API uint32_t pxVobMessageFilterGetOnTrigger(PxVobMessageFilter const* messageFilter) {
+uint32_t pxVobMessageFilterGetOnTrigger(PxVobMessageFilter const* messageFilter) {
 	return (uint32_t) messageFilter->on_trigger;
 }
 
-PXC_API uint32_t pxVobMessageFilterGetOnUntrigger(PxVobMessageFilter const* messageFilter) {
+uint32_t pxVobMessageFilterGetOnUntrigger(PxVobMessageFilter const* messageFilter) {
 	return (uint32_t) messageFilter->on_untrigger;
 }
 
 // Vob - Code Master
-PXC_API char const* pxVobCodeMasterGetTarget(PxVobCodeMaster const* codeMaster) {
+char const* pxVobCodeMasterGetTarget(PxVobCodeMaster const* codeMaster) {
 	return codeMaster->target.c_str();
 }
 
-PXC_API PxBool pxVobCodeMasterGetOrdered(PxVobCodeMaster const* codeMaster) {
+PxBool pxVobCodeMasterGetOrdered(PxVobCodeMaster const* codeMaster) {
 	return codeMaster->ordered;
 }
 
-PXC_API PxBool pxVobCodeMasterGetFirstFalseIsFailure(PxVobCodeMaster const* codeMaster) {
+PxBool pxVobCodeMasterGetFirstFalseIsFailure(PxVobCodeMaster const* codeMaster) {
 	return codeMaster->first_false_is_failure;
 }
 
-PXC_API char const* pxVobCodeMasterGetFailureTarget(PxVobCodeMaster const* codeMaster) {
+char const* pxVobCodeMasterGetFailureTarget(PxVobCodeMaster const* codeMaster) {
 	return codeMaster->failure_target.c_str();
 }
 
-PXC_API PxBool pxVobCodeMasterGetUntriggeredCancels(PxVobCodeMaster const* codeMaster) {
+PxBool pxVobCodeMasterGetUntriggeredCancels(PxVobCodeMaster const* codeMaster) {
 	return codeMaster->untriggered_cancels;
 }
 
-PXC_API uint32_t pxVobCodeMasterGetSlavesCount(PxVobCodeMaster const* codeMaster) {
+uint32_t pxVobCodeMasterGetSlavesCount(PxVobCodeMaster const* codeMaster) {
 	return (uint32_t) codeMaster->slaves.size();
 }
 
-PXC_API char const* pxVobCodeMasterGetSlaves(PxVobCodeMaster const* codeMaster, uint32_t i) {
+char const* pxVobCodeMasterGetSlaves(PxVobCodeMaster const* codeMaster, uint32_t i) {
 	return codeMaster->slaves[i].c_str();
 }
 
 // Vob - Mover Controller
-PXC_API char const* pxVobMoverControllerGetTarget(PxVobMoverController const* moverController) {
+char const* pxVobMoverControllerGetTarget(PxVobMoverController const* moverController) {
 	return moverController->target.c_str();
 }
 
-PXC_API uint32_t pxVobMoverControllerGetMessage(PxVobMoverController const* moverController) {
+uint32_t pxVobMoverControllerGetMessage(PxVobMoverController const* moverController) {
 	return (uint32_t) moverController->message;
 }
 
-PXC_API int32_t pxVobMoverControllerGetKey(PxVobMoverController const* moverController) {
+int32_t pxVobMoverControllerGetKey(PxVobMoverController const* moverController) {
 	return moverController->key;
 }
 
 // Vob - Touch Damage
-PXC_API float pxVobTouchDamageGetDamage(PxVobTouchDamage const* touchDamage) {
+float pxVobTouchDamageGetDamage(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->damage;
 }
 
-PXC_API PxBool pxVobTouchDamageGetBarrier(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetBarrier(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->barrier;
 }
 
-PXC_API PxBool pxVobTouchDamageGetBlunt(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetBlunt(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->blunt;
 }
 
-PXC_API PxBool pxVobTouchDamageGetEdge(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetEdge(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->edge;
 }
 
-PXC_API PxBool pxVobTouchDamageGetFire(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetFire(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->fire;
 }
 
-PXC_API PxBool pxVobTouchDamageGetFly(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetFly(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->fly;
 }
 
-PXC_API PxBool pxVobTouchDamageGetMagic(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetMagic(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->magic;
 }
 
-PXC_API PxBool pxVobTouchDamageGetPoint(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetPoint(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->point;
 }
 
-PXC_API PxBool pxVobTouchDamageGetFall(PxVobTouchDamage const* touchDamage) {
+PxBool pxVobTouchDamageGetFall(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->fall;
 }
 
-PXC_API float pxVobTouchDamageGetRepearDelaySec(PxVobTouchDamage const* touchDamage) {
+float pxVobTouchDamageGetRepearDelaySec(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->repeat_delay_sec;
 }
 
-PXC_API float pxVobTouchDamageGetVolumeScale(PxVobTouchDamage const* touchDamage) {
+float pxVobTouchDamageGetVolumeScale(PxVobTouchDamage const* touchDamage) {
 	return touchDamage->volume_scale;
 }
 
-PXC_API uint32_t pxVobTouchDamageGetCollision(PxVobTouchDamage const* touchDamage) {
+uint32_t pxVobTouchDamageGetCollision(PxVobTouchDamage const* touchDamage) {
 	return (uint32_t) touchDamage->collision;
 }
 
 // Vob - Earthquake
-PXC_API float pxVobEarthquakeGetRadius(PxVobEarthquake const* earthquake) {
+float pxVobEarthquakeGetRadius(PxVobEarthquake const* earthquake) {
 	return earthquake->radius;
 }
 
-PXC_API float pxVobEarthquakeGetDuration(PxVobEarthquake const* earthquake) {
+float pxVobEarthquakeGetDuration(PxVobEarthquake const* earthquake) {
 	return earthquake->duration;
 }
 
-PXC_API PxVec3 pxVobEarthquakeGetAmplitude(PxVobEarthquake const* earthquake) {
+PxVec3 pxVobEarthquakeGetAmplitude(PxVobEarthquake const* earthquake) {
 	PxVec3 amplitude;
 	amplitude.x = earthquake->amplitude.x;
 	amplitude.y = earthquake->amplitude.y;
@@ -456,11 +456,11 @@ PXC_API PxVec3 pxVobEarthquakeGetAmplitude(PxVobEarthquake const* earthquake) {
 }
 
 // Vob - Npc
-PXC_API char const* pxVobNpcGetNpcInstance(PxVobNpc const* npc) {
+char const* pxVobNpcGetNpcInstance(PxVobNpc const* npc) {
 	return npc->npc_instance.c_str();
 }
 
-PXC_API PxVec3 pxVobNpcGetModelScale(PxVobNpc const* npc) {
+PxVec3 pxVobNpcGetModelScale(PxVobNpc const* npc) {
 	PxVec3 scale;
 	scale.x = npc->model_scale.x;
 	scale.y = npc->model_scale.y;
@@ -468,153 +468,153 @@ PXC_API PxVec3 pxVobNpcGetModelScale(PxVobNpc const* npc) {
 	return scale;
 }
 
-PXC_API float pxVobNpcGetModelFatness(PxVobNpc const* npc) {
+float pxVobNpcGetModelFatness(PxVobNpc const* npc) {
 	return npc->model_fatness;
 }
 
-PXC_API uint32_t pxVobNpcGetOverlaysCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetOverlaysCount(PxVobNpc const* npc) {
 	return (uint32_t) npc->overlays.size();
 }
 
-PXC_API char const* pxVobNpcGetOverlays(PxVobNpc const* npc, uint32_t i) {
+char const* pxVobNpcGetOverlays(PxVobNpc const* npc, uint32_t i) {
 	return npc->overlays[i].c_str();
 }
 
-PXC_API int pxVobNpcGetFlags(PxVobNpc const* npc) {
+int pxVobNpcGetFlags(PxVobNpc const* npc) {
 	return npc->flags;
 }
 
-PXC_API int pxVobNpcGetGuild(PxVobNpc const* npc) {
+int pxVobNpcGetGuild(PxVobNpc const* npc) {
 	return npc->guild;
 }
 
-PXC_API int pxVobNpcGetGuildTrue(PxVobNpc const* npc) {
+int pxVobNpcGetGuildTrue(PxVobNpc const* npc) {
 	return npc->guild_true;
 }
 
-PXC_API int pxVobNpcGetLevel(PxVobNpc const* npc) {
+int pxVobNpcGetLevel(PxVobNpc const* npc) {
 	return npc->level;
 }
 
-PXC_API int pxVobNpcGetXp(PxVobNpc const* npc) {
+int pxVobNpcGetXp(PxVobNpc const* npc) {
 	return npc->xp;
 }
 
-PXC_API int pxVobNpcGetXpNextLevel(PxVobNpc const* npc) {
+int pxVobNpcGetXpNextLevel(PxVobNpc const* npc) {
 	return npc->xp_next_level;
 }
 
-PXC_API int pxVobNpcGetLp(PxVobNpc const* npc) {
+int pxVobNpcGetLp(PxVobNpc const* npc) {
 	return npc->lp;
 }
 
-PXC_API uint32_t pxVobNpcGetTalentsCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetTalentsCount(PxVobNpc const* npc) {
 	return (uint32_t) npc->talents.size();
 }
 
-PXC_API void pxVobNpcGetTalents(PxVobNpc const* npc, uint32_t i, int* talent, int* value, int* skill) {
+void pxVobNpcGetTalents(PxVobNpc const* npc, uint32_t i, int* talent, int* value, int* skill) {
 	*talent = npc->talents[i].talent;
 	*value = npc->talents[i].value;
 	*skill = npc->talents[i].skill;
 }
 
-PXC_API int pxVobNpcGetFightTactic(PxVobNpc const* npc) {
+int pxVobNpcGetFightTactic(PxVobNpc const* npc) {
 	return npc->fight_tactic;
 }
 
-PXC_API int pxVobNpcGetFightMode(PxVobNpc const* npc) {
+int pxVobNpcGetFightMode(PxVobNpc const* npc) {
 	return npc->fight_mode;
 }
 
-PXC_API PxBool pxVobNpcGetWounded(PxVobNpc const* npc) {
+PxBool pxVobNpcGetWounded(PxVobNpc const* npc) {
 	return npc->wounded;
 }
 
-PXC_API PxBool pxVobNpcGetMad(PxVobNpc const* npc) {
+PxBool pxVobNpcGetMad(PxVobNpc const* npc) {
 	return npc->mad;
 }
 
-PXC_API int pxVobNpcGetMadTime(PxVobNpc const* npc) {
+int pxVobNpcGetMadTime(PxVobNpc const* npc) {
 	return npc->mad_time;
 }
 
-PXC_API PxBool pxVobNpcGetPlayer(PxVobNpc const* npc) {
+PxBool pxVobNpcGetPlayer(PxVobNpc const* npc) {
 	return npc->player;
 }
 
-PXC_API uint32_t pxVobNpcGetAttributesCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetAttributesCount(PxVobNpc const* npc) {
 	return 8;
 }
-PXC_API int pxVobNpcGetAttributes(PxVobNpc const* npc, uint32_t i) {
+int pxVobNpcGetAttributes(PxVobNpc const* npc, uint32_t i) {
 	return npc->attributes[i];
 }
 
-PXC_API uint32_t pxVobNpcGetHcsCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetHcsCount(PxVobNpc const* npc) {
 	return 4;
 }
-PXC_API int pxVobNpcGetHcs(PxVobNpc const* npc, uint32_t i) {
+int pxVobNpcGetHcs(PxVobNpc const* npc, uint32_t i) {
 	return npc->hcs[i];
 }
 
-PXC_API uint32_t pxVobNpcGetMissionsCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetMissionsCount(PxVobNpc const* npc) {
 	return 5;
 }
 
-PXC_API int pxVobNpcGetMissions(PxVobNpc const* npc, uint32_t i) {
+int pxVobNpcGetMissions(PxVobNpc const* npc, uint32_t i) {
 	return npc->missions[i];
 }
 
-PXC_API char const* pxVobNpcGetStartAiState(PxVobNpc const* npc) {
+char const* pxVobNpcGetStartAiState(PxVobNpc const* npc) {
 	return npc->start_ai_state.c_str();
 }
 
-PXC_API uint32_t pxVobNpcGetAivarCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetAivarCount(PxVobNpc const* npc) {
 	return 100;
 }
-PXC_API int pxVobNpcGetAivar(PxVobNpc const* npc, uint32_t i) {
+int pxVobNpcGetAivar(PxVobNpc const* npc, uint32_t i) {
 	return npc->aivar[i];
 }
 
-PXC_API char const* pxVobNpcGetScriptWaypoint(PxVobNpc const* npc) {
+char const* pxVobNpcGetScriptWaypoint(PxVobNpc const* npc) {
 	return npc->script_waypoint.c_str();
 }
 
-PXC_API int pxVobNpcGetAttitude(PxVobNpc const* npc) {
+int pxVobNpcGetAttitude(PxVobNpc const* npc) {
 	return npc->attitude;
 }
 
-PXC_API int pxVobNpcGetAttitudeTemp(PxVobNpc const* npc) {
+int pxVobNpcGetAttitudeTemp(PxVobNpc const* npc) {
 	return npc->attitude_temp;
 }
 
-PXC_API int pxVobNpcGetNameNr(PxVobNpc const* npc) {
+int pxVobNpcGetNameNr(PxVobNpc const* npc) {
 	return npc->name_nr;
 }
 
-PXC_API PxBool pxVobNpcGetMoveLock(PxVobNpc const* npc) {
+PxBool pxVobNpcGetMoveLock(PxVobNpc const* npc) {
 	return npc->move_lock;
 }
 
-PXC_API uint32_t pxVobNpcGetPackedCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetPackedCount(PxVobNpc const* npc) {
 	return 9;
 }
-PXC_API char const* pxVobNpcGetPacked(PxVobNpc const* npc, uint32_t i) {
+char const* pxVobNpcGetPacked(PxVobNpc const* npc, uint32_t i) {
 	return npc->packed[i].c_str();
 }
 
-PXC_API uint32_t pxVobNpcGetItemsCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetItemsCount(PxVobNpc const* npc) {
 	return (uint32_t) npc->items.size();
 }
 
-PXC_API PxVobItem const* pxVobNpcGetItems(PxVobNpc const* npc, uint32_t i) {
+PxVobItem const* pxVobNpcGetItems(PxVobNpc const* npc, uint32_t i) {
 	return npc->items[i].get();
 }
 
-PXC_API uint32_t pxVobNpcGetSlotsCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetSlotsCount(PxVobNpc const* npc) {
 	return (uint32_t) npc->slots.size();
 }
 
-PXC_API void pxVobNpcGetSlots(PxVobNpc const* npc,
+void pxVobNpcGetSlots(PxVobNpc const* npc,
                               uint32_t i,
                               PxBool* used,
                               char const** name,
@@ -626,75 +626,75 @@ PXC_API void pxVobNpcGetSlots(PxVobNpc const* npc,
 	*inInventory = npc->slots[i].in_inventory;
 }
 
-PXC_API PxBool pxVobNpcGetCurrentStateValid(PxVobNpc const* npc) {
+PxBool pxVobNpcGetCurrentStateValid(PxVobNpc const* npc) {
 	return npc->current_state_valid;
 }
 
-PXC_API char const* pxVobNpcGetCurrentStateName(PxVobNpc const* npc) {
+char const* pxVobNpcGetCurrentStateName(PxVobNpc const* npc) {
 	return npc->current_state_name.c_str();
 }
 
-PXC_API int pxVobNpcGetCurrentStateIndex(PxVobNpc const* npc) {
+int pxVobNpcGetCurrentStateIndex(PxVobNpc const* npc) {
 	return npc->current_state_index;
 }
 
-PXC_API PxBool pxVobNpcGetCurrentStateIsRoutine(PxVobNpc const* npc) {
+PxBool pxVobNpcGetCurrentStateIsRoutine(PxVobNpc const* npc) {
 	return npc->current_state_is_routine;
 }
 
-PXC_API PxBool pxVobNpcGetNextStateValid(PxVobNpc const* npc) {
+PxBool pxVobNpcGetNextStateValid(PxVobNpc const* npc) {
 	return npc->next_state_valid;
 }
 
-PXC_API char const* pxVobNpcGetNextStateName(PxVobNpc const* npc) {
+char const* pxVobNpcGetNextStateName(PxVobNpc const* npc) {
 	return npc->next_state_name.c_str();
 }
 
-PXC_API int pxVobNpcGetNextStateIndex(PxVobNpc const* npc) {
+int pxVobNpcGetNextStateIndex(PxVobNpc const* npc) {
 	return npc->next_state_index;
 }
 
-PXC_API PxBool pxVobNpcGetNextStateIsRoutine(PxVobNpc const* npc) {
+PxBool pxVobNpcGetNextStateIsRoutine(PxVobNpc const* npc) {
 	return npc->next_state_is_routine;
 }
 
-PXC_API int pxVobNpcGetLastAiState(PxVobNpc const* npc) {
+int pxVobNpcGetLastAiState(PxVobNpc const* npc) {
 	return npc->last_ai_state;
 }
 
-PXC_API PxBool pxVobNpcGetHasRoutine(PxVobNpc const* npc) {
+PxBool pxVobNpcGetHasRoutine(PxVobNpc const* npc) {
 	return npc->has_routine;
 }
 
-PXC_API PxBool pxVobNpcGetRoutineChanged(PxVobNpc const* npc) {
+PxBool pxVobNpcGetRoutineChanged(PxVobNpc const* npc) {
 	return npc->routine_changed;
 }
 
-PXC_API PxBool pxVobNpcGetRoutineOverlay(PxVobNpc const* npc) {
+PxBool pxVobNpcGetRoutineOverlay(PxVobNpc const* npc) {
 	return npc->routine_overlay;
 }
 
-PXC_API int pxVobNpcGetRoutineOverlayCount(PxVobNpc const* npc) {
+int pxVobNpcGetRoutineOverlayCount(PxVobNpc const* npc) {
 	return npc->routine_overlay_count;
 }
 
-PXC_API int pxVobNpcGetWalkmodeRoutine(PxVobNpc const* npc) {
+int pxVobNpcGetWalkmodeRoutine(PxVobNpc const* npc) {
 	return npc->walkmode_routine;
 }
 
-PXC_API PxBool pxVobNpcGetWeaponmodeRoutine(PxVobNpc const* npc) {
+PxBool pxVobNpcGetWeaponmodeRoutine(PxVobNpc const* npc) {
 	return npc->weaponmode_routine;
 }
 
-PXC_API PxBool pxVobNpcGetStartNewRoutine(PxVobNpc const* npc) {
+PxBool pxVobNpcGetStartNewRoutine(PxVobNpc const* npc) {
 	return npc->start_new_routine;
 }
 
-PXC_API int pxVobNpcGetAiStateDriven(PxVobNpc const* npc) {
+int pxVobNpcGetAiStateDriven(PxVobNpc const* npc) {
 	return npc->ai_state_driven;
 }
 
-PXC_API PxVec3 pxVobNpcGetAiStatePos(PxVobNpc const* npc) {
+PxVec3 pxVobNpcGetAiStatePos(PxVobNpc const* npc) {
 	PxVec3 ai_state_pos;
 	ai_state_pos.x = npc->ai_state_pos.x;
 	ai_state_pos.y = npc->ai_state_pos.y;
@@ -702,34 +702,34 @@ PXC_API PxVec3 pxVobNpcGetAiStatePos(PxVobNpc const* npc) {
 	return ai_state_pos;
 }
 
-PXC_API char const* pxVobNpcGetCurrentRoutine(PxVobNpc const* npc) {
+char const* pxVobNpcGetCurrentRoutine(PxVobNpc const* npc) {
 	return npc->current_routine.c_str();
 }
 
-PXC_API PxBool pxVobNpcGetRespawn(PxVobNpc const* npc) {
+PxBool pxVobNpcGetRespawn(PxVobNpc const* npc) {
 	return npc->respawn;
 }
 
-PXC_API int pxVobNpcGetRespawnTime(PxVobNpc const* npc) {
+int pxVobNpcGetRespawnTime(PxVobNpc const* npc) {
 	return npc->respawn_time;
 }
 
-PXC_API uint32_t pxVobNpcGetProtectionCount(PxVobNpc const* npc) {
+uint32_t pxVobNpcGetProtectionCount(PxVobNpc const* npc) {
 	return 8;
 }
-PXC_API int pxVobNpcGetProtection(PxVobNpc const* npc, uint32_t i) {
+int pxVobNpcGetProtection(PxVobNpc const* npc, uint32_t i) {
 	return npc->protection[i];
 }
 
-PXC_API int pxVobNpcGetBsInterruptableOverride(PxVobNpc const* npc) {
+int pxVobNpcGetBsInterruptableOverride(PxVobNpc const* npc) {
 	return npc->bs_interruptable_override;
 }
 
-PXC_API int pxVobNpcGetNpcType(PxVobNpc const* npc) {
+int pxVobNpcGetNpcType(PxVobNpc const* npc) {
 	return npc->npc_type;
 }
 
-PXC_API int pxVobNpcGetSpellMana(PxVobNpc const* npc) {
+int pxVobNpcGetSpellMana(PxVobNpc const* npc) {
 	return npc->spell_mana;
 }
 
