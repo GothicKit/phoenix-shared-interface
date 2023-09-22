@@ -228,8 +228,8 @@ PXC_API char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset) 
 	return lightPreset->preset.c_str();
 }
 
-PXC_API uint32_t pxLightPresetGetLightType(PxVobLightPreset const* lightPreset) {
-	return (uint32_t) lightPreset->light_type;
+PXC_API PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset) {
+	return static_cast<PxVobLightMode>(lightPreset->light_type);
 }
 
 PXC_API float pxLightPresetGetRange(PxVobLightPreset const* lightPreset) {
@@ -253,8 +253,8 @@ PXC_API PxBool pxLightPresetGetIsStatic(PxVobLightPreset const* lightPreset) {
 	return lightPreset->is_static;
 }
 
-PXC_API uint32_t pxLightPresetGetQuality(PxVobLightPreset const* lightPreset) {
-	return (uint32_t) lightPreset->quality;
+PXC_API PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset) {
+	return static_cast<PxVobLightQuality>(lightPreset->quality);
 }
 
 PXC_API char const* pxLightPresetGetLensFlareFx(PxVobLightPreset const* lightPreset) {

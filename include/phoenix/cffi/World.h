@@ -150,6 +150,19 @@ typedef enum {
 } PxVobType;
 
 typedef enum {
+	PxVobLightModePoint = 0,
+	PxVobLightModeSpot = 1,
+	PxVobLightModeReserved0 = 2,
+	PxVobLightModeReserved1 = 3,
+} PxVobLightMode;
+
+typedef enum {
+	PxVobLightQualityHigh = 0,
+	PxVobLightQualityMedium = 1,
+	PxVobLightQualityLow = 2,
+} PxVobLightQuality;
+
+typedef enum {
 	PxVobShadowNone = 0,
 	PxVobShadowBlob = 1,
 } PxVobShadowMode;
@@ -291,12 +304,12 @@ PXC_API PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
 
 // Light Preset
 PXC_API char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset);
-PXC_API uint32_t pxLightPresetGetLightType(PxVobLightPreset const* lightPreset);
+PXC_API PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset);
 PXC_API float pxLightPresetGetRange(PxVobLightPreset const* lightPreset);
 PXC_API PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset);
 PXC_API float pxLightPresetGetConeAngle(PxVobLightPreset const* lightPreset);
 PXC_API PxBool pxLightPresetGetIsStatic(PxVobLightPreset const* lightPreset);
-PXC_API uint32_t pxLightPresetGetQuality(PxVobLightPreset const* lightPreset);
+PXC_API PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset);
 PXC_API char const* pxLightPresetGetLensFlareFx(PxVobLightPreset const* lightPreset);
 PXC_API PxBool pxLightPresetGetOn(PxVobLightPreset const* lightPreset);
 PXC_API uint32_t pxLightPresetGetRangeAnimationScaleCount(PxVobLightPreset const* lightPreset);
