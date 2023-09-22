@@ -223,9 +223,9 @@ PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
 	return vob->visual_decal->ignore_daylight;
 }
 
-// Vob - Light Preset
-char const* pxLightPresetGetPreset(PxVobLight const* light) {
-	return light->preset.c_str();
+// Light Preset
+char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset) {
+	return lightPreset->preset.c_str();
 }
 
 PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset) {
@@ -304,6 +304,88 @@ PxBool pxLightPresetGetColorAnimationSmooth(PxVobLightPreset const* lightPreset)
 
 PxBool pxLightPresetGetCanMove(PxVobLightPreset const* lightPreset) {
 	return lightPreset->can_move;
+}
+// Vob - Light
+char const* pxVobLightGetPreset(PxVobLight const* light) {
+	return light->preset.c_str();
+}
+
+PxVobLightMode pxVobLightGetLightType(PxVobLight const* light) {
+	return static_cast<PxVobLightMode>(light->light_type);
+}
+
+float pxVobLightGetRange(PxVobLight const* light) {
+	return light->range;
+}
+
+PxColor pxVobLightGetColor(PxVobLight const* light) {
+	PxColor color;
+	color.r = light->color.r;
+	color.g = light->color.g;
+	color.b = light->color.b;
+	color.a = light->color.a;
+	return color;
+}
+
+float pxVobLightGetConeAngle(PxVobLight const* light) {
+	return light->cone_angle;
+}
+
+PxBool pxVobLightGetIsStatic(PxVobLight const* light) {
+	return light->is_static;
+}
+
+PxVobLightQuality pxVobLightGetQuality(PxVobLight const* light) {
+	return static_cast<PxVobLightQuality>(light->quality);
+}
+
+char const* pxVobLightGetLensFlareFx(PxVobLight const* light) {
+	return light->lensflare_fx.c_str();
+}
+
+PxBool pxVobLightGetOn(PxVobLight const* light) {
+	return light->on;
+}
+
+uint32_t pxVobLightGetRangeAnimationScaleCount(PxVobLight const* light) {
+	return (uint32_t) light->range_animation_scale.size();
+}
+
+float pxVobLightGetRangeAnimationScale(PxVobLight const* light, uint32_t i) {
+	return light->range_animation_scale[i];
+}
+
+float pxVobLightGetRangeAnimationFps(PxVobLight const* light) {
+	return light->range_animation_fps;
+}
+
+PxBool pxVobLightGetRangeAnimationSmooth(PxVobLight const* light) {
+	return light->range_animation_smooth;
+}
+
+uint32_t pxVobLightGetColorAnimationListCount(PxVobLight const* light) {
+	return (uint32_t) light->color_animation_list.size();
+}
+
+PxColor pxVobLightGetColorAnimationList(PxVobLight const* light, uint32_t i) {
+	PxColor color;
+	color.r = light->color_animation_list[i].r;
+	color.g = light->color_animation_list[i].g;
+	color.b = light->color_animation_list[i].b;
+	color.a = light->color_animation_list[i].a;
+	return color;
+}
+
+float pxVobLightGetColorAnimationFps(PxVobLight const* light) {
+	return light->color_animation_fps;
+}
+
+PxBool pxVobLightGetColorAnimationSmooth(PxVobLight const* light) {
+	return light->color_animation_smooth;
+}
+
+PxBool pxVobLightGetCanMove(PxVobLight const* light) {
+	return light->can_move;
 }
 
 // Vob - Animate

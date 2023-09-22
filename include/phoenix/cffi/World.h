@@ -303,7 +303,7 @@ PXC_API PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
 // TODO Vob - Camera
 
 // Light Preset
-PXC_API char const* pxLightPresetGetPreset(PxVobLight const* light);
+PXC_API char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset);
 PXC_API PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset);
 PXC_API float pxLightPresetGetRange(PxVobLightPreset const* lightPreset);
 PXC_API PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset);
@@ -321,6 +321,26 @@ PXC_API PxColor pxLightPresetGetColorAnimationList(PxVobLightPreset const* light
 PXC_API float pxLightPresetGetColorAnimationFps(PxVobLightPreset const* lightPreset);
 PXC_API PxBool pxLightPresetGetColorAnimationSmooth(PxVobLightPreset const* lightPreset);
 PXC_API PxBool pxLightPresetGetCanMove(PxVobLightPreset const* lightPreset);
+
+// Vob - Light
+PXC_API char const* pxVobLightGetPreset(PxVobLight const* light);
+PXC_API PxVobLightMode pxVobLightGetLightType(PxVobLight const* light);
+PXC_API float pxVobLightGetRange(PxVobLight const* light);
+PXC_API PxColor pxVobLightGetColor(PxVobLight const* light);
+PXC_API float pxVobLightGetConeAngle(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetIsStatic(PxVobLight const* light);
+PXC_API PxVobLightQuality pxVobLightGetQuality(PxVobLight const* light);
+PXC_API char const* pxVobLightGetLensFlareFx(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetOn(PxVobLight const* light);
+PXC_API uint32_t pxVobLightGetRangeAnimationScaleCount(PxVobLight const* light);
+PXC_API float pxVobLightGetRangeAnimationScale(PxVobLight const* light, uint32_t i);
+PXC_API float pxVobLightGetRangeAnimationFps(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetRangeAnimationSmooth(PxVobLight const* light);
+PXC_API uint32_t pxVobLightGetColorAnimationListCount(PxVobLight const* light);
+PXC_API PxColor pxVobLightGetColorAnimationList(PxVobLight const* light, uint32_t i);
+PXC_API float pxVobLightGetColorAnimationFps(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetColorAnimationSmooth(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetCanMove(PxVobLight const* light);
 
 // Vob - Animate
 PXC_API PxBool pxVobAnimateGetStartOn(PxVobAnimate const* animate);
