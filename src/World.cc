@@ -224,8 +224,8 @@ PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
 }
 
 // Vob - Light Preset
-char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset) {
-	return lightPreset->preset.c_str();
+char const* pxLightPresetGetPreset(PxVobLight const* light) {
+	return light->preset.c_str();
 }
 
 PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset) {
@@ -257,8 +257,8 @@ PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset) {
 	return static_cast<PxVobLightQuality>(lightPreset->quality);
 }
 
-char const* pxLightPresetGetLensFlareFx(PxVobLightPreset const* lightPreset) {
-	return lightPreset->lensflare_fx.c_str();
+char const* pxLightPresetGetLensFlareFx(PxVobLight const* light) {
+	return light->lensflare_fx.c_str();
 }
 
 PxBool pxLightPresetGetOn(PxVobLightPreset const* lightPreset) {

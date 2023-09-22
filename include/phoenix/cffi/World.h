@@ -303,14 +303,14 @@ PXC_API PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
 // TODO Vob - Camera
 
 // Light Preset
-PXC_API char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset);
+PXC_API char const* pxLightPresetGetPreset(PxVobLight const* light);
 PXC_API PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset);
 PXC_API float pxLightPresetGetRange(PxVobLightPreset const* lightPreset);
 PXC_API PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset);
 PXC_API float pxLightPresetGetConeAngle(PxVobLightPreset const* lightPreset);
 PXC_API PxBool pxLightPresetGetIsStatic(PxVobLightPreset const* lightPreset);
 PXC_API PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset);
-PXC_API char const* pxLightPresetGetLensFlareFx(PxVobLightPreset const* lightPreset);
+PXC_API char const* pxLightPresetGetLensFlareFx(PxVobLight const* light);
 PXC_API PxBool pxLightPresetGetOn(PxVobLightPreset const* lightPreset);
 PXC_API uint32_t pxLightPresetGetRangeAnimationScaleCount(PxVobLightPreset const* lightPreset);
 PXC_API float pxLightPresetGetRangeAnimationScale(PxVobLightPreset const* lightPreset, uint32_t i);
