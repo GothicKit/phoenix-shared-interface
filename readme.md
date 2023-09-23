@@ -43,6 +43,7 @@ If you want to build with MinGW on Windows, follow these instructions
 **setup**
 ```sh
 choco install mingw
+choco install cmake --installargs 'ADD_CMAKE_TO_PATH=User'
 ```
 
 **build**  
