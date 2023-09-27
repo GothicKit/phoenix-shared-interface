@@ -76,6 +76,21 @@ void pxMshGetFeature(PxMesh const* msh, uint32_t i, PxVec2* texture, uint32_t* l
 	normal->y = ft.normal.y;
 	normal->z = ft.normal.z;
 }
+uint32_t pxMshGetLightMapCount(PxMesh const* msh) {
+	return (uint32_t) msh->lightmaps.size();
+}
+void pxMshGetLightMap(PxMesh const* msh, uint32_t i, PxTexture const** image, PxVec3* origin) {
+	auto& lm = msh->lightmaps[i];
+
+	// PxVec3 normal[] = {
+	//     {lm.normals[0].x, lm.normals[0].y, lm.normals[0].z},
+	//     {lm.normals[1].x, lm.normals[1].y, lm.normals[1].z},
+	// };
+
+	*image = lm.image.get();
+	// *normals = normal;
+	*origin = PxVec3 {lm.origin.x, lm.origin.y, lm.origin.z};
+}
 
 uint32_t const* pxMshGetPolygonMaterialIndices(PxMesh const* msh, uint32_t* length) {
 	auto& polys = msh->polygons;
@@ -93,4 +108,54 @@ uint32_t const* pxMshGetPolygonVertexIndices(PxMesh const* msh, uint32_t* length
 	auto& polys = msh->polygons;
 	*length = (uint32_t) polys.vertex_indices.size();
 	return polys.vertex_indices.data();
+}
+
+int32_t const* pxMshGetPolygonLightMapIndices(PxMesh const* msh, uint32_t* length) {
+	auto& polys = msh->polygons;
+	*length = (uint32_t) polys.lightmap_indices.size();
+	return polys.lightmap_indices.data();
+}
+
+uint32_t pxMshGetPolygonFlagCount(PxMesh const* msh) {
+	return (uint32_t) msh->polygons.flags.size();
+}
+
+uint8_t pxMshGetPolygonFlagGetIsPortal(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].is_portal;
+}
+
+uint8_t pxMshGetPolygonFlagGetIsOccluder(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].is_occluder;
+}
+
+uint8_t pxMshGetPolygonFlagGetIsSector(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].is_sector;
+}
+
+uint8_t pxMshGetPolygonFlagGetShouldRelight(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].should_relight;
+}
+
+uint8_t pxMshGetPolygonFlagGetIsOutdoor(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].is_outdoor;
+}
+
+uint8_t pxMshGetPolygonFlagGetIsGhostGccluder(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].is_ghost_occluder;
+}
+
+uint8_t pxMshGetPolygonFlagGetIsDynamicallyLit(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].is_dynamically_lit;
+}
+
+int16_t pxMshGetPolygonFlagGetSector_Index(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].sector_index;
+}
+
+uint8_t pxMshGetPolygonFlagGetIsLod(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].is_lod;
+}
+
+uint8_t pxMshGetPolygonFlagGetNormalAxis(PxMesh const* msh, uint32_t i) {
+	return msh->polygons.flags[i].normal_axis;
 }
