@@ -625,21 +625,21 @@ PxBool pxVobNpcGetPlayer(PxVobNpc const* npc) {
 }
 
 uint32_t pxVobNpcGetAttributesCount(PxVobNpc const* npc) {
-	return 8;
+	return npc->attribute_count;
 }
 int pxVobNpcGetAttributes(PxVobNpc const* npc, uint32_t i) {
 	return npc->attributes[i];
 }
 
 uint32_t pxVobNpcGetHcsCount(PxVobNpc const* npc) {
-	return 4;
+	return npc->hcs_count;
 }
 int pxVobNpcGetHcs(PxVobNpc const* npc, uint32_t i) {
 	return npc->hcs[i];
 }
 
 uint32_t pxVobNpcGetMissionsCount(PxVobNpc const* npc) {
-	return 5;
+	return npc->missions_count;
 }
 
 int pxVobNpcGetMissions(PxVobNpc const* npc, uint32_t i) {
@@ -651,7 +651,7 @@ char const* pxVobNpcGetStartAiState(PxVobNpc const* npc) {
 }
 
 uint32_t pxVobNpcGetAivarCount(PxVobNpc const* npc) {
-	return 100;
+	return npc->aivar_count;
 }
 int pxVobNpcGetAivar(PxVobNpc const* npc, uint32_t i) {
 	return npc->aivar[i];
@@ -678,7 +678,7 @@ PxBool pxVobNpcGetMoveLock(PxVobNpc const* npc) {
 }
 
 uint32_t pxVobNpcGetPackedCount(PxVobNpc const* npc) {
-	return 9;
+	return npc->packed_count;
 }
 char const* pxVobNpcGetPacked(PxVobNpc const* npc, uint32_t i) {
 	return npc->packed[i].c_str();
@@ -797,7 +797,7 @@ int pxVobNpcGetRespawnTime(PxVobNpc const* npc) {
 }
 
 uint32_t pxVobNpcGetProtectionCount(PxVobNpc const* npc) {
-	return 8;
+	return npc->protection_count;
 }
 int pxVobNpcGetProtection(PxVobNpc const* npc, uint32_t i) {
 	return npc->protection[i];
