@@ -413,7 +413,7 @@ PxBool pxVobPfxControllerGetKillWhenDone(PxVobPfxController const* pfxController
 }
 
 PxBool pxVobPfxControllerGetInitiallyRunning(PxVobPfxController const* pfxController) {
-	return (uint32_t) pfxController->initially_running;
+	return pfxController->initially_running;
 }
 
 // Vob - Message Filter
