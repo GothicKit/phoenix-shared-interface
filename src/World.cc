@@ -697,11 +697,11 @@ uint32_t pxVobNpcGetSlotsCount(PxVobNpc const* npc) {
 }
 
 void pxVobNpcGetSlots(PxVobNpc const* npc,
-                              uint32_t i,
-                              PxBool* used,
-                              char const** name,
-                              int* itemIndex,
-                              PxBool* inInventory) {
+                      uint32_t i,
+                      PxBool* used,
+                      char const** name,
+                      int* itemIndex,
+                      PxBool* inInventory) {
 	*used = npc->slots[i].used;
 	*name = npc->slots[i].name.c_str();
 	*itemIndex = npc->slots[i].item_index;
