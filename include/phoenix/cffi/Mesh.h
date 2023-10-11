@@ -16,7 +16,6 @@ typedef phoenix::mesh PxMesh;
 typedef struct PxInternal_Mesh PxMesh;
 #endif
 
-
 PXC_API PxMesh* pxMshLoad(PxBuffer* buffer);
 PXC_API PxMesh* pxMshLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxMshDestroy(PxMesh* msh);
