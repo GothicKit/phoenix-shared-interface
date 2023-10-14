@@ -29,6 +29,10 @@ void pxWorldDestroy(PxWorld* world) {
 	delete world;
 }
 
+PxBspTree const* pxWorldGetBspTree(PxWorld const* world) {
+	return &world->world_bsp_tree;
+}
+
 PxMesh const* pxWorldGetMesh(PxWorld const* world) {
 	return &world->world_mesh;
 }

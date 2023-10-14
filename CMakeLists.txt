@@ -16,6 +16,7 @@ add_subdirectory(vendor/phoenix)
 
 set(PXC_SOURCES
         src/Animation.cc
+        src/BspTree.cc
         src/Buffer.cc
         src/Cutscene.cc
         src/DaedalusScript.cc

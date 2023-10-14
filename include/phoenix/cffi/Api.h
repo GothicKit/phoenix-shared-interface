@@ -1,6 +1,7 @@
 // Copyright © 2023. Luis Michaelis <me@lmichaelis.de>
 // SPDX-License-Identifier: MIT-Modern-Variant
 #pragma once
+#include <stdint.h>
 
 #ifdef __cplusplus
 	#define PXC_EXTERN extern "C"
@@ -35,6 +36,10 @@ typedef struct {
 typedef struct {
 	float x, y, z;
 } PxVec3;
+
+typedef struct {
+	float x, y, z, w;
+} PxVec4;
 
 typedef struct {
 	float x, y, z, w;

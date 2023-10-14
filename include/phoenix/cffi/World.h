@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 #include "Api.h"
+#include "BspTree.h"
 #include "Buffer.h"
 #include "Mesh.h"
 #include "Vfs.h"
@@ -233,6 +234,7 @@ PXC_API PxWorld* pxWorldLoad(PxBuffer* buffer);
 PXC_API PxWorld* pxWorldLoadFromVfs(PxVfs const* vfs, char const* name);
 PXC_API void pxWorldDestroy(PxWorld* world);
 
+PXC_API PxBspTree const* pxWorldGetBspTree(PxWorld const* world);
 PXC_API PxMesh const* pxWorldGetMesh(PxWorld const* world);
 PXC_API uint32_t pxWorldGetWayPointCount(PxWorld const* world);
 PXC_API void pxWorldGetWayPoint(PxWorld const* world,
