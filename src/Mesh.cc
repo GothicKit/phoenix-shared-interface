@@ -11,7 +11,10 @@ PxMesh* pxMshLoad(PxBuffer* buffer) {
 		auto mat = px::mesh::parse(buffer->duplicate());
 		return new phoenix::mesh(std::move(mat));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxMesh: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxMesh",
+		                 "encountered exception while parsing PxMesh: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -19,7 +22,7 @@ PxMesh* pxMshLoad(PxBuffer* buffer) {
 PxMesh* pxMshLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxMesh", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

@@ -11,7 +11,10 @@ PxDaedalusScript* pxScriptLoad(PxBuffer* buffer) {
 		auto scr = px::script::parse(buf);
 		return new px::script(std::move(scr));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxDaedalusScript: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxDaedalusScript",
+		                 "encountered exception while parsing PxDaedalusScript: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -19,7 +22,7 @@ PxDaedalusScript* pxScriptLoad(PxBuffer* buffer) {
 PxDaedalusScript* pxScriptLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxDaedalusScript", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

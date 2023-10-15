@@ -13,7 +13,10 @@ void pxVfsMountDisk(PxVfs* vfs, char const* path, PxVfsOverwriteBehavior overwri
 	try {
 		vfs->mount_disk(std::filesystem::path(path), static_cast<px::VfsOverwriteBehavior>(overwriteFlag));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxVfs: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVfs",
+		                 "encountered exception while parsing PxVfs: %s",
+		                 e.what());
 	}
 }
 

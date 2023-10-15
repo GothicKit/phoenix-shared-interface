@@ -11,6 +11,7 @@ if (NOT MSVC)
 endif ()
 
 option(PXC_ENABLE_ASAN "phoenix-shared: Enable sanitizers in debug builds." ON)
+set(ZK_ENABLE_DEPRECATION OFF)
 
 add_subdirectory(vendor/phoenix)
 
@@ -45,7 +46,7 @@ target_include_directories(phoenix-shared PUBLIC include)
 target_compile_options(phoenix-shared PRIVATE ${PXC_COMPILE_FLAGS})
 target_compile_definitions(phoenix-shared PRIVATE PXC_EXPORTS=1)
 target_link_options(phoenix-shared PRIVATE ${PXC_LINK_FLAGS})
-target_link_libraries(phoenix-shared phoenix)
+target_link_libraries(phoenix-shared zenkit)
 set_target_properties(phoenix-shared PROPERTIES DEBUG_POSTFIX "d" VERSION ${PROJECT_VERSION})
 
 if (MINGW)

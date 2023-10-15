@@ -10,7 +10,10 @@ PxCutsceneLib* pxCslLoad(PxBuffer* buffer) {
 		auto mat = px::messages::parse(buffer->duplicate());
 		return new phoenix::messages(std::move(mat));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxCutsceneLib: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxCutsceneLib",
+		                 "encountered exception while parsing PxCutsceneLib: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -18,7 +21,7 @@ PxCutsceneLib* pxCslLoad(PxBuffer* buffer) {
 PxCutsceneLib* pxCslLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxCutsceneLib", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

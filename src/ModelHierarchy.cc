@@ -10,7 +10,10 @@ PxModelHierarchy* pxMdhLoad(PxBuffer* buffer) {
 		auto mat = px::model_hierarchy::parse(buffer->duplicate());
 		return new px::model_hierarchy(std::move(mat));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxModelHierarchy: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxModelHierarchy",
+		                 "encountered exception while parsing PxModelHierarchy: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -18,7 +21,7 @@ PxModelHierarchy* pxMdhLoad(PxBuffer* buffer) {
 PxModelHierarchy* pxMdhLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxModelHierarchy", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

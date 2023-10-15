@@ -10,7 +10,10 @@ PxFont* pxFntLoad(PxBuffer* buffer) {
 		auto ani = px::font::parse(buffer->duplicate());
 		return new phoenix::font(std::move(ani));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxFont: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxFont",
+		                 "encountered exception while parsing PxFont: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -18,7 +21,7 @@ PxFont* pxFntLoad(PxBuffer* buffer) {
 PxFont* pxFntLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxFont", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

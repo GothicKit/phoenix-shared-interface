@@ -8,7 +8,6 @@
 
 #include <cstdarg>
 #include <cstring>
-#include <memory>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -43,7 +42,7 @@ struct PxInternal_Vm {
 	phoenix::vm vm;
 	std::unordered_map<phoenix::symbol*, PxVmExternalCallback> externals {};
 	PxVmExternalDefaultCallback defaultExternal {[](PxVm*, char const* name) {
-		px::logging::log(px::logging::level::error, "external ", name, " not registered");
+		px::logging::log(px::logging::level::warn, "CAPI:PxVm", "external %s not registered", name);
 	}};
 };
 
@@ -68,7 +67,10 @@ PxVm* pxVmLoad(PxBuffer* buffer) {
 
 		return result;
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxVm: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception while parsing PxVm: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -91,7 +93,10 @@ PxVmInstance* pxVmStackPopInstance(PxVm* vm) {
 	try {
 		return vm->vm.pop_instance().get();
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmPopInstance(): ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception during pxVmPopInstance(): %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -100,7 +105,10 @@ char const* pxVmStackPopString(PxVm* vm) {
 	try {
 		return vm->vm.pop_string().c_str();
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmPopString(): ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception during pxVmPopString(): %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -109,7 +117,10 @@ float pxVmStackPopFloat(PxVm* vm) {
 	try {
 		return vm->vm.pop_float();
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmPopFloat(): ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception during pxVmPopFloat(): %s",
+		                 e.what());
 		return 0;
 	}
 }
@@ -118,7 +129,10 @@ int32_t pxVmStackPopInt(PxVm* vm) {
 	try {
 		return vm->vm.pop_int();
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmPopInt(): ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception during pxVmPopInt(): %s",
+		                 e.what());
 		return 0;
 	}
 }
@@ -148,7 +162,10 @@ void pxVmStackPushInt(PxVm* vm, int i) {
 void pxVmRegisterExternal(PxVm* vm, char const* name, PxVmExternalCallback cb) {
 	auto* sym = vm->vm.find_symbol_by_name(name);
 	if (sym == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find external in pxVmRegisterExternal()");
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "failed to find external in pxVmRegisterExternal(): %s",
+		                 name);
 		return;
 	}
 	vm->externals[sym] = cb;
@@ -302,7 +319,10 @@ static bool pxInternalVmCallFunction(PxVm* vm, px::symbol* sym, char const* args
 
 		return true;
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmCallFunction(): ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception during pxVmCallFunction(): %s",
+		                 e.what());
 		return false;
 	}
 }
@@ -363,7 +383,10 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 
 		return instance;
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmInstanceAllocate(): ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception during pxVmInstanceAllocate(): %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -421,7 +444,10 @@ pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType 
 
 		return existing;
 	} catch (std::runtime_error const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception during pxVmInitialize(): ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVm",
+		                 "encountered exception during pxVmInitialize(): %s",
+		                 e.what());
 		return nullptr;
 	}
 }

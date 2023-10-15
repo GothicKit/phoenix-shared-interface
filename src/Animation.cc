@@ -13,7 +13,10 @@ PxModelAnimation* pxManLoad(PxBuffer* buffer) {
 		auto ani = px::animation::parse(buffer->duplicate());
 		return new px::animation(std::move(ani));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxModelAnimation: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxModelAnimation",
+		                 "encountered exception while parsing PxModelAnimation: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -21,7 +24,7 @@ PxModelAnimation* pxManLoad(PxBuffer* buffer) {
 PxModelAnimation* pxManLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxModelAnimation", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 
