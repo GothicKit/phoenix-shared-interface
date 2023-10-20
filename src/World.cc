@@ -227,9 +227,596 @@ PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob) {
 	return vob->visual_decal->ignore_daylight;
 }
 
+// Light Preset
+char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset) {
+	return lightPreset->preset.c_str();
+}
+
+PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset) {
+	return static_cast<PxVobLightMode>(lightPreset->light_type);
+}
+
+float pxLightPresetGetRange(PxVobLightPreset const* lightPreset) {
+	return lightPreset->range;
+}
+
+PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset) {
+	PxColor color;
+	color.r = lightPreset->color.r;
+	color.g = lightPreset->color.g;
+	color.b = lightPreset->color.b;
+	color.a = lightPreset->color.a;
+	return color;
+}
+
+float pxLightPresetGetConeAngle(PxVobLightPreset const* lightPreset) {
+	return lightPreset->cone_angle;
+}
+
+PxBool pxLightPresetGetIsStatic(PxVobLightPreset const* lightPreset) {
+	return lightPreset->is_static;
+}
+
+PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset) {
+	return static_cast<PxVobLightQuality>(lightPreset->quality);
+}
+
+char const* pxLightPresetGetLensFlareFx(PxVobLight const* light) {
+	return light->lensflare_fx.c_str();
+}
+
+PxBool pxLightPresetGetOn(PxVobLightPreset const* lightPreset) {
+	return lightPreset->on;
+}
+
+uint32_t pxLightPresetGetRangeAnimationScaleCount(PxVobLightPreset const* lightPreset) {
+	return (uint32_t) lightPreset->range_animation_scale.size();
+}
+
+float pxLightPresetGetRangeAnimationScale(PxVobLightPreset const* lightPreset, uint32_t i) {
+	return lightPreset->range_animation_scale[i];
+}
+
+float pxLightPresetGetRangeAnimationFps(PxVobLightPreset const* lightPreset) {
+	return lightPreset->range_animation_fps;
+}
+
+PxBool pxLightPresetGetRangeAnimationSmooth(PxVobLightPreset const* lightPreset) {
+	return lightPreset->range_animation_smooth;
+}
+
+uint32_t pxLightPresetGetColorAnimationListCount(PxVobLightPreset const* lightPreset) {
+	return (uint32_t) lightPreset->color_animation_list.size();
+}
+
+PxColor pxLightPresetGetColorAnimationList(PxVobLightPreset const* lightPreset, uint32_t i) {
+	PxColor color;
+	color.r = lightPreset->color_animation_list[i].r;
+	color.g = lightPreset->color_animation_list[i].g;
+	color.b = lightPreset->color_animation_list[i].b;
+	color.a = lightPreset->color_animation_list[i].a;
+	return color;
+}
+
+float pxLightPresetGetColorAnimationFps(PxVobLightPreset const* lightPreset) {
+	return lightPreset->color_animation_fps;
+}
+
+PxBool pxLightPresetGetColorAnimationSmooth(PxVobLightPreset const* lightPreset) {
+	return lightPreset->color_animation_smooth;
+}
+
+PxBool pxLightPresetGetCanMove(PxVobLightPreset const* lightPreset) {
+	return lightPreset->can_move;
+}
+// Vob - Light
+char const* pxVobLightGetPreset(PxVobLight const* light) {
+	return light->preset.c_str();
+}
+
+PxVobLightMode pxVobLightGetLightType(PxVobLight const* light) {
+	return static_cast<PxVobLightMode>(light->light_type);
+}
+
+float pxVobLightGetRange(PxVobLight const* light) {
+	return light->range;
+}
+
+PxColor pxVobLightGetColor(PxVobLight const* light) {
+	PxColor color;
+	color.r = light->color.r;
+	color.g = light->color.g;
+	color.b = light->color.b;
+	color.a = light->color.a;
+	return color;
+}
+
+float pxVobLightGetConeAngle(PxVobLight const* light) {
+	return light->cone_angle;
+}
+
+PxBool pxVobLightGetIsStatic(PxVobLight const* light) {
+	return light->is_static;
+}
+
+PxVobLightQuality pxVobLightGetQuality(PxVobLight const* light) {
+	return static_cast<PxVobLightQuality>(light->quality);
+}
+
+char const* pxVobLightGetLensFlareFx(PxVobLight const* light) {
+	return light->lensflare_fx.c_str();
+}
+
+PxBool pxVobLightGetOn(PxVobLight const* light) {
+	return light->on;
+}
+
+uint32_t pxVobLightGetRangeAnimationScaleCount(PxVobLight const* light) {
+	return (uint32_t) light->range_animation_scale.size();
+}
+
+float pxVobLightGetRangeAnimationScale(PxVobLight const* light, uint32_t i) {
+	return light->range_animation_scale[i];
+}
+
+float pxVobLightGetRangeAnimationFps(PxVobLight const* light) {
+	return light->range_animation_fps;
+}
+
+PxBool pxVobLightGetRangeAnimationSmooth(PxVobLight const* light) {
+	return light->range_animation_smooth;
+}
+
+uint32_t pxVobLightGetColorAnimationListCount(PxVobLight const* light) {
+	return (uint32_t) light->color_animation_list.size();
+}
+
+PxColor pxVobLightGetColorAnimationList(PxVobLight const* light, uint32_t i) {
+	PxColor color;
+	color.r = light->color_animation_list[i].r;
+	color.g = light->color_animation_list[i].g;
+	color.b = light->color_animation_list[i].b;
+	color.a = light->color_animation_list[i].a;
+	return color;
+}
+
+float pxVobLightGetColorAnimationFps(PxVobLight const* light) {
+	return light->color_animation_fps;
+}
+
+PxBool pxVobLightGetColorAnimationSmooth(PxVobLight const* light) {
+	return light->color_animation_smooth;
+}
+
+PxBool pxVobLightGetCanMove(PxVobLight const* light) {
+	return light->can_move;
+}
+
+// Vob - Animate
+PxBool pxVobAnimateGetStartOn(PxVobAnimate const* animate) {
+	return animate->start_on;
+}
+
 // Vob - Item
 char const* pxVobItemGetInstance(PxVobItem const* item) {
 	return item->instance.c_str();
+}
+
+// Vob - Lens Flare
+char const* pxVobLensFlareGetFx(PxVobLensFlare const* lensFlare) {
+	return lensFlare->fx.c_str();
+}
+
+// Vob - Pfx Controller
+char const* pxVobPfxControllerGetPfxName(PxVobPfxController const* pfxController) {
+	return pfxController->pfx_name.c_str();
+}
+
+PxBool pxVobPfxControllerGetKillWhenDone(PxVobPfxController const* pfxController) {
+	return pfxController->kill_when_done;
+}
+
+PxBool pxVobPfxControllerGetInitiallyRunning(PxVobPfxController const* pfxController) {
+	return pfxController->initially_running;
+}
+
+// Vob - Message Filter
+char const* pxVobMessageFilterGetTarget(PxVobMessageFilter const* messageFilter) {
+	return messageFilter->target.c_str();
+}
+
+uint32_t pxVobMessageFilterGetOnTrigger(PxVobMessageFilter const* messageFilter) {
+	return (uint32_t) messageFilter->on_trigger;
+}
+
+uint32_t pxVobMessageFilterGetOnUntrigger(PxVobMessageFilter const* messageFilter) {
+	return (uint32_t) messageFilter->on_untrigger;
+}
+
+// Vob - Code Master
+char const* pxVobCodeMasterGetTarget(PxVobCodeMaster const* codeMaster) {
+	return codeMaster->target.c_str();
+}
+
+PxBool pxVobCodeMasterGetOrdered(PxVobCodeMaster const* codeMaster) {
+	return codeMaster->ordered;
+}
+
+PxBool pxVobCodeMasterGetFirstFalseIsFailure(PxVobCodeMaster const* codeMaster) {
+	return codeMaster->first_false_is_failure;
+}
+
+char const* pxVobCodeMasterGetFailureTarget(PxVobCodeMaster const* codeMaster) {
+	return codeMaster->failure_target.c_str();
+}
+
+PxBool pxVobCodeMasterGetUntriggeredCancels(PxVobCodeMaster const* codeMaster) {
+	return codeMaster->untriggered_cancels;
+}
+
+uint32_t pxVobCodeMasterGetSlavesCount(PxVobCodeMaster const* codeMaster) {
+	return (uint32_t) codeMaster->slaves.size();
+}
+
+char const* pxVobCodeMasterGetSlaves(PxVobCodeMaster const* codeMaster, uint32_t i) {
+	return codeMaster->slaves[i].c_str();
+}
+
+// Vob - Mover Controller
+char const* pxVobMoverControllerGetTarget(PxVobMoverController const* moverController) {
+	return moverController->target.c_str();
+}
+
+uint32_t pxVobMoverControllerGetMessage(PxVobMoverController const* moverController) {
+	return (uint32_t) moverController->message;
+}
+
+int32_t pxVobMoverControllerGetKey(PxVobMoverController const* moverController) {
+	return moverController->key;
+}
+
+// Vob - Touch Damage
+float pxVobTouchDamageGetDamage(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->damage;
+}
+
+PxBool pxVobTouchDamageGetBarrier(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->barrier;
+}
+
+PxBool pxVobTouchDamageGetBlunt(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->blunt;
+}
+
+PxBool pxVobTouchDamageGetEdge(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->edge;
+}
+
+PxBool pxVobTouchDamageGetFire(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->fire;
+}
+
+PxBool pxVobTouchDamageGetFly(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->fly;
+}
+
+PxBool pxVobTouchDamageGetMagic(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->magic;
+}
+
+PxBool pxVobTouchDamageGetPoint(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->point;
+}
+
+PxBool pxVobTouchDamageGetFall(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->fall;
+}
+
+float pxVobTouchDamageGetRepearDelaySec(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->repeat_delay_sec;
+}
+
+float pxVobTouchDamageGetVolumeScale(PxVobTouchDamage const* touchDamage) {
+	return touchDamage->volume_scale;
+}
+
+uint32_t pxVobTouchDamageGetCollision(PxVobTouchDamage const* touchDamage) {
+	return (uint32_t) touchDamage->collision;
+}
+
+// Vob - Earthquake
+float pxVobEarthquakeGetRadius(PxVobEarthquake const* earthquake) {
+	return earthquake->radius;
+}
+
+float pxVobEarthquakeGetDuration(PxVobEarthquake const* earthquake) {
+	return earthquake->duration;
+}
+
+PxVec3 pxVobEarthquakeGetAmplitude(PxVobEarthquake const* earthquake) {
+	PxVec3 amplitude;
+	amplitude.x = earthquake->amplitude.x;
+	amplitude.y = earthquake->amplitude.y;
+	amplitude.z = earthquake->amplitude.z;
+	return amplitude;
+}
+
+// Vob - Npc
+char const* pxVobNpcGetNpcInstance(PxVobNpc const* npc) {
+	return npc->npc_instance.c_str();
+}
+
+PxVec3 pxVobNpcGetModelScale(PxVobNpc const* npc) {
+	PxVec3 scale;
+	scale.x = npc->model_scale.x;
+	scale.y = npc->model_scale.y;
+	scale.z = npc->model_scale.z;
+	return scale;
+}
+
+float pxVobNpcGetModelFatness(PxVobNpc const* npc) {
+	return npc->model_fatness;
+}
+
+uint32_t pxVobNpcGetOverlaysCount(PxVobNpc const* npc) {
+	return (uint32_t) npc->overlays.size();
+}
+
+char const* pxVobNpcGetOverlays(PxVobNpc const* npc, uint32_t i) {
+	return npc->overlays[i].c_str();
+}
+
+int pxVobNpcGetFlags(PxVobNpc const* npc) {
+	return npc->flags;
+}
+
+int pxVobNpcGetGuild(PxVobNpc const* npc) {
+	return npc->guild;
+}
+
+int pxVobNpcGetGuildTrue(PxVobNpc const* npc) {
+	return npc->guild_true;
+}
+
+int pxVobNpcGetLevel(PxVobNpc const* npc) {
+	return npc->level;
+}
+
+int pxVobNpcGetXp(PxVobNpc const* npc) {
+	return npc->xp;
+}
+
+int pxVobNpcGetXpNextLevel(PxVobNpc const* npc) {
+	return npc->xp_next_level;
+}
+
+int pxVobNpcGetLp(PxVobNpc const* npc) {
+	return npc->lp;
+}
+
+uint32_t pxVobNpcGetTalentsCount(PxVobNpc const* npc) {
+	return (uint32_t) npc->talents.size();
+}
+
+void pxVobNpcGetTalents(PxVobNpc const* npc, uint32_t i, int* talent, int* value, int* skill) {
+	*talent = npc->talents[i].talent;
+	*value = npc->talents[i].value;
+	*skill = npc->talents[i].skill;
+}
+
+int pxVobNpcGetFightTactic(PxVobNpc const* npc) {
+	return npc->fight_tactic;
+}
+
+int pxVobNpcGetFightMode(PxVobNpc const* npc) {
+	return npc->fight_mode;
+}
+
+PxBool pxVobNpcGetWounded(PxVobNpc const* npc) {
+	return npc->wounded;
+}
+
+PxBool pxVobNpcGetMad(PxVobNpc const* npc) {
+	return npc->mad;
+}
+
+int pxVobNpcGetMadTime(PxVobNpc const* npc) {
+	return npc->mad_time;
+}
+
+PxBool pxVobNpcGetPlayer(PxVobNpc const* npc) {
+	return npc->player;
+}
+
+uint32_t pxVobNpcGetAttributesCount(PxVobNpc const* npc) {
+	return npc->attribute_count;
+}
+int pxVobNpcGetAttributes(PxVobNpc const* npc, uint32_t i) {
+	return npc->attributes[i];
+}
+
+uint32_t pxVobNpcGetHcsCount(PxVobNpc const* npc) {
+	return npc->hcs_count;
+}
+int pxVobNpcGetHcs(PxVobNpc const* npc, uint32_t i) {
+	return npc->hcs[i];
+}
+
+uint32_t pxVobNpcGetMissionsCount(PxVobNpc const* npc) {
+	return npc->missions_count;
+}
+
+int pxVobNpcGetMissions(PxVobNpc const* npc, uint32_t i) {
+	return npc->missions[i];
+}
+
+char const* pxVobNpcGetStartAiState(PxVobNpc const* npc) {
+	return npc->start_ai_state.c_str();
+}
+
+uint32_t pxVobNpcGetAivarCount(PxVobNpc const* npc) {
+	return npc->aivar_count;
+}
+int pxVobNpcGetAivar(PxVobNpc const* npc, uint32_t i) {
+	return npc->aivar[i];
+}
+
+char const* pxVobNpcGetScriptWaypoint(PxVobNpc const* npc) {
+	return npc->script_waypoint.c_str();
+}
+
+int pxVobNpcGetAttitude(PxVobNpc const* npc) {
+	return npc->attitude;
+}
+
+int pxVobNpcGetAttitudeTemp(PxVobNpc const* npc) {
+	return npc->attitude_temp;
+}
+
+int pxVobNpcGetNameNr(PxVobNpc const* npc) {
+	return npc->name_nr;
+}
+
+PxBool pxVobNpcGetMoveLock(PxVobNpc const* npc) {
+	return npc->move_lock;
+}
+
+uint32_t pxVobNpcGetPackedCount(PxVobNpc const* npc) {
+	return npc->packed_count;
+}
+char const* pxVobNpcGetPacked(PxVobNpc const* npc, uint32_t i) {
+	return npc->packed[i].c_str();
+}
+
+uint32_t pxVobNpcGetItemsCount(PxVobNpc const* npc) {
+	return (uint32_t) npc->items.size();
+}
+
+PxVobItem const* pxVobNpcGetItems(PxVobNpc const* npc, uint32_t i) {
+	return npc->items[i].get();
+}
+
+uint32_t pxVobNpcGetSlotsCount(PxVobNpc const* npc) {
+	return (uint32_t) npc->slots.size();
+}
+
+void pxVobNpcGetSlots(PxVobNpc const* npc,
+                      uint32_t i,
+                      PxBool* used,
+                      char const** name,
+                      int* itemIndex,
+                      PxBool* inInventory) {
+	*used = npc->slots[i].used;
+	*name = npc->slots[i].name.c_str();
+	*itemIndex = npc->slots[i].item_index;
+	*inInventory = npc->slots[i].in_inventory;
+}
+
+PxBool pxVobNpcGetCurrentStateValid(PxVobNpc const* npc) {
+	return npc->current_state_valid;
+}
+
+char const* pxVobNpcGetCurrentStateName(PxVobNpc const* npc) {
+	return npc->current_state_name.c_str();
+}
+
+int pxVobNpcGetCurrentStateIndex(PxVobNpc const* npc) {
+	return npc->current_state_index;
+}
+
+PxBool pxVobNpcGetCurrentStateIsRoutine(PxVobNpc const* npc) {
+	return npc->current_state_is_routine;
+}
+
+PxBool pxVobNpcGetNextStateValid(PxVobNpc const* npc) {
+	return npc->next_state_valid;
+}
+
+char const* pxVobNpcGetNextStateName(PxVobNpc const* npc) {
+	return npc->next_state_name.c_str();
+}
+
+int pxVobNpcGetNextStateIndex(PxVobNpc const* npc) {
+	return npc->next_state_index;
+}
+
+PxBool pxVobNpcGetNextStateIsRoutine(PxVobNpc const* npc) {
+	return npc->next_state_is_routine;
+}
+
+int pxVobNpcGetLastAiState(PxVobNpc const* npc) {
+	return npc->last_ai_state;
+}
+
+PxBool pxVobNpcGetHasRoutine(PxVobNpc const* npc) {
+	return npc->has_routine;
+}
+
+PxBool pxVobNpcGetRoutineChanged(PxVobNpc const* npc) {
+	return npc->routine_changed;
+}
+
+PxBool pxVobNpcGetRoutineOverlay(PxVobNpc const* npc) {
+	return npc->routine_overlay;
+}
+
+int pxVobNpcGetRoutineOverlayCount(PxVobNpc const* npc) {
+	return npc->routine_overlay_count;
+}
+
+int pxVobNpcGetWalkmodeRoutine(PxVobNpc const* npc) {
+	return npc->walkmode_routine;
+}
+
+PxBool pxVobNpcGetWeaponmodeRoutine(PxVobNpc const* npc) {
+	return npc->weaponmode_routine;
+}
+
+PxBool pxVobNpcGetStartNewRoutine(PxVobNpc const* npc) {
+	return npc->start_new_routine;
+}
+
+int pxVobNpcGetAiStateDriven(PxVobNpc const* npc) {
+	return npc->ai_state_driven;
+}
+
+PxVec3 pxVobNpcGetAiStatePos(PxVobNpc const* npc) {
+	PxVec3 ai_state_pos;
+	ai_state_pos.x = npc->ai_state_pos.x;
+	ai_state_pos.y = npc->ai_state_pos.y;
+	ai_state_pos.z = npc->ai_state_pos.z;
+	return ai_state_pos;
+}
+
+char const* pxVobNpcGetCurrentRoutine(PxVobNpc const* npc) {
+	return npc->current_routine.c_str();
+}
+
+PxBool pxVobNpcGetRespawn(PxVobNpc const* npc) {
+	return npc->respawn;
+}
+
+int pxVobNpcGetRespawnTime(PxVobNpc const* npc) {
+	return npc->respawn_time;
+}
+
+uint32_t pxVobNpcGetProtectionCount(PxVobNpc const* npc) {
+	return npc->protection_count;
+}
+int pxVobNpcGetProtection(PxVobNpc const* npc, uint32_t i) {
+	return npc->protection[i];
+}
+
+int pxVobNpcGetBsInterruptableOverride(PxVobNpc const* npc) {
+	return npc->bs_interruptable_override;
+}
+
+int pxVobNpcGetNpcType(PxVobNpc const* npc) {
+	return npc->npc_type;
+}
+
+int pxVobNpcGetSpellMana(PxVobNpc const* npc) {
+	return npc->spell_mana;
 }
 
 // Vob - Mob

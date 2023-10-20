@@ -151,6 +151,19 @@ typedef enum {
 } PxVobType;
 
 typedef enum {
+	PxVobLightModePoint = 0,
+	PxVobLightModeSpot = 1,
+	PxVobLightModeReserved0 = 2,
+	PxVobLightModeReserved1 = 3,
+} PxVobLightMode;
+
+typedef enum {
+	PxVobLightQualityHigh = 0,
+	PxVobLightQualityMedium = 1,
+	PxVobLightQualityLow = 2,
+} PxVobLightQuality;
+
+typedef enum {
 	PxVobShadowNone = 0,
 	PxVobShadowBlob = 1,
 } PxVobShadowMode;
@@ -291,11 +304,166 @@ PXC_API PxBool pxVobGetDecalIgnoreDaylight(PxVob const* vob);
 
 // TODO Vob - Camera
 
+// Light Preset
+PXC_API char const* pxLightPresetGetPreset(PxVobLightPreset const* lightPreset);
+PXC_API PxVobLightMode pxLightPresetGetLightType(PxVobLightPreset const* lightPreset);
+PXC_API float pxLightPresetGetRange(PxVobLightPreset const* lightPreset);
+PXC_API PxColor pxLightPresetGetColor(PxVobLightPreset const* lightPreset);
+PXC_API float pxLightPresetGetConeAngle(PxVobLightPreset const* lightPreset);
+PXC_API PxBool pxLightPresetGetIsStatic(PxVobLightPreset const* lightPreset);
+PXC_API PxVobLightQuality pxLightPresetGetQuality(PxVobLightPreset const* lightPreset);
+PXC_API char const* pxLightPresetGetLensFlareFx(PxVobLight const* light);
+PXC_API PxBool pxLightPresetGetOn(PxVobLightPreset const* lightPreset);
+PXC_API uint32_t pxLightPresetGetRangeAnimationScaleCount(PxVobLightPreset const* lightPreset);
+PXC_API float pxLightPresetGetRangeAnimationScale(PxVobLightPreset const* lightPreset, uint32_t i);
+PXC_API float pxLightPresetGetRangeAnimationFps(PxVobLightPreset const* lightPreset);
+PXC_API PxBool pxLightPresetGetRangeAnimationSmooth(PxVobLightPreset const* lightPreset);
+PXC_API uint32_t pxLightPresetGetColorAnimationListCount(PxVobLightPreset const* lightPreset);
+PXC_API PxColor pxLightPresetGetColorAnimationList(PxVobLightPreset const* lightPreset, uint32_t i);
+PXC_API float pxLightPresetGetColorAnimationFps(PxVobLightPreset const* lightPreset);
+PXC_API PxBool pxLightPresetGetColorAnimationSmooth(PxVobLightPreset const* lightPreset);
+PXC_API PxBool pxLightPresetGetCanMove(PxVobLightPreset const* lightPreset);
+
+// Vob - Light
+PXC_API char const* pxVobLightGetPreset(PxVobLight const* light);
+PXC_API PxVobLightMode pxVobLightGetLightType(PxVobLight const* light);
+PXC_API float pxVobLightGetRange(PxVobLight const* light);
+PXC_API PxColor pxVobLightGetColor(PxVobLight const* light);
+PXC_API float pxVobLightGetConeAngle(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetIsStatic(PxVobLight const* light);
+PXC_API PxVobLightQuality pxVobLightGetQuality(PxVobLight const* light);
+PXC_API char const* pxVobLightGetLensFlareFx(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetOn(PxVobLight const* light);
+PXC_API uint32_t pxVobLightGetRangeAnimationScaleCount(PxVobLight const* light);
+PXC_API float pxVobLightGetRangeAnimationScale(PxVobLight const* light, uint32_t i);
+PXC_API float pxVobLightGetRangeAnimationFps(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetRangeAnimationSmooth(PxVobLight const* light);
+PXC_API uint32_t pxVobLightGetColorAnimationListCount(PxVobLight const* light);
+PXC_API PxColor pxVobLightGetColorAnimationList(PxVobLight const* light, uint32_t i);
+PXC_API float pxVobLightGetColorAnimationFps(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetColorAnimationSmooth(PxVobLight const* light);
+PXC_API PxBool pxVobLightGetCanMove(PxVobLight const* light);
+
+// Vob - Animate
+PXC_API PxBool pxVobAnimateGetStartOn(PxVobAnimate const* animate);
+
 // Vob - Item
 PXC_API char const* pxVobItemGetInstance(PxVobItem const* item);
 
-// TODO Vob properties - Light
-// TODO Vob properties - Misc
+// Vob - Lens Flare
+PXC_API char const* pxVobLensFlareGetFx(PxVobLensFlare const* lensFlare);
+
+// Vob - Pfx Controller
+PXC_API char const* pxVobPfxControllerGetPfxName(PxVobPfxController const* pfxController);
+PXC_API PxBool pxVobPfxControllerGetKillWhenDone(PxVobPfxController const* pfxController);
+PXC_API PxBool pxVobPfxControllerGetInitiallyRunning(PxVobPfxController const* pfxController);
+
+// Vob - Message Filter
+PXC_API char const* pxVobMessageFilterGetTarget(PxVobMessageFilter const* messageFilter);
+PXC_API uint32_t pxVobMessageFilterGetOnTrigger(PxVobMessageFilter const* messageFilter);
+PXC_API uint32_t pxVobMessageFilterGetOnUntrigger(PxVobMessageFilter const* messageFilter);
+
+// Vob - Code Master
+PXC_API char const* pxVobCodeMasterGetTarget(PxVobCodeMaster const* codeMaster);
+PXC_API PxBool pxVobCodeMasterGetOrdered(PxVobCodeMaster const* codeMaster);
+PXC_API PxBool pxVobCodeMasterGetFirstFalseIsFailure(PxVobCodeMaster const* codeMaster);
+PXC_API char const* pxVobCodeMasterGetFailureTarget(PxVobCodeMaster const* codeMaster);
+PXC_API PxBool pxVobCodeMasterGetUntriggeredCancels(PxVobCodeMaster const* codeMaster);
+PXC_API uint32_t pxVobCodeMasterGetSlavesCount(PxVobCodeMaster const* codeMaster);
+PXC_API char const* pxVobCodeMasterGetSlaves(PxVobCodeMaster const* codeMaster, uint32_t i);
+
+// Vob - Mover Controller
+PXC_API char const* pxVobMoverControllerGetTarget(PxVobMoverController const* moverController);
+PXC_API uint32_t pxVobMoverControllerGetMessage(PxVobMoverController const* moverController);
+PXC_API int32_t pxVobMoverControllerGetKey(PxVobMoverController const* moverController);
+
+// Vob - Touch Damage
+PXC_API float pxVobTouchDamageGetDamage(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetBarrier(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetBlunt(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetEdge(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetFire(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetFly(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetMagic(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetPoint(PxVobTouchDamage const* touchDamage);
+PXC_API PxBool pxVobTouchDamageGetFall(PxVobTouchDamage const* touchDamage);
+PXC_API float pxVobTouchDamageGetRepearDelaySec(PxVobTouchDamage const* touchDamage);
+PXC_API float pxVobTouchDamageGetVolumeScale(PxVobTouchDamage const* touchDamage);
+PXC_API uint32_t pxVobTouchDamageGetCollision(PxVobTouchDamage const* touchDamage);
+
+// Vob - Earthquake
+PXC_API float pxVobEarthquakeGetRadius(PxVobEarthquake const* earthquake);
+PXC_API float pxVobEarthquakeGetDuration(PxVobEarthquake const* earthquake);
+PXC_API PxVec3 pxVobEarthquakeGetAmplitude(PxVobEarthquake const* earthquake);
+
+// Vob - Npc
+PXC_API char const* pxVobNpcGetNpcInstance(PxVobNpc const* npc);
+PXC_API PxVec3 pxVobNpcGetModelScale(PxVobNpc const* npc);
+PXC_API float pxVobNpcGetModelFatness(PxVobNpc const* npc);
+PXC_API uint32_t pxVobNpcGetOverlaysCount(PxVobNpc const* npc);
+PXC_API char const* pxVobNpcGetOverlays(PxVobNpc const* npc, uint32_t i);
+PXC_API int pxVobNpcGetFlags(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetGuild(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetGuildTrue(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetLevel(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetXp(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetXpNextLevel(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetLp(PxVobNpc const* npc);
+PXC_API uint32_t pxVobNpcGetTalentsCount(PxVobNpc const* npc);
+PXC_API void pxVobNpcGetTalents(PxVobNpc const* npc, uint32_t i, int* talent, int* value, int* skill);
+PXC_API int pxVobNpcGetFightTactic(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetFightMode(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetWounded(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetMad(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetMadTime(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetPlayer(PxVobNpc const* npc);
+PXC_API uint32_t pxVobNpcGetAttributesCount(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetAttributes(PxVobNpc const* npc, uint32_t i);
+PXC_API uint32_t pxVobNpcGetHcsCount(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetHcs(PxVobNpc const* npc, uint32_t i);
+PXC_API uint32_t pxVobNpcGetMissionsCount(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetMissions(PxVobNpc const* npc, uint32_t i);
+PXC_API char const* pxVobNpcGetStartAiState(PxVobNpc const* npc);
+PXC_API uint32_t pxVobNpcGetAivarCount(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetAivar(PxVobNpc const* npc, uint32_t i);
+PXC_API char const* pxVobNpcGetScriptWaypoint(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetAttitude(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetAttitudeTemp(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetNameNr(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetMoveLock(PxVobNpc const* npc);
+PXC_API uint32_t pxVobNpcGetPackedCount(PxVobNpc const* npc);
+PXC_API char const* pxVobNpcGetPacked(PxVobNpc const* npc, uint32_t i);
+PXC_API uint32_t pxVobNpcGetItemsCount(PxVobNpc const* npc);
+PXC_API PxVobItem const* pxVobNpcGetItems(PxVobNpc const* npc, uint32_t i);
+PXC_API uint32_t pxVobNpcGetSlotsCount(PxVobNpc const* npc);
+PXC_API void
+pxVobNpcGetSlots(PxVobNpc const* npc, uint32_t i, PxBool* used, char const** name, int* itemIndex, PxBool* inInventory);
+PXC_API PxBool pxVobNpcGetCurrentStateValid(PxVobNpc const* npc);
+PXC_API char const* pxVobNpcGetCurrentStateName(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetCurrentStateIndex(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetCurrentStateIsRoutine(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetNextStateValid(PxVobNpc const* npc);
+PXC_API char const* pxVobNpcGetNextStateName(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetNextStateIndex(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetNextStateIsRoutine(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetLastAiState(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetHasRoutine(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetRoutineChanged(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetRoutineOverlay(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetRoutineOverlayCount(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetWalkmodeRoutine(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetWeaponmodeRoutine(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetStartNewRoutine(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetAiStateDriven(PxVobNpc const* npc);
+PXC_API PxVec3 pxVobNpcGetAiStatePos(PxVobNpc const* npc);
+PXC_API char const* pxVobNpcGetCurrentRoutine(PxVobNpc const* npc);
+PXC_API PxBool pxVobNpcGetRespawn(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetRespawnTime(PxVobNpc const* npc);
+PXC_API uint32_t pxVobNpcGetProtectionCount(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetProtection(PxVobNpc const* npc, uint32_t i);
+PXC_API int pxVobNpcGetBsInterruptableOverride(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetNpcType(PxVobNpc const* npc);
+PXC_API int pxVobNpcGetSpellMana(PxVobNpc const* npc);
 
 // Vob - Mob
 PXC_API char const* pxVobMobGetName(PxVobMob const* mob);
