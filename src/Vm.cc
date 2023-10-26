@@ -359,6 +359,9 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 		case PxVm_InstanceTypeMenuItem:
 			instance = vm->vm.allocate_instance<phoenix::c_menu_item>(sym).get();
 			break;
+		case PxVm_InstanceTypePfx:
+			instance = vm->vm.allocate_instance<phoenix::c_particle_fx>(sym).get();
+			break;
 		}
 
 		return instance;
@@ -417,6 +420,10 @@ pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType 
 			vm->vm.init_instance<phoenix::c_menu_item>({sym->get_instance(), v}, sym);
 			break;
 		}
+		case PxVm_InstanceTypePfx:
+			auto* v = reinterpret_cast<px::c_particle_fx*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_particle_fx>({sym->get_instance(), v}, sym);
+			break;
 		}
 
 		return existing;

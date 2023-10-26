@@ -22,7 +22,8 @@ typedef enum {
 	PxVm_InstanceTypeSfx = 3,
 	PxVm_InstanceTypeMusic = 4,
 	PxVm_InstanceTypeMenu = 5,
-	PxVm_InstanceTypeMenuItem = 6
+	PxVm_InstanceTypeMenuItem = 6,
+	PxVm_InstanceTypePfx = 7
 } PxVmInstanceType;
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
