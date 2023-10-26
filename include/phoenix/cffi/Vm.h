@@ -22,7 +22,8 @@ typedef enum {
 	PxVm_InstanceTypeSfx = 3,
 	PxVm_InstanceTypeMusic = 4,
 	PxVm_InstanceTypeMenu = 5,
-	PxVm_InstanceTypeMenuItem = 6
+	PxVm_InstanceTypeMenuItem = 6,
+	PxVm_InstanceTypePfx = 7
 } PxVmInstanceType;
 
 typedef void (*PxVmExternalCallback)(PxVm* vm);
@@ -202,3 +203,57 @@ PXC_API float pxVmInstanceMusicGetReverbMix(PxVmInstance const* instance);
 PXC_API float pxVmInstanceMusicGetReverbTime(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceMusicGetTransitionType(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceMusicGetTransitionSubType(PxVmInstance const* instance);
+
+// C_PARTICLEFX
+PXC_API float pxVmInstancePfxGetPpsValue(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetPpsScaleKeys(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetPpsIsLooping(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetPpsIsSmooth(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetPpsFps(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetPpsCrateEm(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetPpsCreateEmDelay(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetShpType(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetShpFor(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetShpOffsetVec(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetShpDistribType(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetShpDistribWalkSpeed(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetShpIsVolume(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetShpDim(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetShpMesh(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetShpMeshRender(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetShpScaleKeys(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetShpScaleIsLooping(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetShpScaleIsSmooth(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetShpScaleFps(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetDirMode(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetDirFor(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetDirModeTargetFor(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetDirModeTargetPos(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetDirAngleHead(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetDirAngleHeadVar(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetDirAngleElev(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetDirAngleElevVar(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetVelAvg(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetVelVar(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetLspPartAvg(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetLspPartVar(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetFlyGravity(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetFlyCollDet(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetVisName(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetVisOrientation(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetVisTexIsQuadPoly(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetVisTexAniFps(PxVmInstance const* instance);
+PXC_API PxBool pxVmInstancePfxGetVisTexAniIsLooping(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetVisTexColorStart(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetVisTexColorEnd(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetVisSizeStart(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetVisSizeEndScale(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetVisAlphaFunc(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetVisAlphaStart(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetVisAlphaEnd(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetTrlFadeSpeed(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetTrlTexture(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetTrlWidth(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetMrkFadeSpeed(PxVmInstance const* instance);
+PXC_API char const* pxVmInstancePfxGetMrkTexture(PxVmInstance const* instance);
+PXC_API float pxVmInstancePfxGetMrkSize(PxVmInstance const* instance);

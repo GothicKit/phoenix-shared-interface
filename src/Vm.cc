@@ -359,6 +359,9 @@ static PxVmInstance* pxInternalVmInstanceAllocate(PxVm* vm, phoenix::symbol* sym
 		case PxVm_InstanceTypeMenuItem:
 			instance = vm->vm.allocate_instance<phoenix::c_menu_item>(sym).get();
 			break;
+		case PxVm_InstanceTypePfx:
+			instance = vm->vm.allocate_instance<phoenix::c_particle_fx>(sym).get();
+			break;
 		}
 
 		return instance;
@@ -417,6 +420,10 @@ pxInternalVmInstanceInitialize(PxVm* vm, phoenix::symbol* sym, PxVmInstanceType 
 			vm->vm.init_instance<phoenix::c_menu_item>({sym->get_instance(), v}, sym);
 			break;
 		}
+		case PxVm_InstanceTypePfx:
+			auto* v = reinterpret_cast<px::c_particle_fx*>(sym->get_instance().get());
+			vm->vm.init_instance<phoenix::c_particle_fx>({sym->get_instance(), v}, sym);
+			break;
 		}
 
 		return existing;
@@ -932,4 +939,213 @@ int32_t pxVmInstanceMusicGetTransitionType(PxVmInstance const* instance) {
 
 int32_t pxVmInstanceMusicGetTransitionSubType(PxVmInstance const* instance) {
 	return (int32_t) RCC(phoenix::c_music_theme, instance)->transsubtype;
+}
+
+// C_PARTICLEFX
+PXC_API float pxVmInstancePfxGetPpsValue(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->pps_value;
+}
+
+char const* pxVmInstancePfxGetPpsScaleKeys(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->pps_scale_keys_s.c_str();
+}
+
+PxBool pxVmInstancePfxGetPpsIsLooping(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->pps_is_looping;
+}
+
+PxBool pxVmInstancePfxGetPpsIsSmooth(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->pps_is_smooth;
+}
+
+float pxVmInstancePfxGetPpsFps(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->pps_fps;
+}
+
+char const* pxVmInstancePfxGetPpsCrateEm(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->pps_create_em_s.c_str();
+}
+
+float pxVmInstancePfxGetPpsCreateEmDelay(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->pps_create_em_delay;
+}
+
+char const* pxVmInstancePfxGetShpType(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_type_s.c_str();
+}
+
+char const* pxVmInstancePfxGetShpFor(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_for_s.c_str();
+}
+
+char const* pxVmInstancePfxGetShpOffsetVec(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_offset_vec_s.c_str();
+}
+
+char const* pxVmInstancePfxGetShpDistribType(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_distrib_type_s.c_str();
+}
+
+float pxVmInstancePfxGetShpDistribWalkSpeed(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_distrib_walk_speed;
+}
+
+PxBool pxVmInstancePfxGetShpIsVolume(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->shp_is_volume;
+}
+
+char const* pxVmInstancePfxGetShpDim(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_dim_s.c_str();
+}
+
+char const* pxVmInstancePfxGetShpMesh(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_mesh_s.c_str();
+}
+
+PxBool pxVmInstancePfxGetShpMeshRender(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->shp_mesh_render_b;
+}
+
+char const* pxVmInstancePfxGetShpScaleKeys(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_scale_keys_s.c_str();
+}
+
+PxBool pxVmInstancePfxGetShpScaleIsLooping(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->shp_scale_is_looping;
+}
+
+PxBool pxVmInstancePfxGetShpScaleIsSmooth(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->shp_scale_is_smooth;
+}
+
+float pxVmInstancePfxGetShpScaleFps(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->shp_scale_fps;
+}
+
+char const* pxVmInstancePfxGetDirMode(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_mode_s.c_str();
+}
+
+char const* pxVmInstancePfxGetDirFor(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_for_s.c_str();
+}
+
+char const* pxVmInstancePfxGetDirModeTargetFor(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_mode_target_for_s.c_str();
+}
+
+char const* pxVmInstancePfxGetDirModeTargetPos(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_mode_target_pos_s.c_str();
+}
+
+float pxVmInstancePfxGetDirAngleHead(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_angle_head;
+}
+
+float pxVmInstancePfxGetDirAngleHeadVar(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_angle_head_var;
+}
+
+float pxVmInstancePfxGetDirAngleElev(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_angle_elev;
+}
+
+float pxVmInstancePfxGetDirAngleElevVar(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->dir_angle_elev_var;
+}
+
+float pxVmInstancePfxGetVelAvg(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vel_avg;
+}
+
+float pxVmInstancePfxGetVelVar(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vel_var;
+}
+
+float pxVmInstancePfxGetLspPartAvg(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->lsp_part_avg;
+}
+
+float pxVmInstancePfxGetLspPartVar(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->lsp_part_var;
+}
+
+char const* pxVmInstancePfxGetFlyGravity(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->fly_gravity_s.c_str();
+}
+
+PxBool pxVmInstancePfxGetFlyCollDet(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->fly_colldet_b;
+}
+
+char const* pxVmInstancePfxGetVisName(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_name_s.c_str();
+}
+
+char const* pxVmInstancePfxGetVisOrientation(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_orientation_s.c_str();
+}
+
+PxBool pxVmInstancePfxGetVisTexIsQuadPoly(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->vis_tex_is_quadpoly;
+}
+
+float pxVmInstancePfxGetVisTexAniFps(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_tex_ani_fps;
+}
+
+PxBool pxVmInstancePfxGetVisTexAniIsLooping(PxVmInstance const* instance) {
+	return (PxBool) RCC(phoenix::c_particle_fx, instance)->vis_tex_ani_is_looping;
+}
+
+char const* pxVmInstancePfxGetVisTexColorStart(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_tex_color_start_s.c_str();
+}
+
+char const* pxVmInstancePfxGetVisTexColorEnd(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_tex_color_end_s.c_str();
+}
+
+char const* pxVmInstancePfxGetVisSizeStart(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_size_start_s.c_str();
+}
+
+float pxVmInstancePfxGetVisSizeEndScale(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_size_end_scale;
+}
+
+char const* pxVmInstancePfxGetVisAlphaFunc(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_alpha_func_s.c_str();
+}
+
+float pxVmInstancePfxGetVisAlphaStart(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_alpha_start;
+}
+
+float pxVmInstancePfxGetVisAlphaEnd(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->vis_alpha_end;
+}
+
+float pxVmInstancePfxGetTrlFadeSpeed(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->trl_fade_speed;
+}
+
+char const* pxVmInstancePfxGetTrlTexture(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->trl_texture_s.c_str();
+}
+
+float pxVmInstancePfxGetTrlWidth(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->trl_width;
+}
+
+float pxVmInstancePfxGetMrkFadeSpeed(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->mrk_fades_peed;
+}
+
+char const* pxVmInstancePfxGetMrkTexture(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->mrkt_exture_s.c_str();
+}
+
+float pxVmInstancePfxGetMrkSize(PxVmInstance const* instance) {
+	return RCC(phoenix::c_particle_fx, instance)->mrk_size;
 }
