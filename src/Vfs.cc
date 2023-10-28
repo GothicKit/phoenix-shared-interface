@@ -17,6 +17,14 @@ void pxVfsMountDisk(PxVfs* vfs, char const* path, PxVfsOverwriteBehavior overwri
 	}
 }
 
+void pxVfsMountDiskData(PxVfs* vfs, PxBuffer* path, PxVfsOverwriteBehavior overwriteFlag) {
+	try {
+		vfs->mount_disk(*path, static_cast<px::VfsOverwriteBehavior>(overwriteFlag));
+	} catch (std::exception const& e) {
+		px::logging::log(px::logging::level::error, "encountered exception while parsing PxVfs: ", e.what());
+	}
+}
+
 void pxVfsDestroy(PxVfs* vfs) {
 	delete vfs;
 }
@@ -27,4 +35,26 @@ PxVfsNode const* pxVfsGetNodeByName(PxVfs const* vfs, char const* name) {
 
 PxBuffer* pxVfsNodeOpenBuffer(PxVfsNode const* node) {
 	return new phoenix::buffer {node->open()};
+}
+
+PxVfsNode const* pxVfsGetRootNode(const PxVfs* node) {
+	return &node->root();
+}
+
+char const* pxVfsNodeGetName(const PxVfsNode* node) {
+	return node->name().c_str();
+}
+
+size_t pxVfsNodeGetChildCount(const PxVfsNode* node) {
+	if (node->type() == phoenix::VfsNodeType::FILE) return 0;
+	return node->children().size();
+}
+
+PxVfsNode const* pxVfsNodeGetChild(const PxVfsNode* node, size_t i) {
+	if (node->type() == phoenix::VfsNodeType::FILE) return nullptr;
+	return &node->children()[i];
+}
+
+PxBool pxVfsNodeIsFile(const PxVfsNode* node) {
+	return node->type() == phoenix::VfsNodeType::FILE;
 }
