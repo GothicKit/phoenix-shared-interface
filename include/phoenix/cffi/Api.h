@@ -3,8 +3,15 @@
 #pragma once
 #include <stdint.h>
 
+#ifdef __EMSCRIPTEN__
+	#include <emscripten/emscripten.h>
+	#define PXC_PRELUDE EMSCRIPTEN_KEEPALIVE
+#else
+	#define PXC_PRELUDE
+#endif
+
 #ifdef __cplusplus
-	#define PXC_EXTERN extern "C"
+	#define PXC_EXTERN extern "C" PXC_PRELUDE
 #else
 	#define PXC_EXTERN
 #endif

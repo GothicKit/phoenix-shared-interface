@@ -66,7 +66,7 @@ uint64_t pxBufferSize(PxBuffer* buffer) {
 }
 
 uint8_t* pxBufferArray(PxBuffer* buffer) {
-	auto* data = new std::uint8_t[buffer->limit()];
+	auto* data = new std::uint8_t[(size_t) buffer->limit()];
 	buffer->get(data, buffer->limit());
 	return data;
 }

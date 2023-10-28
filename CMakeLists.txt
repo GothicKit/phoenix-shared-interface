@@ -14,7 +14,7 @@ option(PXC_ENABLE_ASAN "phoenix-shared: Enable sanitizers in debug builds." ON)
 
 add_subdirectory(vendor/phoenix)
 
-set(PXC_SOURCES
+list(APPEND PXC_SOURCES
         src/Animation.cc
         src/BspTree.cc
         src/Buffer.cc
@@ -37,7 +37,15 @@ set(PXC_SOURCES
 
 bs_select_cflags(${PXC_ENABLE_ASAN} PXC_COMPILE_FLAGS PXC_LINK_FLAGS)
 
-add_library(phoenix-shared SHARED)
+if (EMSCRIPTEN)
+    list(APPEND PXC_SOURCES src/Main.cc)
+    list(APPEND PXC_COMPILE_FLAGS -fexceptions)
+    list(APPEND PXC_LINK_FLAGS -sWASM=1 -sMODULARIZE -sEXPORTED_FUNCTIONS=_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,addFunction,AsciiToString,setValue,getValue -sSINGLE_FILE=1 -sALLOW_MEMORY_GROWTH=1 -sALLOW_TABLE_GROWTH=1 -fexceptions)
+    add_executable(phoenix-shared)
+else ()
+    add_library(phoenix-shared SHARED)
+endif ()
+
 set_target_properties(phoenix-shared PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN 1)
 
 target_sources(phoenix-shared PRIVATE ${PXC_SOURCES})
