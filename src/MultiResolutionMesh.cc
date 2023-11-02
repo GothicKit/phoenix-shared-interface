@@ -11,7 +11,8 @@ PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer) {
 		return new phoenix::proto_mesh(std::move(mat));
 	} catch (std::exception const& e) {
 		px::logging::log(px::logging::level::error,
-		                 "encountered exception while parsing PxMultiResolutionMesh: ",
+		                 "CAPI:PxMultiResolutionMesh",
+		                 "encountered exception while parsing PxMultiResolutionMesh: %s",
 		                 e.what());
 		return nullptr;
 	}
@@ -20,7 +21,7 @@ PxMultiResolutionMesh* pxMrmLoad(PxBuffer* buffer) {
 PxMultiResolutionMesh* pxMrmLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxMultiResolutionMesh", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

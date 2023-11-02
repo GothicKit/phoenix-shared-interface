@@ -10,7 +10,10 @@ PxMorphMesh* pxMmbLoad(PxBuffer* buffer) {
 		auto mat = phoenix::morph_mesh::parse(buffer->duplicate());
 		return new phoenix::morph_mesh(std::move(mat));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxMorphMesh: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxMorphMesh",
+		                 "encountered exception while parsing PxMorphMesh: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -18,7 +21,7 @@ PxMorphMesh* pxMmbLoad(PxBuffer* buffer) {
 PxMorphMesh* pxMmbLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxMorphMesh", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

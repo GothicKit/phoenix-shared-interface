@@ -10,7 +10,10 @@ PxTexture* pxTexLoad(PxBuffer* buffer) {
 		auto scr = phoenix::texture::parse(buffer->duplicate());
 		return new phoenix::texture(std::move(scr));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxTexture: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxTexture",
+		                 "encountered exception while parsing PxTexture: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -18,7 +21,7 @@ PxTexture* pxTexLoad(PxBuffer* buffer) {
 PxTexture* pxTexLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxTexture", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

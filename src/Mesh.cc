@@ -11,7 +11,10 @@ PxMesh* pxMshLoad(PxBuffer* buffer) {
 		auto mat = px::mesh::parse(buffer->duplicate());
 		return new phoenix::mesh(std::move(mat));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxMesh: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxMesh",
+		                 "encountered exception while parsing PxMesh: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -19,7 +22,7 @@ PxMesh* pxMshLoad(PxBuffer* buffer) {
 PxMesh* pxMshLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxMesh", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 
@@ -158,4 +161,35 @@ uint8_t pxMshGetPolygonFlagGetIsLod(PxMesh const* msh, uint32_t i) {
 
 uint8_t pxMshGetPolygonFlagGetNormalAxis(PxMesh const* msh, uint32_t i) {
 	return msh->polygons.flags[i].normal_axis;
+}
+
+uint32_t pxMshGetPolygonCount(PxMesh const* msh) {
+	return msh->geometry.size();
+}
+
+void pxMshGetPolygon(PxMesh const* msh,
+					 uint32_t idx,
+					 uint32_t* materialIndex,
+					 int32_t* lightmapIndex,
+					 PxPolygonFlags* flags,
+					 uint32_t const** vertexIndices,
+					 uint32_t const** featureIndices,
+					 uint32_t* vertexCount) {
+	auto& poly = msh->geometry[idx];
+	*materialIndex = poly.material;
+	*lightmapIndex = poly.lightmap;
+	*vertexIndices = poly.vertices.data();
+	*featureIndices = poly.features.data();
+	*vertexCount = poly.vertices.size();
+
+	flags->is_portal = poly.flags.is_portal;
+	flags->is_occluder = poly.flags.is_occluder;
+	flags->is_sector = poly.flags.is_sector;
+	flags->should_relight = poly.flags.should_relight;
+	flags->is_outdoor = poly.flags.is_outdoor;
+	flags->is_ghost_occluder = poly.flags.is_ghost_occluder;
+	flags->is_dynamically_lit = poly.flags.is_dynamically_lit;
+	flags->sector_index = poly.flags.sector_index;
+	flags->is_lod = poly.flags.is_lod;
+	flags->normal_axis = poly.flags.normal_axis;
 }

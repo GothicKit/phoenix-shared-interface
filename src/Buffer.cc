@@ -52,7 +52,10 @@ PxBuffer* pxBufferMmap(char const* file) {
 		auto buf = px::buffer::mmap(file);
 		return new px::buffer(std::move(buf));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while memory-mapping PxBuffer: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxBuffer",
+		                 "encountered exception while memory-mapping PxBuffer: %s",
+		                 e.what());
 		return nullptr;
 	}
 }

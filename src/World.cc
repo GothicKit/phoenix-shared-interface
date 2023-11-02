@@ -708,7 +708,7 @@ void pxVobNpcGetSlots(PxVobNpc const* npc,
                       PxBool* inInventory) {
 	*used = npc->slots[i].used;
 	*name = npc->slots[i].name.c_str();
-	*itemIndex = npc->slots[i].item_index;
+	*itemIndex = npc->slots[i].item->id;
 	*inInventory = npc->slots[i].in_inventory;
 }
 

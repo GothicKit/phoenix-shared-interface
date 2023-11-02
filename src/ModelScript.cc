@@ -10,7 +10,10 @@ PxModelScript* pxMdsLoad(PxBuffer* buffer) {
 		auto mat = phoenix::model_script::parse(buffer->duplicate());
 		return new phoenix::model_script(std::move(mat));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxModelScript: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxModelScript",
+		                 "encountered exception while parsing PxModelScript: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -18,7 +21,7 @@ PxModelScript* pxMdsLoad(PxBuffer* buffer) {
 PxModelScript* pxMdsLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxModelScript", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

@@ -10,7 +10,10 @@ PxModel* pxMdlLoad(PxBuffer* buffer) {
 		auto mat = px::model::parse(buffer->duplicate());
 		return new phoenix::model(std::move(mat));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxModel: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxModel",
+		                 "encountered exception while parsing PxModel: %s",
+		                 e.what());
 		return nullptr;
 	}
 }
@@ -18,7 +21,7 @@ PxModel* pxMdlLoad(PxBuffer* buffer) {
 PxModel* pxMdlLoadFromVfs(PxVfs const* vfs, char const* name) {
 	PxVfsNode const* node = pxVfsGetNodeByName(vfs, name);
 	if (node == nullptr) {
-		px::logging::log(px::logging::level::error, "failed to find vfs entry ", name);
+		px::logging::log(px::logging::level::error, "CAPI:PxModel", "failed to find vfs entry: %s", name);
 		return nullptr;
 	}
 

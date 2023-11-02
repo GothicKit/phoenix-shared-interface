@@ -13,7 +13,10 @@ void pxVfsMountDisk(PxVfs* vfs, char const* path, PxVfsOverwriteBehavior overwri
 	try {
 		vfs->mount_disk(std::filesystem::path(path), static_cast<px::VfsOverwriteBehavior>(overwriteFlag));
 	} catch (std::exception const& e) {
-		px::logging::log(px::logging::level::error, "encountered exception while parsing PxVfs: ", e.what());
+		px::logging::log(px::logging::level::error,
+		                 "CAPI:PxVfs",
+		                 "encountered exception while parsing PxVfs: %s",
+		                 e.what());
 	}
 }
 
@@ -52,7 +55,13 @@ size_t pxVfsNodeGetChildCount(const PxVfsNode* node) {
 
 PxVfsNode const* pxVfsNodeGetChild(const PxVfsNode* node, size_t i) {
 	if (node->type() == phoenix::VfsNodeType::FILE) return nullptr;
-	return &node->children()[i];
+
+	for (const auto& item : node->children()) {
+		if (i == 0) return &item;
+		i--;
+	}
+
+	return nullptr;
 }
 
 PxBool pxVfsNodeIsFile(const PxVfsNode* node) {
