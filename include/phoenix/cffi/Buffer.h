@@ -17,3 +17,4 @@ PXC_API PxBuffer* pxBufferMmap(char const* file);
 PXC_API void pxBufferDestroy(PxBuffer* buffer);
 PXC_API uint64_t pxBufferSize(PxBuffer* buffer);
 PXC_API uint8_t* pxBufferArray(PxBuffer* buffer);
+PXC_API uint8_t* pxBufferArrayNoalloc(PxBuffer* buffer);

@@ -70,3 +70,8 @@ uint8_t* pxBufferArray(PxBuffer* buffer) {
 	buffer->get(data, buffer->limit());
 	return data;
 }
+
+uint8_t* pxBufferArrayNoalloc(PxBuffer* buffer) {
+	return (uint8_t*) buffer->array();
+}
+
