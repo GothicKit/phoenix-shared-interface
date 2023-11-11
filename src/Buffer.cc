@@ -77,4 +77,3 @@ uint8_t* pxBufferArray(PxBuffer* buffer) {
 uint8_t* pxBufferArrayNoalloc(PxBuffer* buffer) {
 	return (uint8_t*) buffer->array();
 }
-

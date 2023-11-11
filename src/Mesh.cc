@@ -168,13 +168,13 @@ uint32_t pxMshGetPolygonCount(PxMesh const* msh) {
 }
 
 void pxMshGetPolygon(PxMesh const* msh,
-					 uint32_t idx,
-					 uint32_t* materialIndex,
-					 int32_t* lightmapIndex,
-					 PxPolygonFlags* flags,
-					 uint32_t const** vertexIndices,
-					 uint32_t const** featureIndices,
-					 uint32_t* vertexCount) {
+                     uint32_t idx,
+                     uint32_t* materialIndex,
+                     int32_t* lightmapIndex,
+                     PxPolygonFlags* flags,
+                     uint32_t const** vertexIndices,
+                     uint32_t const** featureIndices,
+                     uint32_t* vertexCount) {
 	auto& poly = msh->geometry[idx];
 	*materialIndex = poly.material;
 	*lightmapIndex = poly.lightmap;
