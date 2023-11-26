@@ -500,79 +500,79 @@ char const* pxVmInstanceNpcGetName(PxVmInstance const* instance, uint32_t i) {
 }
 
 char const* pxVmInstanceNpcGetSlot(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->slot.c_str();
+	return RCC(phoenix::c_npc, instance)->slot.c_str();
 }
 
 uint32_t pxVmInstanceNpcGetNpcType(PxVmInstance const* instance) {
-    return static_cast<uint32_t>(RCC(phoenix::c_npc, instance)->type);
+	return static_cast<uint32_t>(RCC(phoenix::c_npc, instance)->type);
 }
 
 uint32_t pxVmInstanceNpcGetFlags(PxVmInstance const* instance) {
-    return static_cast<uint32_t>(RCC(phoenix::c_npc, instance)->flags);
+	return static_cast<uint32_t>(RCC(phoenix::c_npc, instance)->flags);
 }
 
 uint32_t pxVmInstanceNpcGetAttributeLength(PxVmInstance const* instance) {
-    return zenkit::NpcAttribute::_NUM;
+	return zenkit::NpcAttribute::_NUM;
 }
 
 int32_t pxVmInstanceNpcGetAttribute(PxVmInstance const* instance, uint32_t i) {
-    return RCC(phoenix::c_npc, instance)->attribute[i];
+	return RCC(phoenix::c_npc, instance)->attribute[i];
 }
 
 uint32_t pxVmInstanceNpcGetProtectionLength(PxVmInstance const* instance) {
-    return zenkit::DamageType::_NUM;
+	return zenkit::DamageType::_NUM;
 }
 
 int32_t pxVmInstanceNpcGetProtection(PxVmInstance const* instance, uint32_t i) {
-    return RCC(phoenix::c_npc, instance)->protection[i];
+	return RCC(phoenix::c_npc, instance)->protection[i];
 }
 
 uint32_t pxVmInstanceNpcGetDamageLength(PxVmInstance const* instance) {
-    return zenkit::DamageType::_NUM;
+	return zenkit::DamageType::_NUM;
 }
 
 int32_t pxVmInstanceNpcGetDamage(PxVmInstance const* instance, uint32_t i) {
-    return RCC(phoenix::c_npc, instance)->damage[i];
+	return RCC(phoenix::c_npc, instance)->damage[i];
 }
 
 int32_t pxVmInstanceNpcGetDamageType(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->damage_type;
+	return RCC(phoenix::c_npc, instance)->damage_type;
 }
 
 int32_t pxVmInstanceNpcGetGuild(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->guild;
+	return RCC(phoenix::c_npc, instance)->guild;
 }
 
 int32_t pxVmInstanceNpcGetLevel(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->level;
+	return RCC(phoenix::c_npc, instance)->level;
 }
 
 uint32_t pxVmInstanceNpcGetMissionLength(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->mission_count;
+	return RCC(phoenix::c_npc, instance)->mission_count;
 }
 
 int32_t pxVmInstanceNpcGetMission(PxVmInstance const* instance, uint32_t i) {
-    return RCC(phoenix::c_npc, instance)->mission[i];
+	return RCC(phoenix::c_npc, instance)->mission[i];
 }
 
 int32_t pxVmInstanceNpcGetFightTactic(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->fight_tactic;
+	return RCC(phoenix::c_npc, instance)->fight_tactic;
 }
 
 int32_t pxVmInstanceNpcGetWeapon(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->weapon;
+	return RCC(phoenix::c_npc, instance)->weapon;
 }
 
 int32_t pxVmInstanceNpcGetVoice(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->voice;
+	return RCC(phoenix::c_npc, instance)->voice;
 }
 
 int32_t pxVmInstanceNpcGetVoicePitch(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->voice_pitch;
+	return RCC(phoenix::c_npc, instance)->voice_pitch;
 }
 
 int32_t pxVmInstanceNpcGetBodyMass(PxVmInstance const* instance) {
-    return RCC(phoenix::c_npc, instance)->body_mass;
+	return RCC(phoenix::c_npc, instance)->body_mass;
 }
 
 int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance) {
@@ -626,7 +626,6 @@ int32_t pxVmInstanceNpcGetExpNext(PxVmInstance const* instance) {
 int32_t pxVmInstanceNpcGetLp(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->lp;
 }
-
 
 // C_Item
 int32_t pxVmInstanceItemGetId(PxVmInstance const* instance) {
