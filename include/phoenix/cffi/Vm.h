@@ -77,7 +77,38 @@ PXC_API void pxVmEnumerateInstancesByClassName(PxVm* vm, char const* name, PxVmE
 PXC_API int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance);
 PXC_API uint32_t pxVmInstanceNpcGetNameLength(PxVmInstance const* instance);
 PXC_API char const* pxVmInstanceNpcGetName(PxVmInstance const* instance, uint32_t i);
+PXC_API char const* pxVmInstanceNpcGetSlot(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceNpcGetNpcType(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceNpcGetFlags(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceNpcGetAttributeLength(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetAttribute(PxVmInstance const* instance, uint32_t i);
+PXC_API uint32_t pxVmInstanceNpcGetProtectionLength(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetProtection(PxVmInstance const* instance, uint32_t i);
+PXC_API uint32_t pxVmInstanceNpcGetDamageLength(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetDamage(PxVmInstance const* instance, uint32_t i);
+PXC_API int32_t pxVmInstanceNpcGetDamageType(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetGuild(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetLevel(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceNpcGetMissionLength(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetMission(PxVmInstance const* instance, uint32_t i);
+PXC_API int32_t pxVmInstanceNpcGetFightTactic(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetWeapon(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetVoice(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetVoicePitch(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetBodyMass(PxVmInstance const* instance);
 PXC_API int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetStartAiState(PxVmInstance const* instance);
+PXC_API char const* pxVmInstanceNpcGetSpawnPoint(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetSpawnDelay(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetSenses(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetSensesRange(PxVmInstance const* instance);
+PXC_API uint32_t pxVmInstanceNpcGetAiLength(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetAiVar(PxVmInstance const* instance, uint32_t i);
+PXC_API char const* pxVmInstanceNpcGetWP(PxVmInstance const* instance);
+PXC_API void pxVmInstanceNpcSetWP(PxVmInstance* instance, char const* wpName);
+PXC_API int32_t pxVmInstanceNpcGetExp(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetExpNext(PxVmInstance const* instance);
+PXC_API int32_t pxVmInstanceNpcGetLp(PxVmInstance const* instance);
 
 // C_Item
 PXC_API int32_t pxVmInstanceItemGetId(PxVmInstance const* instance);

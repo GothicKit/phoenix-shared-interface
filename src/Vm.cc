@@ -486,6 +486,7 @@ void pxVmEnumerateInstancesByClassName(PxVm* vm, char const* name, PxVmEnumerate
 	vm->vm.enumerate_instances_by_class_name(name, internalCallback);
 }
 
+// C_Npc
 int32_t pxVmInstanceNpcGetId(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->id;
 }
@@ -498,9 +499,134 @@ char const* pxVmInstanceNpcGetName(PxVmInstance const* instance, uint32_t i) {
 	return RCC(phoenix::c_npc, instance)->name[i].c_str();
 }
 
+char const* pxVmInstanceNpcGetSlot(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->slot.c_str();
+}
+
+uint32_t pxVmInstanceNpcGetNpcType(PxVmInstance const* instance) {
+    return static_cast<uint32_t>(RCC(phoenix::c_npc, instance)->type);
+}
+
+uint32_t pxVmInstanceNpcGetFlags(PxVmInstance const* instance) {
+    return static_cast<uint32_t>(RCC(phoenix::c_npc, instance)->flags);
+}
+
+uint32_t pxVmInstanceNpcGetAttributeLength(PxVmInstance const* instance) {
+    return zenkit::NpcAttribute::_NUM;
+}
+
+int32_t pxVmInstanceNpcGetAttribute(PxVmInstance const* instance, uint32_t i) {
+    return RCC(phoenix::c_npc, instance)->attribute[i];
+}
+
+uint32_t pxVmInstanceNpcGetProtectionLength(PxVmInstance const* instance) {
+    return zenkit::DamageType::_NUM;
+}
+
+int32_t pxVmInstanceNpcGetProtection(PxVmInstance const* instance, uint32_t i) {
+    return RCC(phoenix::c_npc, instance)->protection[i];
+}
+
+uint32_t pxVmInstanceNpcGetDamageLength(PxVmInstance const* instance) {
+    return zenkit::DamageType::_NUM;
+}
+
+int32_t pxVmInstanceNpcGetDamage(PxVmInstance const* instance, uint32_t i) {
+    return RCC(phoenix::c_npc, instance)->damage[i];
+}
+
+int32_t pxVmInstanceNpcGetDamageType(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->damage_type;
+}
+
+int32_t pxVmInstanceNpcGetGuild(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->guild;
+}
+
+int32_t pxVmInstanceNpcGetLevel(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->level;
+}
+
+uint32_t pxVmInstanceNpcGetMissionLength(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->mission_count;
+}
+
+int32_t pxVmInstanceNpcGetMission(PxVmInstance const* instance, uint32_t i) {
+    return RCC(phoenix::c_npc, instance)->mission[i];
+}
+
+int32_t pxVmInstanceNpcGetFightTactic(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->fight_tactic;
+}
+
+int32_t pxVmInstanceNpcGetWeapon(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->weapon;
+}
+
+int32_t pxVmInstanceNpcGetVoice(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->voice;
+}
+
+int32_t pxVmInstanceNpcGetVoicePitch(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->voice_pitch;
+}
+
+int32_t pxVmInstanceNpcGetBodyMass(PxVmInstance const* instance) {
+    return RCC(phoenix::c_npc, instance)->body_mass;
+}
+
 int32_t pxVmInstanceNpcGetRoutine(PxVmInstance const* instance) {
 	return RCC(phoenix::c_npc, instance)->daily_routine;
 }
+
+int32_t pxVmInstanceNpcGetStartAiState(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->start_aistate;
+}
+
+char const* pxVmInstanceNpcGetSpawnPoint(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->spawnpoint.c_str();
+}
+
+int32_t pxVmInstanceNpcGetSpawnDelay(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->spawn_delay;
+}
+
+int32_t pxVmInstanceNpcGetSenses(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->senses;
+}
+
+int32_t pxVmInstanceNpcGetSensesRange(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->senses_range;
+}
+
+uint32_t pxVmInstanceNpcGetAiLength(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->aivar_count;
+}
+
+int32_t pxVmInstanceNpcGetAiVar(PxVmInstance const* instance, uint32_t i) {
+	return RCC(phoenix::c_npc, instance)->aivar[i];
+}
+
+char const* pxVmInstanceNpcGetWP(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->wp.c_str();
+}
+
+void pxVmInstanceNpcSetWP(PxVmInstance* instance, char const* wpName) {
+	RC(phoenix::c_npc, instance)->wp = wpName;
+}
+
+int32_t pxVmInstanceNpcGetExp(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->exp;
+}
+
+int32_t pxVmInstanceNpcGetExpNext(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->exp_next;
+}
+
+int32_t pxVmInstanceNpcGetLp(PxVmInstance const* instance) {
+	return RCC(phoenix::c_npc, instance)->lp;
+}
+
 
 // C_Item
 int32_t pxVmInstanceItemGetId(PxVmInstance const* instance) {
